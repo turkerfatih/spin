@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d17a48905d484b8dab7af46e33854ced, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bd9af8cdf68493fbdab6dc47c130d72, type: 3}
   m_Name: Pull Card
   m_EditorClassIdentifier: 
   Id: febf75b7bfdc65649be4498e49ee81a8
-  Description: Pull
-  Effects:
-  - {fileID: 11400000, guid: a9a9735cee04c2e4f9c7c500c537211b, type: 2}
-  - {fileID: 11400000, guid: ebe6df40c4ac36645b2cbc27b549540b, type: 2}
+  Description: 
+  Effects: []

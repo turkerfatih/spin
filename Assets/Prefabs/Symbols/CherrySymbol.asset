@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CherrySymbol
   m_EditorClassIdentifier: 
   Type: 3
-  Sprite: {fileID: 21300000, guid: 81b23c4e5a6fd3f4488114a561def09a, type: 3}
+  Sprite: {fileID: 21300000, guid: f0d67b6065ed1894ea06b2d4e088a14d, type: 3}

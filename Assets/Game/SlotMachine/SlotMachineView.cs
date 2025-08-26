@@ -13,8 +13,6 @@ namespace Game
     {
         [SerializeField] private ReelView ReelViewPrefab;
         private List<ReelView> reelViews;
-        [SerializeField]
-        private Transform Frame;
 
         private float[] delay;
         private List<UniTask> spinTasks;

@@ -1,8 +1,8 @@
-﻿namespace Game.Card
+﻿namespace Game.Core
 {
     public interface ICardHand
     {
         public void AddCard();
-        public void DiscardCard(ICard card);
+        public void DiscardCard(Card card);
     }
 }

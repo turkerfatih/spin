@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: JackpotSymbol
   m_EditorClassIdentifier: 
   Type: 7
-  Sprite: {fileID: 21300000, guid: f152851a79325b042ac31862874bbbb5, type: 3}
+  Sprite: {fileID: 21300000, guid: ada3d05f6c03fb94caee4bce4aa1d971, type: 3}

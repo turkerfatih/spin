@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Yellow7Symbol
   m_EditorClassIdentifier: 
   Type: 4
-  Sprite: {fileID: 21300000, guid: 37a25caae06d47f47ba85ca81011a702, type: 3}
+  Sprite: {fileID: 21300000, guid: 755ecb1120273064a837bac03af56ad5, type: 3}

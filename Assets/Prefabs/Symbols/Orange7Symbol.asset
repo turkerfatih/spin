@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Orange7Symbol
   m_EditorClassIdentifier: 
   Type: 5
-  Sprite: {fileID: 21300000, guid: 1839717f1e8a54545bcb090c27b2796b, type: 3}
+  Sprite: {fileID: 21300000, guid: a55f8fb5cb774f64eb08078a3ab6ce1f, type: 3}

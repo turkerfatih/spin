@@ -1,6 +1,6 @@
 ﻿using CardFramework.Deck;
 using CardFramework.RandomProvider;
-using Game.Card;
+using Game.Core;
 using UnityEngine;
 
 namespace Game
@@ -11,7 +11,7 @@ namespace Game
         public static SlotMachineProvider SlotMachine;
         public static SlotMachineView MachineView;
         public static IRandomProvider Random;
-        public static Deck<ICard> Deck;
+        public static Deck<Card> Deck;
         public static IPayTable PayTable;
         public static Camera MainCamera;
         

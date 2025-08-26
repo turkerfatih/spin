@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d17a48905d484b8dab7af46e33854ced, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bd9af8cdf68493fbdab6dc47c130d72, type: 3}
   m_Name: Push Card
   m_EditorClassIdentifier: 
   Id: f719e2aa69973a24aa28f8fe78a2b425
-  Description: Push
-  Effects:
-  - {fileID: 11400000, guid: a9a9735cee04c2e4f9c7c500c537211b, type: 2}
-  - {fileID: 11400000, guid: c84d9cbd240ff3a4cb916ec976dc52e3, type: 2}
+  Description: 
+  Effects: []

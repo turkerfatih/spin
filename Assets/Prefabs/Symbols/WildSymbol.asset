@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WildSymbol
   m_EditorClassIdentifier: 
   Type: 8
-  Sprite: {fileID: 21300000, guid: f152851a79325b042ac31862874bbbb5, type: 3}
+  Sprite: {fileID: 21300000, guid: c8ce9ee06a0494441b6f95c3134f4721, type: 3}
