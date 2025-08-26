@@ -6,7 +6,7 @@ namespace Game
 {
     public class SymbolView:MonoBehaviour
     {
-        public const float Height = 2.5f;
+        public const float Height = 1.28f;
         public SymbolType Type;
         [SerializeField] private SpriteRenderer Icon;
         [SerializeField] private TextMeshPro Id;
