@@ -119,6 +119,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &163750307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 163750308}
+  m_Layer: 0
+  m_Name: Deck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &163750308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163750307}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &354230206
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReelViewPrefab: {fileID: -5943201908701962048, guid: 915f2f5119e6fb84dab5058c236e9f47, type: 3}
-  Frame: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +369,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000a7659da50380fb261dcc1ad4
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -523,6 +553,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1364209452}
+  - component: {fileID: 1364209453}
+  - component: {fileID: 1364209455}
+  - component: {fileID: 1364209454}
   m_Layer: 0
   m_Name: GameSetup
   m_TagString: Untagged
@@ -545,6 +578,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1364209453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364209451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdd78540864d4f129f33f24932224888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeckParent: {fileID: 163750308}
+  StartingDeck: {fileID: 11400000, guid: 8c137ed51e3a1404282889a05a350312, type: 2}
+  CardPrefab: {fileID: 1658605270969958253, guid: 38aa6ba35be5144dc931edb1e6e43818, type: 3}
+  CardDatabase: {fileID: 11400000, guid: bd64dc928107a81428f191c54f085ec1, type: 2}
+--- !u!114 &1364209454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364209451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a961b038688143e39d221dcf2cd50cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReelConfigurations:
+  - {fileID: 11400000, guid: 27bdf5e06068c0b428519732a94ed4dd, type: 2}
+  - {fileID: 11400000, guid: 27bdf5e06068c0b428519732a94ed4dd, type: 2}
+  - {fileID: 11400000, guid: 27bdf5e06068c0b428519732a94ed4dd, type: 2}
+--- !u!114 &1364209455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364209451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed2ac011f8c48b48cc3d92a3d17c5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SymbolVisuals:
+  - {fileID: 11400000, guid: 4cb9b25929cc01540a495939b2c1af07, type: 2}
+  - {fileID: 11400000, guid: 4bb8d1dcadbd1c3439e1a69cb2dd4262, type: 2}
+  - {fileID: 11400000, guid: 5208b2bbbf8779148ad5a7dc98b6766a, type: 2}
+  - {fileID: 11400000, guid: 8677fc4daa89f784d85fcd57590c8f92, type: 2}
+  - {fileID: 11400000, guid: d6bc4fc1b93441f42a218533448a4235, type: 2}
+  - {fileID: 11400000, guid: 0861f4989d7873c40b93754d8c420d1c, type: 2}
+  - {fileID: 11400000, guid: cf231eee7e4c6d441bc6d6456c6832a8, type: 2}
+  - {fileID: 11400000, guid: fcda54aaad261ef40989f1960d280c7c, type: 2}
+  SymbolViewPrefab: {fileID: 3942779535106810325, guid: c355612e38ea61c489c373e40c58ef82, type: 3}
 --- !u!1 &1530182232
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +814,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 163750308}
   - {fileID: 619394802}
   - {fileID: 687943568}
   - {fileID: 1841124030}
