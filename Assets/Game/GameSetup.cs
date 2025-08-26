@@ -23,6 +23,11 @@ namespace Game
             Services.PayTable = new PayTable();
         }
 
+        private void Start()
+        {
+            StartNewRun();
+        }
+
         private void CreateNewGame(ulong seed)
         {
 
@@ -62,8 +67,8 @@ namespace Game
             var seedNumeric=SeedGenerator.ToNumeric(seedReadable);
             Debug.Log(seedNumeric);
             CreateNewGame(seedNumeric);
-            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
-            EventBus.OnNewGameLoaded.Invoke();
+            //SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+            EventBus.OnNewGameLoaded?.Invoke();
         }
         public void ContinueLastRun()
         {

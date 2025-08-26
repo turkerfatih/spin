@@ -146,6 +146,7 @@ namespace Game
 
         private async void PlaySpinSound()
         {
+            return;
             audioSource.volume =0.5f ;
             audioSource.clip=Clips[2];
             audioSource.pitch = 1;

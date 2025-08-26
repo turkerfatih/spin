@@ -57,6 +57,16 @@ namespace Game
                 var reelView = reelViews[i];
                     
                 var reel = Services.SlotMachine.GetReel(i);
+                if (reel == null)
+                {
+                    Debug.Log($"Reel {i} not found");
+                }
+
+                if (Services.Random == null)
+                {
+                    Debug.Log("Random is null");
+                }
+
                 var r = Services.Random.Range(0, reel.Count);
                 var item = reel[r];
                 //spinResult.Symbol=item.Type;
