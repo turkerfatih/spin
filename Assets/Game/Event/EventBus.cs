@@ -9,5 +9,6 @@ namespace Game.Event
         public static Action OnSlotMachineLoaded;
         public static Action<int> OnDrawPileChanged;
         public static Action<int> OnDiscardPileChanged;
+        public static Action<double> OnCoinGiven;
     }
 }
