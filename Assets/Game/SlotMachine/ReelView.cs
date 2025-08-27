@@ -23,7 +23,6 @@ namespace Game
         private List<SymbolView> views;
         private int currentIndex;
         private float bottomLimit;
-        private float topLimit;
         private int reelIndex;
         private float spinVel;
         private float spinSpeed;
@@ -32,13 +31,11 @@ namespace Game
 
         public void Setup(List<Symbol> items,int index)
         {
-            //audioSource = GetComponent<AudioSource>();
             reelIndex=index;
             symbols = items;
             views = new List<SymbolView>(items.Count);
             bottomLimit = items.Count * SymbolView.Height;
             Debug.Log("reel view bottom limit:"+bottomLimit);
-            topLimit = 0;
             var pos = new Vector3(0, SymbolView.Height*DuplicatesNeeded, 0);
             for (int i = 0; i < DuplicatesNeeded; i++)
             {
@@ -75,11 +72,7 @@ namespace Game
                 return ;
             }
             Debug.Log($"target index:{targetIndex}");
-
-            var pos = VerticalList.localPosition.y;
-            
-            /*await VerticalList.DOLocalMoveY(pos - SymbolView.Height, 0.35f)
-                .SetEase(Ease.InBack).ToUniTask();*/
+ 
             await Spin(targetIndex, delay);
             
         }
