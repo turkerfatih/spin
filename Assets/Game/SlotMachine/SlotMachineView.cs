@@ -68,6 +68,7 @@ namespace Game
                 }
 
                 var r = Services.Random.Range(0, reel.Count);
+                Services.SlotMachine.SetReel(i, r);
                 var item = reel[r];
                 //spinResult.Symbol=item.Type;
                 var d = delay[(delayIndex + i) % 3];

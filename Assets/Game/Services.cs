@@ -12,7 +12,7 @@ namespace Game
         public static SlotMachineView MachineView;
         public static IRandomProvider Random;
         public static Deck<Card> Deck;
-        public static IPayTable PayTable;
+        public static PayTable PayTable;
         public static Camera MainCamera;
         
         public static ICardHand CurrentHand;
