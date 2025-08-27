@@ -34,7 +34,7 @@ namespace Game.Core
                 return;
             }
 
-            // Desired no-overlap step (center-to-center)
+            // Desired step without overlap
             float baseStep = w + Gap;
             float natural = w + (n - 1) * baseStep;
 
@@ -42,50 +42,59 @@ namespace Game.Core
 
             if (natural > MaxWidth)
             {
-                // Step that would exactly fit within MaxWidth (may be <= w, i.e., overlap)
-                float stepFit = (MaxWidth - w) / (n - 1); // n>1 here, so safe
+                // Step that would exactly fit in MaxWidth
+                float stepFit = (MaxWidth - w) / (n - 1);
 
                 if (stepFit > w)
                 {
-                    // This would be a tiny visible gap (< Gap). We prefer overlap instead of "too close".
+                    // If spacing is smaller than Gap but not overlapping, force overlap
                     step = Mathf.Max(w - MinOverlap, 0f);
                 }
                 else
                 {
-                    // Already overlapping to fit
                     step = Mathf.Max(stepFit, 0f);
                 }
             }
 
             _step = step;
 
+            // Total occupied width
+            float totalWidth = w + (n - 1) * step;
+            // Leftmost card position so the hand is centered
+            float startX = -totalWidth / 2f + w / 2f;
+
             for (int i = 0; i < n; i++)
             {
-                // Start from local x = 0, card i at i * step
-                cards[i].transform.localPosition = new Vector3(i * step, 0f, 0f);
+                float x = startX + i * step;
+                cards[i].transform.localPosition = new Vector3(x, 0f, 0f);
             }
         }
 
         void Select(int index)
         {
+            Debug.Log("Selected:"+index);
             if (index < 0 || index >= cards.Count) return;
-
-            // Ensure we have a valid step if Select is called before layout
             if (cards.Count > 1 && _step <= 0f) UpdateLayout();
 
-            for (int i = 0; i < cards.Count; i++)
+            float w = Card.Width;
+            int n = cards.Count;
+
+            float totalWidth = w + (n - 1) * _step;
+            float startX = -totalWidth / 2f + w / 2f;
+
+            for (int i = 0; i < n; i++)
             {
-                float baseX = i * _step;
+                float x = startX + i * _step;
                 float y = (i == index) ? SelectRaiseY : 0f;
 
                 if (i != index)
                 {
-                    int d = Mathf.Abs(i - index);          // 1 for immediate neighbor, etc.
+                    int d = Mathf.Abs(i - index);
                     float offset = PushStrength * Mathf.Pow(Falloff, d - 1);
-                    baseX += (i < index) ? -offset : offset;
+                    x += (i < index) ? -offset : offset;
                 }
 
-                cards[i].transform.localPosition = new Vector3(baseX, y, 0f);
+                cards[i].transform.localPosition = new Vector3(x, y, 0f);
             }
         }
 
@@ -118,6 +127,37 @@ namespace Game.Core
         {
             cards.Remove(card);
             UpdateLayout();
+        }
+
+        private void OnMouseDown()
+        {
+            
+        }
+        private int selectedIndex = -1;
+
+        private void AdvanceSelected(int amount)
+        {
+            
+            if (selectedIndex < 0 || amount < 0)
+            {
+                selectedIndex = 1;
+            }
+
+            selectedIndex += amount;
+            selectedIndex = selectedIndex % cards.Count;
+            Select(selectedIndex);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                AdvanceSelected(-1);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                AdvanceSelected(1);
+            }
         }
     }
 }

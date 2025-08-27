@@ -1261,6 +1261,7 @@ GameObject:
   - component: {fileID: 1692558951}
   - component: {fileID: 1692558952}
   - component: {fileID: 1692558953}
+  - component: {fileID: 1692558954}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -1299,6 +1300,10 @@ MonoBehaviour:
   MaxWidth: 8
   MinWidth: 2
   Gap: 0.2
+  MinOverlap: 0.02
+  SelectRaiseY: 0.5
+  PushStrength: 0.4
+  Falloff: 0.6
 --- !u!114 &1692558953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1311,7 +1316,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03577e649d646b89ef022ef81c9201f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingCount: 3
+  StartingCount: 12
+--- !u!65 &1692558954
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692558950}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.03, y: 1.13, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1841124026
 GameObject:
   m_ObjectHideFlags: 0
