@@ -11,7 +11,7 @@ namespace Game
     public class ReelView : MonoBehaviour
     {
         public const float Width = 2f;
-        private const float SpinDuration = 5.5f;      // total spin time (ease-in + ease-out)
+        private const float SpinDuration = 1.5f;      // total spin time (ease-in + ease-out)
         private const int DuplicatesNeeded = 3;
 
         [SerializeField]
@@ -86,8 +86,9 @@ namespace Game
 
             // move downward until we reach the target (add extra laps)
             float distance = targetY - currentY;
+            
             while (distance > 0) distance -= bottomLimit;
-            distance -= bottomLimit * 2; // at least 2 laps for animation feel
+                distance -= bottomLimit * 1; // at least 1 laps for animation feel
 
             float finalY = currentY + distance;
 
@@ -103,7 +104,6 @@ namespace Game
 
                 VerticalList.localPosition = new Vector3(0, wrapped, 0);
             })
-            .SetEase(Ease.Linear) // we control easing manually
             .ToUniTask();
 
             // 🔒 snap-to-grid (pixel-perfect)
@@ -120,7 +120,7 @@ namespace Game
         {
             t = Mathf.Clamp01(t);
             return t < 0.5f 
-                ? 4f * t * t * t 
+                ? 1f * t * t * t 
                 : 1f - Mathf.Pow(-2f * t + 2f, 3f) / 2f;
         }
 
