@@ -21,12 +21,9 @@ namespace Game
         {
             Services.Cards = this;
             Services.PayTable = new PayTable();
-        }
-
-        private void Start()
-        {
             StartNewRun();
         }
+        
 
         private void CreateNewGame(ulong seed)
         {

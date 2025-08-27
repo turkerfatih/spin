@@ -77,15 +77,7 @@ namespace Game
                 EventBus.OnCoinGiven?.Invoke(payout.Amount);
             }
         }
-
-        public void DrawCard()
-        {
-            var deck = Services.Deck;
-            if(deck.Library.Size==0 && deck.Discarded.Size==0)
-                return;
-            Services.CurrentHand.AddCard();
-        }
-
+        
 
     }
 

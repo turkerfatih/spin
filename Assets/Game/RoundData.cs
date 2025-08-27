@@ -4,6 +4,8 @@
     {
         public double Collected;
         public double Target;
-        
+        public int BeginSpinCount;
+        public int RemainingSpins;
+
     }
 }

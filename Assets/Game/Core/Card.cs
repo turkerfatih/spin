@@ -6,6 +6,7 @@ namespace Game.Core
 {
     public class Card:MonoBehaviour
     {
+        public static float Width = 1f;
         public TextMeshPro label;
         public TextMeshPro info;
         [NonSerialized]

@@ -11,5 +11,7 @@ namespace Game
         public int HandCount;
         public string Seed;
         public RandomStateData RandomState;
+        public int Round;
+        
     }
 }

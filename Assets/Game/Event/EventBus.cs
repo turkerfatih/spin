@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Core;
 
 namespace Game.Event
 {
@@ -10,5 +11,7 @@ namespace Game.Event
         public static Action<int> OnDrawPileChanged;
         public static Action<int> OnDiscardPileChanged;
         public static Action<double> OnCoinGiven;
+        
+        public static Action<Card> OnCardAddToHand;
     }
 }
