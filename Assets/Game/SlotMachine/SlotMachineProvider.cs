@@ -12,6 +12,8 @@ namespace Game
 
         private List<Symbol>[] reels;
         
+        private bool isSpinning = false;
+        
         
         private Camera gameCamera;
         private void Awake()
@@ -36,10 +38,14 @@ namespace Game
 
         public async void Spin()
         {
+            if(isSpinning)
+                return;
+            isSpinning=true;
             Services.Sound.StartSpinning();
             await Services.MachineView.Spin();
             Services.Sound.StopSpinning();
             //DrawCard();
+            isSpinning=false;
         }
 
         public void DrawCard()
