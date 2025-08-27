@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using DG.Tweening.Core.Easing;
 using Game.Event;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,9 +11,7 @@ namespace Game
     public class ReelView : MonoBehaviour
     {
         public const float Width = 2f;
-        private const float BaseSpeed = SymbolView.Height * 20f; // base spin speed
-        private const float SpinDuration = 0.5f;                 // how long before decel starts
-        private const float DecelDuration = 0.5f;                // slowdown duration
+        private const float SpinDuration = 5.5f;      // total spin time (ease-in + ease-out)
         private const int DuplicatesNeeded = 3;
 
         [SerializeField]
@@ -82,60 +79,49 @@ namespace Game
             var startDelay = Random.Range(0f, 0.15f) + delay;
             await UniTask.WaitForSeconds(startDelay);
 
-            float time = 0f;
-            float speed = BaseSpeed;
-
-            // --- SPIN PHASE (constant speed) ---
-            while (time < SpinDuration)
-            {
-                StepReel(ref speed);
-                time += Time.deltaTime;
-                await UniTask.WaitForEndOfFrame(this);
-            }
-
-            // --- DECELERATION PHASE ---
             float currentY = VerticalList.localPosition.y;
+
+            // target position in reel space
             float targetY = SymbolView.Height * targetIndex;
 
-            // compute distance to target (always downward / negative direction)
+            // move downward until we reach the target (add extra laps)
             float distance = targetY - currentY;
-            while (distance > 0) distance -= bottomLimit; // ensure negative
-            distance -= bottomLimit; // force at least one extra lap
+            while (distance > 0) distance -= bottomLimit;
+            distance -= bottomLimit * 2; // at least 2 laps for animation feel
 
             float finalY = currentY + distance;
 
-            // Tween "progress" instead of raw position to avoid direction flips
-            await DOVirtual.Float(0f, 1f, DecelDuration, t =>
+            // tween with ease-in-out curve
+            await DOVirtual.Float(0f, 1f, SpinDuration, t =>
             {
-                float eased = EaseOutCubic(t);   
-                float val = currentY + distance * eased;
+                float eased = EaseInOutCubic(t);
+                float val = Mathf.Lerp(currentY, finalY, eased);
 
                 // wrap downward safely
                 float wrapped = val % bottomLimit;
                 if (wrapped < 0) wrapped += bottomLimit;
 
                 VerticalList.localPosition = new Vector3(0, wrapped, 0);
-            }).ToUniTask();
+            })
+            .SetEase(Ease.Linear) // we control easing manually
+            .ToUniTask();
+
+            // 🔒 snap-to-grid (pixel-perfect)
+            float snapped = Mathf.Round(VerticalList.localPosition.y / SymbolView.Height) * SymbolView.Height;
+            snapped = snapped % bottomLimit;
+            if (snapped < 0) snapped += bottomLimit;
+
+            VerticalList.localPosition = new Vector3(0, snapped, 0);
 
             OnSpinComplete();
         }
-        
-        float EaseOutCubic(float t) {
-            t = Mathf.Clamp01(t);
-            t = t - 1f;
-            return t * t * t + 1f;
-        }
 
-        private void StepReel(ref float speed)
+        private float EaseInOutCubic(float t)
         {
-            float currentY = VerticalList.localPosition.y;
-            currentY -= speed * Time.deltaTime;
-
-            // manual downward wrap
-            if (currentY < 0)
-                currentY += bottomLimit;
-
-            VerticalList.localPosition = new Vector3(0, currentY, 0);
+            t = Mathf.Clamp01(t);
+            return t < 0.5f 
+                ? 4f * t * t * t 
+                : 1f - Mathf.Pow(-2f * t + 2f, 3f) / 2f;
         }
 
         private void OnSpinComplete()
@@ -143,7 +129,7 @@ namespace Game
             EventBus.OnReelSpinEnd?.Invoke(reelIndex);
         }
 
-        // --- Optional Push/Pull nudges ---
+        // Optional Push/Pull nudges
         public void Push() => PushOrPull(1);
         public void Pull() => PushOrPull(-1);
 
