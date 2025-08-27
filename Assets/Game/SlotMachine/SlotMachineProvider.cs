@@ -39,7 +39,7 @@ namespace Game
             Services.Sound.StartSpinning();
             await Services.MachineView.Spin();
             Services.Sound.StopSpinning();
-            DrawCard();
+            //DrawCard();
         }
 
         public void DrawCard()

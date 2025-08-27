@@ -14,8 +14,7 @@ namespace Game
         public const float Width = 2.75f;
         public const float Speed = SymbolView.Height*10;
         public const int DuplicatesNeeded = 3;
-
-        public List<AudioClip> Clips;
+        
         
         [SerializeField]
         private Transform VerticalList;
@@ -29,11 +28,11 @@ namespace Game
         private float spinVel;
         private float spinSpeed;
         
-        private AudioSource audioSource;
+     
 
         public void Setup(List<Symbol> items,int index)
         {
-            audioSource = GetComponent<AudioSource>();
+            //audioSource = GetComponent<AudioSource>();
             reelIndex=index;
             symbols = items;
             views = new List<SymbolView>(items.Count);
@@ -78,7 +77,7 @@ namespace Game
             Debug.Log($"target index:{targetIndex}");
 
             var pos = VerticalList.localPosition.y;
-            PlaySpinSound();
+            
             /*await VerticalList.DOLocalMoveY(pos - SymbolView.Height, 0.35f)
                 .SetEase(Ease.InBack).ToUniTask();*/
             await Spin(targetIndex, delay);
@@ -91,7 +90,6 @@ namespace Game
             await UniTask.WaitForSeconds(startDelay);
             var duration = 2f+delay;
             var time = 0f;
-            var landingDuration = Clips[10 + reelIndex].length;
            
             spinVel = -1f;
             spinSpeed = 0;
@@ -123,38 +121,11 @@ namespace Game
                 ease = Ease.OutElastic;
             }
             ease=Ease.InFlash;
-            PlayLandSound(dur);
             await VerticalList.DOLocalMoveY(targetY, dur).SetEase(ease).ToUniTask();
             
             OnSpinComplete();
         }
-
-        private async void PlayLandSound(float landingDuration)
-        {
-            audioSource.DOKill();
-            audioSource.loop = false;
-            audioSource.volume =1 ;
-            audioSource.clip=Clips[10+reelIndex];
-            audioSource.pitch = 1;
-            var delay=landingDuration-audioSource.clip.length;
-            if (delay > 0)
-            {
-                await UniTask.WaitForSeconds(delay);
-            }
-            audioSource.Play();
-        }
-
-        private async void PlaySpinSound()
-        {
-            return;
-            audioSource.volume =0.5f ;
-            audioSource.clip=Clips[2];
-            audioSource.pitch = 1;
-            audioSource.Play();
-            await UniTask.WaitForSeconds(2f);
-            
-            
-        }
+        
 
         private Vector3 FixAlign(Vector3 currentPos,float moveAmount)
         {
