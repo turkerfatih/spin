@@ -12,15 +12,14 @@ namespace Game
     public class ReelView : MonoBehaviour
     {
         public const float Width = 2.75f;
-        public const float Speed = SymbolView.Height*10;
-        public const int DuplicatesNeeded = 3;
-        
+        private const float Speed = SymbolView.Height*10;
+        private const int DuplicatesNeeded = 3;
         
         [SerializeField]
         private Transform VerticalList;
         
         private List<Symbol> symbols;
-        private List<SymbolView> views;
+        private List<SymbolView> views;//going to be used for symbol effects
         private int currentIndex;
         private float bottomLimit;
         private int reelIndex;
@@ -157,11 +156,9 @@ namespace Game
         {
             var amount = SymbolView.Height * dir;
             var pos =FixAlign(VerticalList.localPosition,amount);
-            //var pos = VerticalList.localPosition;
             VerticalList.DOLocalMoveY(pos.y + amount, 0.75f)
                 .SetEase( dir>0 ? Ease.InBack : Ease.OutBack).OnComplete(OnSpinComplete);
         }
-
-
+        
     }
 }
