@@ -7,6 +7,5 @@ namespace Game
     {
         public SymbolType SymbolType;
         public int Count;
-        public int Blank;
     }
 }
