@@ -11,7 +11,7 @@ namespace Game
 {
     public class ReelView : MonoBehaviour
     {
-        public const float Width = 2.75f;
+        public const float Width = 2f;
         private const float BaseSpeed = SymbolView.Height * 20f; // base spin speed
         private const float SpinDuration = 0.5f;                 // how long before decel starts
         private const float DecelDuration = 0.5f;                // slowdown duration
@@ -79,7 +79,7 @@ namespace Game
         private async UniTask Spin(int targetIndex, float delay = 0f)
         {
             // random stagger so reels don’t start perfectly together
-            var startDelay = Random.Range(0.1f, 0.3f) + delay;
+            var startDelay = Random.Range(0f, 0.15f) + delay;
             await UniTask.WaitForSeconds(startDelay);
 
             float time = 0f;
