@@ -69,12 +69,13 @@ namespace Game
                 Debug.LogWarning("Symbol ID not found on reel.");
                 return;
             }
-
+            Debug.Log($" Reel {reelIndex} target index: {targetIndex}  ");
             await Spin(targetIndex, delay);
         }
 
         private async UniTask Spin(int targetIndex, float delay = 0f)
         {
+            
             // random stagger so reels don’t start perfectly together
             var startDelay = Random.Range(0f, 0.15f) + delay;
             await UniTask.WaitForSeconds(startDelay);
