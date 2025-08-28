@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using Game.Event;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Core
 {
     public class HandLayout : MonoBehaviour
     {
+        [SerializeField] private SpriteRenderer Box;
         [SerializeField] private float MaxWidth = 8f;
         [SerializeField] private float MinWidth = 2f;
         [SerializeField] private float Gap = 0.2f;
@@ -22,6 +24,15 @@ namespace Game.Core
         private int selectedIndex = -1;
         private int lastSelectedIndex = -1;
         
+        private BoxCollider boxCollider;
+        private float currentTotalWidth;
+
+        private void Awake()
+        {
+            boxCollider = GetComponent<BoxCollider>();
+            currentTotalWidth = MinWidth;
+        }
+
         void UpdateLayout()
         {
             CalculatePositions();
@@ -71,6 +82,7 @@ namespace Game.Core
 
             // Total occupied width
             float totalWidth = w + (n - 1) * step;
+            currentTotalWidth=totalWidth;
             // Leftmost card position so the hand is centered
             float startX = -totalWidth / 2f + w / 2f;
 
@@ -79,6 +91,17 @@ namespace Game.Core
                 float x = startX + i * step;
                 positions[i] = new Vector3(x, 0f, 0f);
             }
+            UpdateBox();
+        }
+
+        private void UpdateBox()
+        {
+            var width = Mathf.Max(currentTotalWidth, MinWidth)+Card.Width;            
+            boxCollider.size = new Vector3(width, boxCollider.size.y, boxCollider.size.z);
+            boxCollider.center = new Vector3(0f, boxCollider.center.y, boxCollider.center.z);
+            var bs = Box.size;
+
+            Box.size = new Vector2(width  , bs.y);
         }
 
         void Select()
