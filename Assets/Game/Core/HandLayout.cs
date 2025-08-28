@@ -119,7 +119,7 @@ namespace Game.Core
 
         private void RemoveCurrentlySelected()
         {
-            if (lastSelectedIndex == selectedIndex || lastSelectedIndex == -1) return;
+            if ( lastSelectedIndex == -1) return;
             var target= positions[lastSelectedIndex];
             cards[lastSelectedIndex].transform.DOLocalMove(target,0.15f).SetEase(Ease.OutExpo);
         }
@@ -188,6 +188,49 @@ namespace Game.Core
             {
                 AdvanceSelected(1);
             }
+            
+        }
+
+        private void OnMouseOver()
+        {
+            if (cards.Count == 0) return;
+
+            // Get mouse position in world space
+            Vector3 worldMouse = Services.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+            // Convert to local space of the hand layout
+            Vector3 localMouse = transform.InverseTransformPoint(worldMouse);
+    
+            float width = boxCollider.size.x;
+
+            // Clamp mouse inside collider range
+            float halfWidth = width / 2f;
+            float x = Mathf.Clamp(localMouse.x, -halfWidth, halfWidth);
+
+            // Map local x to [0, 1] range
+            float t = (x + halfWidth) / width;
+
+            // Scale to card index
+            int index = Mathf.FloorToInt(t * cards.Count);
+            index = Mathf.Clamp(index, 0, cards.Count - 1);
+
+            // Update selection
+            if (index != selectedIndex)
+            {
+                selectedIndex = index;
+                Select();
+            }
+        }
+        private void OnMouseExit()
+        {
+            RemoveFocus();
+        }
+
+        private void RemoveFocus()
+        {
+            RemoveCurrentlySelected();
+            selectedIndex = -1;
+            lastSelectedIndex = -1;   
         }
     }
 }

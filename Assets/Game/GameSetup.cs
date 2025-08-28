@@ -21,6 +21,7 @@ namespace Game
         {
             Services.Cards = this;
             Services.PayTable = new PayTable();
+            Services.MainCamera=Camera.main;
             StartNewRun();
         }
         
