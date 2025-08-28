@@ -17,11 +17,21 @@ namespace Game.Core
         [SerializeField] private float SelectRaiseY = 0.5f;
        
         private readonly List<Card> cards = new List<Card>();
+        private readonly List<Vector3> positions = new List<Vector3>();
 
         private int selectedIndex = -1;
         private int lastSelectedIndex = -1;
         
         void UpdateLayout()
+        {
+            CalculatePositions();
+            for (int i = 0; i < cards.Count; i++)
+            {
+                cards[i].transform.localPosition = positions[i];
+            }
+        }
+
+        void CalculatePositions()
         {
             int n = cards.Count;
             if (n == 0) return;
@@ -30,7 +40,7 @@ namespace Game.Core
 
             if (n == 1)
             {
-                cards[0].transform.localPosition = Vector3.zero;
+                positions[0] = Vector3.zero;
                 return;
             }
 
@@ -63,7 +73,7 @@ namespace Game.Core
             for (int i = 0; i < n; i++)
             {
                 float x = startX + i * step;
-                cards[i].transform.localPosition = new Vector3(x, 0f, 0f);
+                positions[i] = new Vector3(x, 0f, 0f);
             }
         }
 
@@ -106,12 +116,15 @@ namespace Game.Core
         public void AddCard(Card card)
         {
             cards.Add(card);
+            positions.Add(new Vector3());
             UpdateLayout();
         }
 
         public void RemoveCard(Card card)
         {
-            cards.Remove(card);
+            var index = cards.IndexOf(card);
+            cards.RemoveAt(index);
+            positions.RemoveAt(index);
             UpdateLayout();
         }
         

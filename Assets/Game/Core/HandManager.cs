@@ -19,6 +19,20 @@ namespace Game.Core
                 AddCard(card);
             }
         }
+        
+        
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (CanDrawCard())
+                {
+                    var card = Services.Deck.Draw();
+                    AddCard(card);
+                }
+            }
+        }
 
         private void AddCard(Card card)
         {
