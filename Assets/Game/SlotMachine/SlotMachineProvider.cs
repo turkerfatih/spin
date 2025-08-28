@@ -66,6 +66,11 @@ namespace Game
             paylineValues[reelIndex] = symbolsIndex;
         }
 
+        public DropSlot GetDropSlot(int index)
+        {
+            return dropSlots[index];
+        }
+
 
 
         private void AfterSpin()

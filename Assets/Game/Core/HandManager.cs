@@ -68,6 +68,8 @@ namespace Game.Core
 
         private void OnCardDroppedToSlot(Card card, int droppedSlot)
         {
+            var slot= Services.SlotMachine.GetDropSlot(droppedSlot);
+            slot.SetCard(card);
             EventBus.OnCardRemovedFromHand?.Invoke(card);
         }
     }
