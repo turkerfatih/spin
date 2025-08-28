@@ -17,3 +17,5 @@ MonoBehaviour:
   Effects:
   - {fileID: 11400000, guid: d4ea60c16131eb9479b5b045db276531, type: 2}
   - {fileID: 11400000, guid: a9a9735cee04c2e4f9c7c500c537211b, type: 2}
+  Sprite: {fileID: 5737394687964963242, guid: bef5e5cffc88b0e43b085fbc466b4fd1, type: 3}
+  SpriteColor: {r: 0, g: 0, b: 0, a: 0}

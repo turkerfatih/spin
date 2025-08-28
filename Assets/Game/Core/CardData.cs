@@ -13,6 +13,9 @@ namespace Game.Core
         public string Description;
         public List<CardEffect> Effects;
         
+        public Sprite Sprite;
+        public Color SpriteColor;
+        
         
         #if UNITY_EDITOR
         private void OnValidate()

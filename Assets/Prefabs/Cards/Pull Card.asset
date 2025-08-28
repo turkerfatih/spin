@@ -16,3 +16,5 @@ MonoBehaviour:
   Description: Pull
   Effects:
   - {fileID: 11400000, guid: a9a9735cee04c2e4f9c7c500c537211b, type: 2}
+  Sprite: {fileID: 21300000, guid: 188b346fe00cbea4cb8f5c0248472c0d, type: 3}
+  SpriteColor: {r: 0, g: 0, b: 0, a: 0}

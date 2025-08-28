@@ -9,6 +9,7 @@ namespace Game.Core
         public static float Width = 1f;
         public TextMeshPro label;
         public TextMeshPro info;
+        public SpriteRenderer Visual;
         [NonSerialized]
         public CardData Data;
         public void Load(CardData data)
@@ -16,6 +17,7 @@ namespace Game.Core
             Data = Instantiate(data);
             Data.Setup();
             label.SetText(data.Description);
+            Visual.sprite = data.Sprite;
         }
 
         public void ResetCard()
