@@ -39,6 +39,13 @@ namespace Game.Core
             EventBus.OnCardAddToHand?.Invoke(card);
         }
 
+        private void DiscardCard(Card card)
+        {
+            card.ResetCard();
+            var deck = Services.Deck;
+            deck.Discard(card);
+        }
+
         private bool CanDrawCard()
         {
             var deck = Services.Deck;

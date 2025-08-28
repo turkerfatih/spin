@@ -17,5 +17,16 @@ namespace Game.Core
             Data.Setup();
             label.SetText(data.Description);
         }
+
+        public void ResetCard()
+        {
+           var data= Services.Cards.GetCardData(Data.Id); 
+           Load(data);
+        }
+
+        public void ChangeId(int id)
+        {
+            info.SetText(id.ToString());
+        }
     }
 }

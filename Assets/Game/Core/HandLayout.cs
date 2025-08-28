@@ -145,16 +145,17 @@ namespace Game.Core
             card.gameObject.SetActive(true);
             AddCard(card);
         }
-        
 
-        public void AddCard(Card card)
+
+        private void AddCard(Card card)
         {
             cards.Add(card);
             positions.Add(new Vector3());
+            card.ChangeId(cards.Count);
             UpdateLayout();
         }
 
-        public void RemoveCard(Card card)
+        private void RemoveCard(Card card)
         {
             var index = cards.IndexOf(card);
             cards.RemoveAt(index);
