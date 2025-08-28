@@ -15,10 +15,11 @@ namespace Game.Core
 
         // Fan settings
         [SerializeField] private float SelectRaiseY = 0.5f;
-        [SerializeField] private float PushStrength = 0.4f; // immediate neighbor push
-        [SerializeField] private float Falloff = 0.6f;      // push decays per extra neighbor
+       
         private readonly List<Card> cards = new List<Card>();
-        private float _step = 0f; // last computed center-to-center spacing
+
+        private int selectedIndex = -1;
+        private int lastSelectedIndex = -1;
         
         void UpdateLayout()
         {
@@ -29,7 +30,6 @@ namespace Game.Core
 
             if (n == 1)
             {
-                _step = 0f;
                 cards[0].transform.localPosition = Vector3.zero;
                 return;
             }
@@ -45,18 +45,15 @@ namespace Game.Core
                 // Step that would exactly fit in MaxWidth
                 float stepFit = (MaxWidth - w) / (n - 1);
 
-                if (stepFit > w)
+                if (stepFit < Gap) // not enough room to keep gap
                 {
-                    // If spacing is smaller than Gap but not overlapping, force overlap
-                    step = Mathf.Max(w - MinOverlap, 0f);
+                    step = Mathf.Max(w - MinOverlap, 0f); // force overlap
                 }
                 else
                 {
-                    step = Mathf.Max(stepFit, 0f);
+                    step = stepFit;
                 }
             }
-
-            _step = step;
 
             // Total occupied width
             float totalWidth = w + (n - 1) * step;
@@ -70,32 +67,19 @@ namespace Game.Core
             }
         }
 
-        void Select(int index)
+        void Select()
         {
-            Debug.Log("Selected:"+index);
-            if (index < 0 || index >= cards.Count) return;
-            if (cards.Count > 1 && _step <= 0f) UpdateLayout();
-
-            float w = Card.Width;
-            int n = cards.Count;
-
-            float totalWidth = w + (n - 1) * _step;
-            float startX = -totalWidth / 2f + w / 2f;
-
-            for (int i = 0; i < n; i++)
+            Debug.Log("Try selecting:"+selectedIndex+" current :"+lastSelectedIndex);
+            if (selectedIndex < 0 || selectedIndex >= cards.Count) return;
+            var p = cards[selectedIndex].transform.localPosition;
+            cards[selectedIndex].transform.localPosition = new Vector3(p.x, p.y+SelectRaiseY, p.z);
+            if (lastSelectedIndex != selectedIndex && lastSelectedIndex != -1)
             {
-                float x = startX + i * _step;
-                float y = (i == index) ? SelectRaiseY : 0f;
-
-                if (i != index)
-                {
-                    int d = Mathf.Abs(i - index);
-                    float offset = PushStrength * Mathf.Pow(Falloff, d - 1);
-                    x += (i < index) ? -offset : offset;
-                }
-
-                cards[i].transform.localPosition = new Vector3(x, y, 0f);
+                var p2 = cards[lastSelectedIndex].transform.localPosition;
+                cards[lastSelectedIndex].transform.localPosition = new Vector3(p2.x, p2.y - SelectRaiseY, p2.z);
             }
+
+            lastSelectedIndex = selectedIndex;
         }
 
         private void OnEnable()
@@ -128,24 +112,18 @@ namespace Game.Core
             cards.Remove(card);
             UpdateLayout();
         }
-
-        private void OnMouseDown()
-        {
-            
-        }
-        private int selectedIndex = -1;
+        
 
         private void AdvanceSelected(int amount)
         {
-            
-            if (selectedIndex < 0 || amount < 0)
-            {
-                selectedIndex = 1;
-            }
+            if (cards.Count == 0) return;
 
-            selectedIndex += amount;
-            selectedIndex = selectedIndex % cards.Count;
-            Select(selectedIndex);
+            if (selectedIndex == -1) selectedIndex = 0;
+            else if (selectedIndex <= 0 && amount < 0) selectedIndex = cards.Count - 1;
+            else if (selectedIndex >= cards.Count - 1 && amount > 0) selectedIndex = 0;
+            else selectedIndex += amount;
+
+            Select();
         }
 
         private void Update()

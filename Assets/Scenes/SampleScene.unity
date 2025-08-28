@@ -1302,8 +1302,6 @@ MonoBehaviour:
   Gap: 0.2
   MinOverlap: 0.02
   SelectRaiseY: 0.5
-  PushStrength: 0.4
-  Falloff: 0.6
 --- !u!114 &1692558953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,7 +1314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03577e649d646b89ef022ef81c9201f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingCount: 12
+  StartingCount: 6
 --- !u!65 &1692558954
 BoxCollider:
   m_ObjectHideFlags: 0
