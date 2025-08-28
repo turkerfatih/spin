@@ -55,13 +55,17 @@ namespace Game.Core
                 // Step that would exactly fit in MaxWidth
                 float stepFit = (MaxWidth - w) / (n - 1);
 
-                if (stepFit < Gap) // not enough room to keep gap
+                if (stepFit <= w) // not enough room even to touch
                 {
                     step = Mathf.Max(w - MinOverlap, 0f); // force overlap
                 }
-                else
+                else if (stepFit < baseStep) // narrower than natural spacing
                 {
                     step = stepFit;
+                }
+                else
+                {
+                    step = baseStep;
                 }
             }
 
