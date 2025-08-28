@@ -137,12 +137,20 @@ namespace Game.Core
         {
             EventBus.OnCardAddToHand += OnCardAddedToHand;
             EventBus.OnDragCancel += OnDraggingCancel;
+            EventBus.OnCardRemovedFromHand+= OnCardRemovedFromHand;
         }
 
         private void OnDisable()
         {
             EventBus.OnCardAddToHand -= OnCardAddedToHand;
             EventBus.OnDragCancel -= OnDraggingCancel;
+            EventBus.OnCardRemovedFromHand-= OnCardRemovedFromHand;
+        }
+
+        private void OnCardRemovedFromHand(Card card)
+        {
+            RemoveCard(card);
+            ResetValues();
         }
 
         private void OnCardAddedToHand(Card card)
@@ -233,8 +241,14 @@ namespace Game.Core
         private void RemoveFocus()
         {
             RemoveCurrentlySelected();
+            ResetValues();
+        }
+
+        private void ResetValues()
+        {
             selectedIndex = -1;
-            lastSelectedIndex = -1;   
+            lastSelectedIndex = -1;
+            isDragging = false;
         }
 
         private void DragCard()

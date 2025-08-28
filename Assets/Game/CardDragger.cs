@@ -66,6 +66,7 @@ namespace Game
         private void DropSlotSelected(int index)
         {
             enabled = false;
+            EventBus.OnCardDroppedToSlot?.Invoke(card, index);
         }
     }
 }

@@ -7,8 +7,17 @@ namespace Game.Core
     public class HandManager:MonoBehaviour
     {
         [SerializeField] private int StartingCount;
-        
-        
+
+        private void OnEnable()
+        {
+            EventBus.OnCardDroppedToSlot += OnCardDroppedToSlot;
+        }
+
+        private void OnDisable()
+        {
+            EventBus.OnCardDroppedToSlot -= OnCardDroppedToSlot;
+        }
+
         private void Start()
         {
             if(!CanDrawCard())
@@ -54,6 +63,12 @@ namespace Game.Core
             if(deck.Library.Size==0 && deck.Discarded.Size==0)
                 return false;
             return true;
+        }
+        
+
+        private void OnCardDroppedToSlot(Card card, int droppedSlot)
+        {
+            EventBus.OnCardRemovedFromHand?.Invoke(card);
         }
     }
 }
