@@ -1,5 +1,6 @@
 ﻿using CardFramework.Deck;
 using CardFramework.RandomProvider;
+using Game.Actions;
 using Game.Core;
 using UnityEngine;
 
@@ -18,5 +19,6 @@ namespace Game
         public static ICardHand CurrentHand;
         public static ICardDatabaseService Cards;
         public static SoundService Sound;
+        public static ActionQueue Actions;
     }
 }

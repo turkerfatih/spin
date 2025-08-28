@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Actions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,7 +19,8 @@ namespace Game
         
         private void Click(BaseEventData eventData)
         {
-            Services.SlotMachine.Spin();
+            Services.Actions.Add(new SpinAction());
+            //Services.SlotMachine.Spin();
         }
     }
 }

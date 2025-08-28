@@ -1,6 +1,7 @@
 ﻿using System;
 using CardFramework.Deck;
 using CardFramework.RandomProvider;
+using Game.Actions;
 using Game.Core;
 using Game.Event;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace Game
 
         private void Awake()
         {
+            Services.Actions = new ActionQueue();
             Services.Cards = this;
             Services.PayTable = new PayTable();
             Services.MainCamera=Camera.main;

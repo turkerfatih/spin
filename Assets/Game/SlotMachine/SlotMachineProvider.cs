@@ -15,10 +15,10 @@ namespace Game
         private List<Symbol>[] reels;
         private List<int> paylineValues;
         private List<DropSlot> dropSlots;
-        
-        private bool isSpinning = false;
-        
-        
+
+        public bool IsSpinning { get;  set; }
+
+
         private Camera gameCamera;
         private void Awake()
         {
@@ -51,13 +51,13 @@ namespace Game
 
         public async void Spin()
         {
-            if(isSpinning)
+            if(IsSpinning)
                 return;
-            isSpinning=true;
+            IsSpinning=true;
             Services.Sound.StartSpinning();
             await Services.MachineView.Spin();
             Services.Sound.StopSpinning();
-            isSpinning=false;
+            IsSpinning=false;
             AfterSpin();
         }
 
@@ -69,6 +69,11 @@ namespace Game
         public DropSlot GetDropSlot(int index)
         {
             return dropSlots[index];
+        }
+
+        public void SetSpinning(bool val)
+        {
+            IsSpinning=val;
         }
 
 
