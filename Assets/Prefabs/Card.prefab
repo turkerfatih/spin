@@ -201,6 +201,7 @@ MonoBehaviour:
   label: {fileID: 1606323774540241837}
   info: {fileID: 6888832871487871811}
   Visual: {fileID: 216156566966521305}
+  rotater: {fileID: 8705541971012135465}
 --- !u!1 &7349981470678587081
 GameObject:
   m_ObjectHideFlags: 0

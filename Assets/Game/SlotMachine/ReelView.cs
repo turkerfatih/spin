@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Game.Core;
 using Game.Event;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -13,6 +14,8 @@ namespace Game
         public const float Width = 2f;
         private const float SpinDuration = 1.5f;      // total spin time (ease-in + ease-out)
         private const int DuplicatesNeeded = 3;
+        
+        [SerializeField] private DropSlot dropSlot;
 
         [SerializeField]
         private Transform VerticalList;
@@ -24,6 +27,8 @@ namespace Game
 
         public void Setup(List<Symbol> items, int index)
         {
+            Services.SlotMachine.RegisterDropSlot(dropSlot,index);
+            dropSlot.SetIndex(index);
             reelIndex = index;
             symbols = items;
             views = new List<SymbolView>(items.Count);

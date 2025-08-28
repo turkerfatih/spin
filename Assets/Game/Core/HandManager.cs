@@ -7,6 +7,8 @@ namespace Game.Core
     public class HandManager:MonoBehaviour
     {
         [SerializeField] private int StartingCount;
+        
+        
         private void Start()
         {
             if(!CanDrawCard())

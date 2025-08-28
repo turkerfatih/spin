@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using Game.Event;
 using UnityEngine;
@@ -25,7 +26,10 @@ namespace Game.Core
         
         private BoxCollider boxCollider;
         private float currentTotalWidth;
-
+        
+        private bool isDragging = false;
+        [SerializeField] private CardDragger Dragger;
+        
         private void Awake()
         {
             boxCollider = GetComponent<BoxCollider>();
@@ -38,6 +42,7 @@ namespace Game.Core
             for (int i = 0; i < cards.Count; i++)
             {
                 cards[i].transform.localPosition = positions[i];
+                cards[i].SetOrder(i);
             }
         }
 
@@ -131,11 +136,13 @@ namespace Game.Core
         private void OnEnable()
         {
             EventBus.OnCardAddToHand += OnCardAddedToHand;
+            EventBus.OnDragCancel += OnDraggingCancel;
         }
 
         private void OnDisable()
         {
             EventBus.OnCardAddToHand -= OnCardAddedToHand;
+            EventBus.OnDragCancel -= OnDraggingCancel;
         }
 
         private void OnCardAddedToHand(Card card)
@@ -178,6 +185,8 @@ namespace Game.Core
 
         private void Update()
         {
+            if(isDragging)
+                return;
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 AdvanceSelected(-1);
@@ -191,6 +200,7 @@ namespace Game.Core
 
         private void OnMouseOver()
         {
+            if(isDragging)return;
             if (cards.Count == 0) return;
             Vector3 worldMouse = Services.MainCamera.ScreenToWorldPoint(Input.mousePosition);
             Vector3 localMouse = transform.InverseTransformPoint(worldMouse);
@@ -206,8 +216,17 @@ namespace Game.Core
                 Select();
             }
         }
+
+        private void OnMouseDown()
+        {
+            if(isDragging)return;
+            if(lastSelectedIndex==-1) return;
+            DragCard();
+        }
+
         private void OnMouseExit()
         {
+            if(isDragging)return;
             RemoveFocus();
         }
 
@@ -216,6 +235,24 @@ namespace Game.Core
             RemoveCurrentlySelected();
             selectedIndex = -1;
             lastSelectedIndex = -1;   
+        }
+
+        private void DragCard()
+        {
+            isDragging = true;
+            Dragger.StartDragging(cards[lastSelectedIndex]);
+        }
+
+        private void OnDraggingCancel(Card card)
+        {
+            var index=cards.IndexOf(card);
+            cards[index].transform.DOLocalMove(positions[index], 0.15f)
+                .SetEase(Ease.InOutCubic).OnComplete(() =>
+                {
+                    isDragging = false;
+                    RemoveFocus();
+                    card.SetOrder(index);
+                });
         }
     }
 }

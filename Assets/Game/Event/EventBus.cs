@@ -13,5 +13,7 @@ namespace Game.Event
         public static Action<double> OnCoinGiven;
         
         public static Action<Card> OnCardAddToHand;
+        public static Action<Card> OnDragCancel;
+        public static Action<int> OnDropSlotSelected;
     }
 }

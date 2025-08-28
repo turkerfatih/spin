@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game.Core;
 using Game.Event;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Game
 
         private List<Symbol>[] reels;
         private List<int> paylineValues;
+        private List<DropSlot> dropSlots;
         
         private bool isSpinning = false;
         
@@ -24,15 +26,22 @@ namespace Game
             Services.SlotMachine = this;
             reels = new List<Symbol>[Count];
             paylineValues = new List<int>(Count);
+            dropSlots=new List<DropSlot>(Count);
             for (var i = 0; i < ReelConfigurations.Count; i++)
             {
                 var configuration = ReelConfigurations[i];
                 reels[i] = new List<Symbol>();
                 paylineValues.Add( 0);
+                dropSlots.Add(null);
                 ReelSymbolPlacement.GenerateReelSymbols(configuration,ref reels[i]);
                 Debug.Log("reel"+i+" has "+reels[i].Count+" item");
             }
 
+        }
+
+        public void RegisterDropSlot(DropSlot dropSlot, int index)
+        {
+            dropSlots[index] = dropSlot;
         }
 
         public List<Symbol> GetReel(int index)
