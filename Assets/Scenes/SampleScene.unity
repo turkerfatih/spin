@@ -1314,7 +1314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03577e649d646b89ef022ef81c9201f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingCount: 6
+  StartingCount: 1
 --- !u!65 &1692558954
 BoxCollider:
   m_ObjectHideFlags: 0

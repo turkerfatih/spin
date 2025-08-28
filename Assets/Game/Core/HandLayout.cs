@@ -70,6 +70,8 @@ namespace Game.Core
         void Select()
         {
             Debug.Log("Try selecting:"+selectedIndex+" current :"+lastSelectedIndex);
+            if(selectedIndex==lastSelectedIndex)
+                return;
             if (selectedIndex < 0 || selectedIndex >= cards.Count) return;
             var p = cards[selectedIndex].transform.localPosition;
             cards[selectedIndex].transform.localPosition = new Vector3(p.x, p.y+SelectRaiseY, p.z);
