@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using Game.Event;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Game.Core
 {
@@ -111,9 +109,8 @@ namespace Game.Core
             if(selectedIndex==lastSelectedIndex)
                 return;
             if (selectedIndex < 0 || selectedIndex >= cards.Count) return;
-            SetCardSelected();
             RemoveCurrentlySelected();
-
+            SetCardSelected();
             lastSelectedIndex = selectedIndex;
         }
 
@@ -194,27 +191,14 @@ namespace Game.Core
         private void OnMouseOver()
         {
             if (cards.Count == 0) return;
-
-            // Get mouse position in world space
             Vector3 worldMouse = Services.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-
-            // Convert to local space of the hand layout
             Vector3 localMouse = transform.InverseTransformPoint(worldMouse);
-    
             float width = boxCollider.size.x;
-
-            // Clamp mouse inside collider range
             float halfWidth = width / 2f;
             float x = Mathf.Clamp(localMouse.x, -halfWidth, halfWidth);
-
-            // Map local x to [0, 1] range
             float t = (x + halfWidth) / width;
-
-            // Scale to card index
             int index = Mathf.FloorToInt(t * cards.Count);
             index = Mathf.Clamp(index, 0, cards.Count - 1);
-
-            // Update selection
             if (index != selectedIndex)
             {
                 selectedIndex = index;
