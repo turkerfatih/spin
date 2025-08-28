@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using Game.Event;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -110,15 +111,24 @@ namespace Game.Core
             if(selectedIndex==lastSelectedIndex)
                 return;
             if (selectedIndex < 0 || selectedIndex >= cards.Count) return;
-            var p = cards[selectedIndex].transform.localPosition;
-            cards[selectedIndex].transform.localPosition = new Vector3(p.x, p.y+SelectRaiseY, p.z);
-            if (lastSelectedIndex != selectedIndex && lastSelectedIndex != -1)
-            {
-                var p2 = cards[lastSelectedIndex].transform.localPosition;
-                cards[lastSelectedIndex].transform.localPosition = new Vector3(p2.x, p2.y - SelectRaiseY, p2.z);
-            }
+            SetCardSelected();
+            RemoveCurrentlySelected();
 
             lastSelectedIndex = selectedIndex;
+        }
+
+        private void RemoveCurrentlySelected()
+        {
+            if (lastSelectedIndex == selectedIndex || lastSelectedIndex == -1) return;
+            var target= positions[lastSelectedIndex];
+            cards[lastSelectedIndex].transform.DOLocalMove(target,0.15f).SetEase(Ease.OutExpo);
+        }
+
+        private void SetCardSelected()
+        {
+            var p = positions[selectedIndex];
+            var target = new Vector3(p.x, p.y+SelectRaiseY, p.z);
+            cards[selectedIndex].transform.DOLocalMove(target,0.15f).SetEase(Ease.OutQuint); 
         }
 
         private void OnEnable()
