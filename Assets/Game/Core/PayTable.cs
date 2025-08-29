@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Game.Core
 {
-    public class PayTable
+public class PayTable
     {
         private static readonly Dictionary<(SymbolType, int), int> table = new()
         {
@@ -32,53 +32,60 @@ namespace Game.Core
             { (SymbolType.Jackpot, 5), 2000 }, { (SymbolType.Jackpot, 6), 10000 },
         };
 
-        public  List<PayoutResult> Evaluate(Span<SymbolType> symbols)
+        public void Evaluate(List<Symbol> symbols,List<PayoutResult> results)
         {
-            List<PayoutResult> results = new();
+            results.Clear();
 
-            if (symbols.Length < 3)
-                return results;
+            if (symbols.Count < 3)
+                return ;
 
-            Dictionary<SymbolType, int> counts = new();
-            int wilds = 0;
+            Dictionary<SymbolType, List<Symbol>> groups = new();
+            List<Symbol> wilds = new();
 
+            // Group symbols
             foreach (var sym in symbols)
             {
-                if (sym == SymbolType.None)
+                if (sym.Type == SymbolType.None)
                     continue;
 
-                if (sym == SymbolType.Wild)
+                if (sym.Type == SymbolType.Wild)
                 {
-                    wilds++;
+                    wilds.Add(sym);
                     continue;
                 }
 
-                if (!counts.ContainsKey(sym))
-                    counts[sym] = 0;
-
-                counts[sym]++;
+                if (!groups.TryGetValue(sym.Type, out var list))
+                {
+                    list = new List<Symbol>();
+                    groups[sym.Type] = list;
+                }
+                list.Add(sym);
             }
 
-            // Check for each symbol type
-            foreach (var kv in counts)
+            // Evaluate each group
+            foreach (var kv in groups)
             {
-                int total = kv.Value + wilds;
+                int total = kv.Value.Count + wilds.Count;
                 if (total >= 3 && table.TryGetValue((kv.Key, total), out int payout))
                 {
-                    results.Add(new PayoutResult(kv.Key, total, payout));
+                    List<Symbol> winningSymbols = new List<Symbol>(kv.Value);
+                    winningSymbols.AddRange(wilds); // clone wilds for this win
+
+                    results.Add(new PayoutResult(winningSymbols, payout));
                 }
             }
 
-            // Edge case: All Wilds = Jackpot
-            if (wilds >= 3)
+            // Special case: all wilds = jackpot
+            if (wilds.Count >= 3 && wilds.Count == symbols.Count)
             {
-                if (table.TryGetValue((SymbolType.Jackpot, wilds), out int payout))
+                if (table.TryGetValue((SymbolType.Jackpot, wilds.Count), out int payout))
                 {
-                    results.Add(new PayoutResult(SymbolType.Jackpot, wilds, payout));
+                    results.Add(new PayoutResult(new List<Symbol>(wilds), payout));
                 }
             }
 
-            return results;
+           
         }
     }
+    
 }

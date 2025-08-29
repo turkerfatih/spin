@@ -18,7 +18,7 @@ namespace Game.Core
         // Fan settings
         [SerializeField] private float SelectRaiseY = 0.5f;
        
-        private readonly List<Card> cards = new List<Card>();
+        private readonly List<CardView> cards = new List<CardView>();
         private readonly List<Vector3> positions = new List<Vector3>();
 
         private int selectedIndex = -1;
@@ -51,7 +51,7 @@ namespace Game.Core
             int n = cards.Count;
             if (n == 0) return;
 
-            float w = Card.Width;
+            float w = CardView.Width;
 
             if (n == 1)
             {
@@ -100,7 +100,7 @@ namespace Game.Core
 
         private void UpdateBox()
         {
-            var width = Mathf.Max(currentTotalWidth, MinWidth)+Card.Width;            
+            var width = Mathf.Max(currentTotalWidth, MinWidth)+CardView.Width;            
             boxCollider.size = new Vector3(width, boxCollider.size.y, boxCollider.size.z);
             boxCollider.center = new Vector3(0f, boxCollider.center.y, boxCollider.center.z);
             var bs = Box.size;
@@ -147,13 +147,13 @@ namespace Game.Core
             EventBus.OnCardRemovedFromHand-= OnCardRemovedFromHand;
         }
 
-        private void OnCardRemovedFromHand(Card card)
+        private void OnCardRemovedFromHand(CardView card)
         {
             RemoveCard(card);
             ResetValues();
         }
 
-        private void OnCardAddedToHand(Card card)
+        private void OnCardAddedToHand(CardView card)
         {
             card.gameObject.name="card"+cards.Count.ToString();
             card.transform.parent = transform;
@@ -162,15 +162,14 @@ namespace Game.Core
         }
 
 
-        private void AddCard(Card card)
+        private void AddCard(CardView card)
         {
             cards.Add(card);
             positions.Add(new Vector3());
-            card.ChangeId(cards.Count);
             UpdateLayout();
         }
 
-        private void RemoveCard(Card card)
+        private void RemoveCard(CardView card)
         {
             var index = cards.IndexOf(card);
             cards.RemoveAt(index);
@@ -257,7 +256,7 @@ namespace Game.Core
             Dragger.StartDragging(cards[lastSelectedIndex]);
         }
 
-        private void OnDraggingCancel(Card card)
+        private void OnDraggingCancel(CardView card)
         {
             var index=cards.IndexOf(card);
             cards[index].transform.DOLocalMove(positions[index], 0.15f)

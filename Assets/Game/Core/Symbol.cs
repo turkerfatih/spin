@@ -5,9 +5,9 @@ namespace Game
 {
     public class Symbol
     {
-        public Guid Id;
+        
         public SymbolType Type;
-
+        public Guid Id;
         public Symbol()
         {
         }

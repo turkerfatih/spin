@@ -6,7 +6,7 @@ namespace Game
     [Serializable]
     public class StartingDeckItem
     {
-        public CardData Data;
+        public CardDefinition Data;
         public int Count;
     }
 }

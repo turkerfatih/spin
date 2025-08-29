@@ -9,7 +9,7 @@ namespace Game
     public static class Services
     {
         public static SymbolBuilder SymbolBuilder;
-        public static SlotMachineProvider SlotMachine;
+        public static SlotMachine Machine;
         public static SlotMachineView MachineView;
         public static IRandomProvider Random;
         public static Deck<Card> Deck;

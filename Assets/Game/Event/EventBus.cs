@@ -12,10 +12,10 @@ namespace Game.Event
         public static Action<int> OnDiscardPileChanged;
         public static Action<double> OnCoinGiven;
         
-        public static Action<Card> OnCardAddToHand;
-        public static Action<Card> OnDragCancel;
+        public static Action<CardView> OnCardAddToHand;
+        public static Action<CardView> OnDragCancel;
         public static Action<int> OnDropSlotSelected;
-        public static Action<Card,int> OnCardDroppedToSlot;
-        public static Action<Card> OnCardRemovedFromHand;
+        public static Action<CardView,int> OnCardDroppedToSlot;
+        public static Action<CardView> OnCardRemovedFromHand;
     }
 }

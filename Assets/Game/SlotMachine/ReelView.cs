@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 namespace Game
 {
-    public class ReelView : MonoBehaviour
+    public class ReelView : MonoBehaviour,IReelView
     {
         public const float Width = 2f;
         private const float SpinDuration = 1.5f;      // total spin time (ease-in + ease-out)
@@ -27,7 +27,7 @@ namespace Game
 
         public void Setup(List<Symbol> items, int index)
         {
-            Services.SlotMachine.RegisterDropSlot(dropSlot,index);
+            Services.Machine.RegisterDropSlot(dropSlot,index);
             dropSlot.SetIndex(index);
             reelIndex = index;
             symbols = items;
@@ -153,6 +153,16 @@ namespace Game
             VerticalList.DOLocalMoveY(targetY, 0.75f)
                 .SetEase(dir > 0 ? Ease.InBack : Ease.OutBack)
                 .OnComplete(OnSpinComplete);
+        }
+
+        public async UniTask SpinAnimation(Guid symbolId, float delay = 0f)
+        {
+            
+        }
+
+        public async UniTask FreezeAnimation()
+        {
+            
         }
     }
 }

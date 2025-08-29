@@ -4,6 +4,6 @@ namespace Game
 {
     public interface ICardDatabaseService
     {
-        public CardData GetCardData(string cardId);
+        public CardDefinition GetCardData(string cardId);
     }
 }

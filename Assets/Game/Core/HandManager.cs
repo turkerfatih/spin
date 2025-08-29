@@ -7,7 +7,8 @@ namespace Game.Core
     public class HandManager:MonoBehaviour
     {
         [SerializeField] private int StartingCount;
-
+        [SerializeField] private CardView CardPrefab;
+        [SerializeField] private Transform DeckParent;
         private void OnEnable()
         {
             EventBus.OnCardDroppedToSlot += OnCardDroppedToSlot;
@@ -47,12 +48,14 @@ namespace Game.Core
 
         private void AddCard(Card card)
         {
-            EventBus.OnCardAddToHand?.Invoke(card);
+            var cardView=Instantiate(CardPrefab,Vector3.zero, Quaternion.identity, DeckParent);
+            cardView.Bind(card);
+            EventBus.OnCardAddToHand?.Invoke(cardView);
         }
 
         private void DiscardCard(Card card)
         {
-            card.ResetCard();
+           
             var deck = Services.Deck;
             deck.Discard(card);
         }
@@ -66,9 +69,9 @@ namespace Game.Core
         }
         
 
-        private void OnCardDroppedToSlot(Card card, int droppedSlot)
+        private void OnCardDroppedToSlot(CardView card, int droppedSlot)
         {
-            var slot= Services.SlotMachine.GetDropSlot(droppedSlot);
+            var slot= Services.Machine.GetDropSlot(droppedSlot);
             slot.SetCard(card);
             EventBus.OnCardRemovedFromHand?.Invoke(card);
         }

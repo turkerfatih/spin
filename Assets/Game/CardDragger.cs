@@ -9,7 +9,7 @@ namespace Game
     public class CardDragger:MonoBehaviour
     {
         private Vector3 offset;
-        private Card card;
+        private CardView card;
         private bool dragging = false;
         [SerializeField] private float SmoothTime = 1;
 
@@ -24,7 +24,7 @@ namespace Game
             EventBus.OnDropSlotSelected -= DropSlotSelected;
         }
 
-        public void StartDragging(Card targetCard)
+        public void StartDragging(CardView targetCard)
         {
             card = targetCard;
             card.SetOrder(10000);

@@ -1,15 +1,15 @@
-﻿namespace Game.Core
+﻿using System.Collections.Generic;
+
+namespace Game.Core
 {
     public class PayoutResult
     {
-        public SymbolType Symbol { get; }
-        public int Count { get; }
+        public List<Symbol> Symbols { get; }
         public int Amount { get; }
 
-        public PayoutResult(SymbolType symbol, int count, int amount)
+        public PayoutResult(List<Symbol> symbols, int amount)
         {
-            Symbol = symbol;
-            Count = count;
+            Symbols = symbols;
             Amount = amount;
         }
     }

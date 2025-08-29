@@ -9,7 +9,7 @@ namespace Game.Core
     public class DropSlot:MonoBehaviour
     {
         private int index;
-        private Card current;
+        private CardView current;
         public void SetIndex(int sel)
         {
             index = sel;
@@ -20,7 +20,7 @@ namespace Game.Core
             EventBus.OnDropSlotSelected?.Invoke(index);
         }
 
-        public void SetCard(Card card)
+        public void SetCard(CardView card)
         {
             current=card;
             card.transform.DOMove(transform.position, 0.15f);

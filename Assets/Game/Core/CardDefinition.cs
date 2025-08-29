@@ -5,17 +5,16 @@ using UnityEngine;
 
 namespace Game.Core
 {
-    [CreateAssetMenu(menuName = "Create CardData", fileName = "CardData", order = 0)]
-    public class CardData:ScriptableObject
+    [CreateAssetMenu(menuName = "Game/Card Definition")]
+    public class CardDefinition : ScriptableObject
     {
         [SerializeField, ReadOnly]
         public string Id;
-        public string Description;
-        public List<CardEffect> Effects;
+        public string CardName;
+        public Sprite Icon;
+        [TextArea] public string Description;
         
-        public Sprite Sprite;
-        public Color SpriteColor;
-        
+        [SerializeReference] public List<CardEffect> Effects;
         
         #if UNITY_EDITOR
         private void OnValidate()
@@ -24,17 +23,9 @@ namespace Game.Core
             {
                 string path = UnityEditor.AssetDatabase.GetAssetPath(this);
                 Id = UnityEditor.AssetDatabase.AssetPathToGUID(path);
+                UnityEditor.EditorUtility.SetDirty(this);
             }
         }
         #endif
-
-        public void Setup()
-        {
-            for (var i = 0; i < Effects.Count; i++)
-            {
-                var cardEffect = Effects[i];
-                Effects[i]=Instantiate(cardEffect);
-            }
-        }
     }
 }

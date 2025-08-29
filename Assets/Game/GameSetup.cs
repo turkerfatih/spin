@@ -43,8 +43,8 @@ namespace Game
             {
                 for (int i = 0; i < item.Count; i++)
                 {
-                    var card=Instantiate(CardPrefab,Vector3.zero, Quaternion.identity, DeckParent);
-                    card.Load(item.Data);
+                    var definition = item.Data;
+                    var card = new Card(definition);
                     Deck.Library.Add(card); 
                 }
             }
@@ -74,10 +74,7 @@ namespace Game
         {
             
         }
-
-        //provide card data from starting deck just for now but later we can
-        //create sperate service and database of card infos as scriptable object?!  
-        public CardData GetCardData(string cardId)
+        public CardDefinition GetCardData(string cardId)
         {
             foreach (var item in StartingDeck.StartingDeckItems)
             {

@@ -12,6 +12,11 @@ namespace Game.Actions
             this.actions = new List<IGameAction>(actions);
         }
 
+        public ParallelAction(List<IGameAction> actions)
+        {
+            this.actions = actions;
+        }
+
         public async UniTask ExecuteAsync()
         {
             var tasks = new List<UniTask>();
