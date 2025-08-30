@@ -15,7 +15,3 @@ MonoBehaviour:
   StartingDeckItems:
   - Data: {fileID: 11400000, guid: 9fc466b7bc57bc9458cc019300cca9a0, type: 2}
     Count: 1
-  - Data: {fileID: 11400000, guid: f719e2aa69973a24aa28f8fe78a2b425, type: 2}
-    Count: 5
-  - Data: {fileID: 11400000, guid: febf75b7bfdc65649be4498e49ee81a8, type: 2}
-    Count: 5

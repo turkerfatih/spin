@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fa729948d444ba7b352a6bc59875226, type: 3}
-  m_Name: Freeze Reel Effect
+  m_Script: {fileID: 11500000, guid: 6f6ce0ff2ed5403aa0ef7287d6d354de, type: 3}
+  m_Name: FreezeReelCardEffect
   m_EditorClassIdentifier: 
-  Duration: 2
+  Durability: 2

@@ -15,7 +15,7 @@ namespace Game.Core
         public Sprite Icon;
         [TextArea] public string Description;
         
-        [SerializeReference] public List<CardEffectDefinition> Effects;
+        [SerializeReference] public List<CardEffect> Effects;
         
         #if UNITY_EDITOR
         private void OnValidate()
@@ -29,10 +29,6 @@ namespace Game.Core
         }
         #endif
         
-        public IEnumerable<IGameEffect> CreateRuntimeEffects()
-        {
-            foreach (var e in Effects)
-                yield return e.CreateRuntimeEffect();
-        }
+
     }
 }

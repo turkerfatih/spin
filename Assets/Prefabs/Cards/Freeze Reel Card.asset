@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfecb0f854d140848e99d0a46c99548a, type: 3}
-  m_Name: Push Card
+  m_Name: Freeze Reel Card
   m_EditorClassIdentifier: 
   Id: 631be1d001844104b94fec59992b1484
   CardName: Freeze
   Icon: {fileID: 0}
   Description: Freeze a reel
   Effects:
-  - {fileID: 11400000, guid: 6a6c6ba9a1c7793448daf0a75440d88d, type: 2}
+  - {fileID: 11400000, guid: ede33cbb15600604da7db34bf691a3dd, type: 2}

@@ -1,9 +1,11 @@
 ﻿using System;
 using Game.Core;
 using Game.Effect;
+using UnityEngine;
 
 namespace Game.Effects
 {
+    [CreateAssetMenu(menuName = "Cards/Effects/FreezeReelCardEffect", fileName = "FreezeReelCardEffect", order = 0)]
     [Serializable]
     public class FreezeReelCardEffect:CardEffect
     {
@@ -16,10 +18,6 @@ namespace Game.Effects
             var reel = Services.Machine.Reels[targetReelIndex];
             reel.AddEffect(new FreezeReelEffect(Durability));
         }
-
-        public override CardEffect Clone()
-        {
-            return new FreezeReelCardEffect { Durability = this.Durability };
-        }
+        
     }
 }
