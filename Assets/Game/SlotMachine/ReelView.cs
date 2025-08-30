@@ -65,18 +65,7 @@ namespace Game
             views.Add(symbolView);
             symbolView.transform.localPosition = pos;
         }
-
-        public async UniTask Spin(Guid symbolId, float delay = 0f)
-        {
-            int targetIndex = symbols.FindIndex(s => s.Id == symbolId);
-            if (targetIndex == -1)
-            {
-                Debug.LogWarning("Symbol ID not found on reel.");
-                return;
-            }
-            Debug.Log($" Reel {reelIndex} target index: {targetIndex}  ");
-            await Spin(targetIndex, delay);
-        }
+        
 
         private async UniTask Spin(int targetIndex, float delay = 0f)
         {
@@ -157,7 +146,14 @@ namespace Game
 
         public async UniTask SpinAnimation(Guid symbolId, float delay = 0f)
         {
-            
+            int targetIndex = symbols.FindIndex(s => s.Id == symbolId);
+            if (targetIndex == -1)
+            {
+                Debug.LogWarning("Symbol ID not found on reel.");
+                return;
+            }
+            Debug.Log($" Reel {reelIndex} target index: {targetIndex}  ");
+            await Spin(targetIndex, delay);
         }
 
         public async UniTask FreezeAnimation()

@@ -14,6 +14,7 @@ namespace Game.Actions
             var machine = Services.Machine;
             machine.IsSpinning = true;
             var count = machine.Count;
+            delays.Reset();
             for (int i = 0; i < count; i++)
             {
                 tasks.Add(Services.Machine.Reels[i].Spin(delays.GetRandom()));   
