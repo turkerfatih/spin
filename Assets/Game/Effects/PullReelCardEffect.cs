@@ -1,0 +1,15 @@
+﻿using Game.Core;
+using Game.Effect;
+using UnityEngine;
+
+namespace Game.Effects
+{
+    [CreateAssetMenu(menuName = "Cards/Effects/Pull Card Effect", order = 0)]
+    public class PullReelCardEffect:CardEffect
+    {
+        public override void OnPlay(Card card, int targetReelIndex = -1)
+        {
+            
+        }
+    }
+}

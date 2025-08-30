@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Game.Effects
 {
     [CreateAssetMenu(menuName = "Cards/Effects/FreezeReelCardEffect", fileName = "FreezeReelCardEffect", order = 0)]
-    [Serializable]
+  
     public class FreezeReelCardEffect:CardEffect
     {
         public int Durability = 2;

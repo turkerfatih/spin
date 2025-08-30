@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: StartingDeck
   m_EditorClassIdentifier: 
   StartingDeckItems:
-  - Data: {fileID: 11400000, guid: 9fc466b7bc57bc9458cc019300cca9a0, type: 2}
-    Count: 1
+  - Data: {fileID: 11400000, guid: dcde71de0c720f74eae42aa8d36448fc, type: 2}
+    Count: 5
+  - Data: {fileID: 11400000, guid: c9a3b23454bac324ba41e6d5874758a2, type: 2}
+    Count: 5
+  - Data: {fileID: 11400000, guid: 4f53e6b300a9a3443864bcb77fc8e683, type: 2}
+    Count: 3
