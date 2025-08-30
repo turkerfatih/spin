@@ -29,6 +29,8 @@ namespace Game
         private void Awake()
         {
             Services.Machine = this;
+            spinResult = new SpinResult();
+            
             symbolsOnTheReels = new List<Symbol>[Count];
             dropSlots=new List<DropSlot>(Count);
             Reels=new List<Reel>(Count);

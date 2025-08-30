@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CardFramework;
 using Game.Effect;
+using Game.Effects;
 using UnityEngine;
 
 namespace Game.Core
@@ -14,7 +15,7 @@ namespace Game.Core
         public Sprite Icon;
         [TextArea] public string Description;
         
-        [SerializeReference] public List<CardEffect> Effects;
+        [SerializeReference] public List<CardEffectDefinition> Effects;
         
         #if UNITY_EDITOR
         private void OnValidate()
@@ -27,5 +28,11 @@ namespace Game.Core
             }
         }
         #endif
+        
+        public IEnumerable<IGameEffect> CreateRuntimeEffects()
+        {
+            foreach (var e in Effects)
+                yield return e.CreateRuntimeEffect();
+        }
     }
 }

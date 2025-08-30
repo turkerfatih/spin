@@ -2,7 +2,7 @@
 
 namespace Game.Effects
 {
-    public abstract class ReelEffect
+    public abstract class ReelEffect:IGameEffect
     {
         public int Durability { get; protected set; }
 
@@ -50,5 +50,22 @@ namespace Game.Effects
             }
             return false;
         }
+
+        public virtual void Apply()
+        {
+            
+        }
+
+        public virtual void OnBeforeSpin()
+        {
+            
+        }
+
+        public virtual void OnAfterSpin()
+        {
+            
+        }
+
+        public bool IsExpired { get; }
     }
 }

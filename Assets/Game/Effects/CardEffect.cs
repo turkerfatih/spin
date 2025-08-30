@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Core;
+using Game.Effects;
 
 namespace Game.Effect
 {

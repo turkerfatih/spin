@@ -14,8 +14,6 @@ namespace Game.Core
         public Card(CardDefinition definition)
         {
             Definition = definition;
-            foreach (var e in definition.Effects)
-                Effects.Add(e.Clone());
         }
     }
 }

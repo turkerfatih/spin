@@ -1,8 +1,10 @@
-﻿using Game.Core;
+﻿using System;
+using Game.Core;
 using Game.Effect;
 
 namespace Game.Effects
 {
+    [Serializable]
     public class FreezeReelCardEffect:CardEffect
     {
         public int Durability = 2;
