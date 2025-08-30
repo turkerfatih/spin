@@ -6,7 +6,7 @@ namespace Game.Actions
 {
     public class SpinAction:IGameAction
     {
-        private static InfiniteRandomBag<float> delays=new (new[] { 0, 0.5f, 1f });
+        private static InfiniteRandomBag<float> delays=new (new[] { 0, 0.15f, 0.25f });
         private readonly List<UniTask> tasks = new List<UniTask>();
         public async UniTask ExecuteAsync()
         {
