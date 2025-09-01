@@ -9,7 +9,7 @@ namespace Game.Effects
   
     public class FreezeReelCardEffect:CardEffect
     {
-        public int Durability = 2;
+        public int Durability = 1;
 
         public override void OnPlay(Card card, int targetReelIndex = -1)
         {

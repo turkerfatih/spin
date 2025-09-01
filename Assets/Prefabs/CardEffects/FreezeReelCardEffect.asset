@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6ce0ff2ed5403aa0ef7287d6d354de, type: 3}
   m_Name: FreezeReelCardEffect
   m_EditorClassIdentifier: 
-  Durability: 2
+  Durability: 1
