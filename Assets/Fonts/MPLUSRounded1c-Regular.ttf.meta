@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7f68bd1e1800b874f98363f1aac763a4
+guid: c741c18c476cd054fa2b84e4df622c54
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - HvDTrial Bouba Round
+  - Rounded Mplus 1c
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
