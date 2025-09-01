@@ -13,6 +13,8 @@ namespace Game.Core
         public string Id;
         public string CardName;
         public Sprite Icon;
+        public int Durability = 1;
+        
         [TextArea] public string Description;
         
         [SerializeReference] public List<CardEffect> Effects;

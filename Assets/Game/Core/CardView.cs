@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 
 namespace Game.Core
 {
-    public class CardView:MonoBehaviour
+    public class CardView:MonoBehaviour,ICardView
     {
         public Card Model { get; private set; }
         
@@ -29,6 +29,13 @@ namespace Game.Core
             info.text = card.Definition.Description;
             Visual.sprite = card.Definition.Icon;
         }
+
+        public void ReturnPool()
+        {
+            Model = null;
+            Destroy(gameObject);
+        }
+
         public void SetOrder(int index)
         {
             sortingGroup.sortingOrder = index;

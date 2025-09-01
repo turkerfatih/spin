@@ -82,7 +82,22 @@ namespace Game
         {
             return dropSlots[index];
         }
-        
+
+        public async UniTask AdvanceSlots()
+        {
+            foreach (var slot in dropSlots)
+            {
+                var card = slot.GetCard;
+                if(card == null)
+                    continue;
+                if (card.OnAfterSpin())
+                {
+                    Services.Hand.OnCardReturnFromSlot(card);
+                }
+
+            }
+        }
+
 
     }
 

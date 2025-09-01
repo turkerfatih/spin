@@ -1,5 +1,4 @@
-﻿using System;
-using Game.Event;
+﻿using Game.Event;
 using UnityEngine;
 
 namespace Game.Core
@@ -52,6 +51,7 @@ namespace Game.Core
             cardView.Bind(card);
             EventBus.OnCardAddToHand?.Invoke(cardView);
         }
+        
 
         private void DiscardCard(Card card)
         {
@@ -74,6 +74,12 @@ namespace Game.Core
             var slot= Services.Machine.GetDropSlot(droppedSlot);
             slot.SetCard(card);
             EventBus.OnCardRemovedFromHand?.Invoke(card);
+        }
+
+        public void OnCardReturnFromSlot(Card card)
+        {
+            card.Reset();
+            AddCard(card);
         }
     }
 }

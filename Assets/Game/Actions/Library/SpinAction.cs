@@ -21,6 +21,7 @@ namespace Game.Actions
             }
             await UniTask.WhenAll(tasks);
             await machine.ResolveSpin();
+            await machine.AdvanceSlots();
             machine.IsSpinning = false;
         }
     }

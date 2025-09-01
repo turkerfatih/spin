@@ -9,6 +9,6 @@ namespace Game.Effect
     public abstract class CardEffect:ScriptableObject
     {
         public abstract void OnPlay(Card card, int targetReelIndex = -1);
-        
+
     }
 }
