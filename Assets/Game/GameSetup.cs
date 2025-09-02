@@ -13,13 +13,14 @@ namespace Game
     {
         public Transform DeckParent;
         public StartingDeck StartingDeck;
-        public Card CardPrefab;
         public Deck<Card> Deck;
+        [SerializeField] private CardView CardViewPrefab;
         
         public CardDatabase CardDatabase;
 
         private void Awake()
         {
+            CardViewPrefab.gameObject.SetActive(false);
             Services.Actions = new ActionQueue();
             Services.Cards = this;
             Services.PayTable = new PayTable();
@@ -45,6 +46,9 @@ namespace Game
                 {
                     var definition = item.Data;
                     var card = new Card(definition);
+                    var cardView=Instantiate(CardViewPrefab,Vector3.zero, Quaternion.identity, DeckParent);
+                    cardView.Bind(card);
+                    card.View=cardView;
                     Deck.Library.Add(card); 
                 }
             }

@@ -1044,6 +1044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeckParent: {fileID: 163750308}
   StartingDeck: {fileID: 11400000, guid: 8c137ed51e3a1404282889a05a350312, type: 2}
+  CardViewPrefab: {fileID: 8196339257687785414, guid: 38aa6ba35be5144dc931edb1e6e43818, type: 3}
   CardDatabase: {fileID: 0}
 --- !u!114 &1364209454
 MonoBehaviour:
@@ -1361,8 +1362,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingCount: 5
-  CardPrefab: {fileID: 8196339257687785414, guid: 38aa6ba35be5144dc931edb1e6e43818, type: 3}
-  DeckParent: {fileID: 163750308}
   DrawAll: 1
 --- !u!65 &1692558954
 BoxCollider:
