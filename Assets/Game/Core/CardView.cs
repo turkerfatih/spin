@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -12,7 +13,7 @@ namespace Game.Core
         private  const float smoothSpeed = 10f;  
         public static float Width = 1f;
         public TextMeshPro label;
-        public TextMeshPro info;
+        public TextMeshPro durability;
         public SpriteRenderer Visual;
         
         [SerializeField] private Transform rotater;
@@ -22,18 +23,32 @@ namespace Game.Core
         {
             sortingGroup = GetComponent<SortingGroup>();
         }
+        
+
         public void Bind(Card card)
         {
             Model = card;
             label.text = card.Definition.CardName;
-            info.text = card.Definition.Description;
+            UpdateDurability();
             Visual.sprite = card.Definition.Icon;
+        }
+
+        public void UnBind()
+        {
+            Model = null;
+            Destroy(gameObject);
+        }
+
+        public void UpdateDurability()
+        {
+            if(Model.Durability<=0)
+                return;
+            durability.SetText(Model.Definition.Durability.ToString());
         }
 
         public void ReturnPool()
         {
-            Model = null;
-            Destroy(gameObject);
+            
         }
 
         public void SetOrder(int index)

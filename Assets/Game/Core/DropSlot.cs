@@ -31,7 +31,11 @@ namespace Game.Core
                 cardEffect.OnPlay(cardView.Model,index);
             }
         }
-        
+        public void ClearCard()
+        {
+            current=null;
+        }
+
 
     }
 }

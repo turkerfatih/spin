@@ -94,9 +94,11 @@ namespace Game
                     continue;
                 if (card.OnAfterSpin())
                 {
+                    slot.ClearCard();
+                    card.View.UnBind();
                     Services.Hand.OnCardReturnFromSlot(card);
                 }
-
+                
             }
         }
 

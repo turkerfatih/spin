@@ -3,7 +3,9 @@
     public interface ICardView
     {
         public void Bind(Card card);
-        public void ReturnPool();
+        public void UnBind();
+        
+        public void UpdateDurability();
 
     }
 }

@@ -12,10 +12,11 @@ namespace Game.Core
         public Guid Id { get; } = Guid.NewGuid();
         public int Durability;
         public CardDefinition Definition { get; }
-        
+        public ICardView View { get; set; }
 
         public Card(CardDefinition definition)
         {
+            
             Definition =  definition;
             Durability = definition.Durability;
         }
@@ -23,6 +24,7 @@ namespace Game.Core
         public bool OnAfterSpin()
         {
             Durability--;
+            View?.UpdateDurability();
             return Durability > 0;
         }
 
