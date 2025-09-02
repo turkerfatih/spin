@@ -152,7 +152,7 @@ namespace Game
                 Debug.LogWarning("Symbol ID not found on reel.");
                 return;
             }
-            Debug.Log($" Reel {reelIndex} target index: {targetIndex}  ");
+            //Debug.Log($" Reel {reelIndex} target index: {targetIndex}  ");
             await Spin(targetIndex, delay);
         }
 

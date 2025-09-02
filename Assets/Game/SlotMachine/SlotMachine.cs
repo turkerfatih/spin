@@ -54,6 +54,8 @@ namespace Game
                 spinResult.Inputs.Add(reel.CurrentSymbol);
             }
             Services.PayTable.Evaluate(spinResult.Inputs,spinResult.Payouts);
+            if(spinResult.Payouts.Count==0)
+                return;
             Debug.Log("Payout Count:"+spinResult.Payouts.Count);
             foreach (var payout in spinResult.Payouts)
             {

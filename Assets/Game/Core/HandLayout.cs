@@ -110,7 +110,7 @@ namespace Game.Core
 
         void Select()
         {
-            Debug.Log("Try selecting:"+selectedIndex+" current :"+lastSelectedIndex);
+            //Debug.Log("Try selecting:"+selectedIndex+" current :"+lastSelectedIndex);
             if(selectedIndex==lastSelectedIndex)
                 return;
             if (selectedIndex < 0 || selectedIndex >= cards.Count) return;

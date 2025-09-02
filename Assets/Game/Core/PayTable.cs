@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Game.Core
 {
@@ -32,60 +33,81 @@ public class PayTable
             { (SymbolType.Jackpot, 5), 2000 }, { (SymbolType.Jackpot, 6), 10000 },
         };
 
-        public void Evaluate(List<Symbol> symbols,List<PayoutResult> results)
+        public void Evaluate(List<Symbol> symbols, List<PayoutResult> results)
         {
             results.Clear();
 
             if (symbols.Count < 3)
-                return ;
+                return;
 
-            Dictionary<SymbolType, List<Symbol>> groups = new();
-            List<Symbol> wilds = new();
+            int n = symbols.Count;
+            int i = 0;
 
-            // Group symbols
-            foreach (var sym in symbols)
+            while (i < n)
             {
-                if (sym.Type == SymbolType.None)
-                    continue;
-
-                if (sym.Type == SymbolType.Wild)
+                if (symbols[i].Type == SymbolType.None)
                 {
-                    wilds.Add(sym);
+                    i++;
                     continue;
                 }
 
-                if (!groups.TryGetValue(sym.Type, out var list))
-                {
-                    list = new List<Symbol>();
-                    groups[sym.Type] = list;
-                }
-                list.Add(sym);
-            }
+                // Find base type for this run
+                SymbolType baseType = symbols[i].Type;
 
-            // Evaluate each group
-            foreach (var kv in groups)
-            {
-                int total = kv.Value.Count + wilds.Count;
-                if (total >= 3 && table.TryGetValue((kv.Key, total), out int payout))
+                if (baseType == SymbolType.Wild)
                 {
-                    List<Symbol> winningSymbols = new List<Symbol>(kv.Value);
-                    winningSymbols.AddRange(wilds); // clone wilds for this win
-
-                    results.Add(new PayoutResult(winningSymbols, payout));
+                    for (int k = i + 1; k < n; k++)
+                    {
+                        if (symbols[k].Type != SymbolType.Wild && symbols[k].Type != SymbolType.None)
+                        {
+                            baseType = symbols[k].Type;
+                            break;
+                        }
+                    }
+                    // Still wild means it's an all-wild block, jackpot handled later
+                    if (baseType == SymbolType.Wild)
+                    {
+                        break;
+                    }
                 }
+
+                // Collect contiguous run
+                List<Symbol> chain = new();
+                int j = i;
+                while (j < n)
+                {
+                    var sym = symbols[j];
+                    if (sym.Type == SymbolType.None)
+                        break;
+
+                    if (sym.Type == baseType || sym.Type == SymbolType.Wild)
+                    {
+                        chain.Add(sym);
+                        j++;
+                    }
+                    else
+                        break;
+                }
+
+                // Only score the *longest run* of this block
+                if (chain.Count >= 3 && table.TryGetValue((baseType, chain.Count), out int payout))
+                {
+                    results.Add(new PayoutResult(new List<Symbol>(chain), payout));
+                }
+
+                i = j; // move to next block
             }
 
             // Special case: all wilds = jackpot
-            if (wilds.Count >= 3 && wilds.Count == symbols.Count)
+            if (symbols.All(s => s.Type == SymbolType.Wild))
             {
-                if (table.TryGetValue((SymbolType.Jackpot, wilds.Count), out int payout))
+                if (table.TryGetValue((SymbolType.Jackpot, symbols.Count), out int payout))
                 {
-                    results.Add(new PayoutResult(new List<Symbol>(wilds), payout));
+                    results.Add(new PayoutResult(new List<Symbol>(symbols), payout));
                 }
             }
-
-           
         }
+
     }
     
 }
