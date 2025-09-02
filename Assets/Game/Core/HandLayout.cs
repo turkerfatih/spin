@@ -252,6 +252,12 @@ namespace Game.Core
 
         private void DragCard()
         {
+            if (Services.Machine.IsSpinning)
+            {
+                Debug.Log("Cant move card while spinning!");
+                return;
+            }
+
             isDragging = true;
             Dragger.StartDragging(cards[lastSelectedIndex]);
         }

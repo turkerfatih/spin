@@ -1061,8 +1061,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 27bdf5e06068c0b428519732a94ed4dd, type: 2}
   - {fileID: 11400000, guid: 27bdf5e06068c0b428519732a94ed4dd, type: 2}
   - {fileID: 11400000, guid: 27bdf5e06068c0b428519732a94ed4dd, type: 2}
-  - {fileID: 11400000, guid: 27bdf5e06068c0b428519732a94ed4dd, type: 2}
-  - {fileID: 11400000, guid: 27bdf5e06068c0b428519732a94ed4dd, type: 2}
 --- !u!114 &1364209455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1365,6 +1363,7 @@ MonoBehaviour:
   StartingCount: 5
   CardPrefab: {fileID: 8196339257687785414, guid: 38aa6ba35be5144dc931edb1e6e43818, type: 3}
   DeckParent: {fileID: 163750308}
+  DrawAll: 1
 --- !u!65 &1692558954
 BoxCollider:
   m_ObjectHideFlags: 0

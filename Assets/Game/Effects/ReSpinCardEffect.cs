@@ -1,4 +1,5 @@
-﻿using Game.Core;
+﻿using Game.Actions;
+using Game.Core;
 using Game.Effect;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Game.Effects
     {
         public override void OnPlay(Card card, int targetReelIndex = -1)
         {
-            
+            Services.Actions.Add(new SpinAction(targetReelIndex));
         }
     }
 }

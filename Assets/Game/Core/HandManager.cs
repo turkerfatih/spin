@@ -8,6 +8,7 @@ namespace Game.Core
         [SerializeField] private int StartingCount;
         [SerializeField] private CardView CardPrefab;
         [SerializeField] private Transform DeckParent;
+        [SerializeField] private bool DrawAll;
         private void OnEnable()
         {
             EventBus.OnCardDroppedToSlot += OnCardDroppedToSlot;
@@ -22,7 +23,12 @@ namespace Game.Core
         {
             if(!CanDrawCard())
                 return;
-            for (int i = 0; i < StartingCount; i++)
+            var count = StartingCount;
+            if(DrawAll)
+            {
+                count = Services.Deck.Library.Size;
+            }
+            for (int i = 0; i < count; i++)
             {
                 if(!CanDrawCard())
                     break;
