@@ -8,6 +8,8 @@ namespace Game.Core
         
         public void UpdateDurability();
         
+        public void DiscardAnimation(Vector3 position);
+        public void DrawAnimation(Vector3 position);
 
     }
 }

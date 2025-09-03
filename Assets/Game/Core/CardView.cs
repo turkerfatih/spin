@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -44,6 +45,16 @@ namespace Game.Core
             if(Model.Durability<=0)
                 return;
             durability.SetText(Model.Definition.Durability.ToString());
+        }
+
+        public void DiscardAnimation(Vector3 position)
+        {
+            transform.DOMove(position, 0.2f);
+        }
+
+        public void DrawAnimation(Vector3 position)
+        {
+            transform.DOMove(position, 0.2f);
         }
 
         public void ReturnPool()

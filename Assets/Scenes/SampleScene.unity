@@ -200,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 76910055}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.53, y: 0.06999993, z: 0}
+  m_LocalPosition: {x: -7.42, y: 0.06999993, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -718,7 +718,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 66.894066
+  field of view: 58.09173
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1123,6 +1123,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3d5412113c5f3946af348e142b425b6, type: 3}
+--- !u!1 &1270371824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270371825}
+  m_Layer: 0
+  m_Name: DrawShow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1270371825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270371824}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.11, y: 3.97, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1692558951}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1364209451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,6 +1453,7 @@ Transform:
   - {fileID: 894582671}
   - {fileID: 2125618045}
   - {fileID: 76910057}
+  - {fileID: 1270371825}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1692558952
@@ -1442,6 +1474,9 @@ MonoBehaviour:
   Gap: 0.2
   MinOverlap: 0.2
   SelectRaiseY: 0.5
+  DrawStack: {fileID: 2125618045}
+  DiscardStack: {fileID: 76910057}
+  ShowPos: {fileID: 1270371825}
   Dragger: {fileID: 352456709}
 --- !u!114 &1692558953
 MonoBehaviour:
@@ -1457,6 +1492,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingCount: 5
   DrawAll: 0
+  DrawStack: {fileID: 2125618045}
+  DiscardStack: {fileID: 76910057}
 --- !u!65 &1692558954
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2040,7 +2077,7 @@ Transform:
   m_GameObject: {fileID: 2125618043}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.53, y: 0.06999993, z: 0}
+  m_LocalPosition: {x: 7.42, y: 0.06999993, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

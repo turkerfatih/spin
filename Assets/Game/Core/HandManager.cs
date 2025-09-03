@@ -1,4 +1,5 @@
-﻿using Game.Event;
+﻿using System;
+using Game.Event;
 using UnityEngine;
 
 namespace Game.Core
@@ -7,6 +8,13 @@ namespace Game.Core
     {
         [SerializeField] private int StartingCount;
         [SerializeField] private bool DrawAll;
+        [SerializeField] private Transform DrawStack;
+        [SerializeField] private Transform DiscardStack;
+        private void Awake()
+        {
+            Services.Hand = this;
+        }
+
         private void OnEnable()
         {
             EventBus.OnCardDroppedToSlot += OnCardDroppedToSlot;
@@ -59,6 +67,7 @@ namespace Game.Core
         {
             var deck = Services.Deck;
             deck.Discard(card);
+            card.View.DiscardAnimation(DiscardStack.position);
         }
 
         private bool CanDrawCard()
