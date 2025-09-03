@@ -49,7 +49,7 @@ namespace Game.Core
 
         public void DiscardAnimation()
         {
-            
+            gameObject.SetActive(false);
         }
 
         public void DrawAnimation()
