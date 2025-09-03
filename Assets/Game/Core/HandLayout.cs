@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Game.Event;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Game.Core
 {
-    public class HandLayout : MonoBehaviour
+    public class HandLayout : MonoBehaviour,IPointerEnterHandler,IPointerDownHandler,IPointerUpHandler,IPointerExitHandler,IPointerMoveHandler
     {
         [SerializeField] private SpriteRenderer Box;
         [SerializeField] private float MaxWidth = 8f;
@@ -204,39 +205,13 @@ namespace Game.Core
             }
             
         }
-
-        private void OnMouseOver()
+        
+        public void OnPointerEnter(PointerEventData eventData)
         {
-            if(isDragging)return;
-            if (cards.Count == 0) return;
-            Vector3 worldMouse = Services.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 localMouse = transform.InverseTransformPoint(worldMouse);
-            float width = boxCollider.size.x;
-            float halfWidth = width / 2f;
-            float x = Mathf.Clamp(localMouse.x, -halfWidth, halfWidth);
-            float t = (x + halfWidth) / width;
-            int index = Mathf.FloorToInt(t * cards.Count);
-            index = Mathf.Clamp(index, 0, cards.Count - 1);
-            if (index != selectedIndex)
-            {
-                selectedIndex = index;
-                Select();
-            }
+           
+ 
         }
-
-        private void OnMouseDown()
-        {
-            if(isDragging)return;
-            if(lastSelectedIndex==-1) return;
-            DragCard();
-        }
-
-        private void OnMouseExit()
-        {
-            if(isDragging)return;
-            RemoveFocus();
-        }
-
+        
         private void RemoveFocus()
         {
             RemoveCurrentlySelected();
@@ -272,6 +247,45 @@ namespace Game.Core
                     RemoveFocus();
                     card.SetOrder(index);
                 });
+        }
+
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if(isDragging)return;
+            if(lastSelectedIndex==-1) return;
+            DragCard();
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if(isDragging)return;
+            RemoveFocus();
+        }
+
+        public void OnPointerMove(PointerEventData eventData)
+        {
+            if(isDragging)return;
+            if (cards.Count == 0) return;
+            Vector3 worldMouse =  eventData.pointerCurrentRaycast.worldPosition;
+            Vector3 localMouse = transform.InverseTransformPoint(worldMouse);
+            Debug.Log(localMouse.x);
+            float width = boxCollider.size.x;
+            float halfWidth = width / 2f;
+            float x = Mathf.Clamp(localMouse.x, -halfWidth, halfWidth);
+            float t = (x + halfWidth) / width;
+            int index = Mathf.FloorToInt(t * cards.Count);
+            index = Mathf.Clamp(index, 0, cards.Count - 1);
+            if (index != selectedIndex)
+            {
+                selectedIndex = index;
+                Select();
+            }
         }
     }
 }
