@@ -31,6 +31,8 @@ namespace Game.Core
         private bool isDragging = false;
         [SerializeField] private CardDragger Dragger;
         
+        private Vector3 dragOffset;
+        
         private void Awake()
         {
             boxCollider = GetComponent<BoxCollider>();
@@ -232,9 +234,8 @@ namespace Game.Core
                 Debug.Log("Cant move card while spinning!");
                 return;
             }
-
             isDragging = true;
-            Dragger.StartDragging(cards[lastSelectedIndex]);
+            Dragger.StartDragging(cards[lastSelectedIndex],dragOffset);
         }
 
         private void OnDraggingCancel(CardView card)
@@ -254,6 +255,9 @@ namespace Game.Core
         {
             if(isDragging)return;
             if(lastSelectedIndex==-1) return;
+            var lastCardTrans = cards[lastSelectedIndex].transform;
+            var mouseWorldPos = eventData.pointerCurrentRaycast.worldPosition;
+            dragOffset = lastCardTrans.position - new Vector3(mouseWorldPos.x, mouseWorldPos.y, lastCardTrans.position.z);
             DragCard();
         }
 
@@ -274,7 +278,6 @@ namespace Game.Core
             if (cards.Count == 0) return;
             Vector3 worldMouse =  eventData.pointerCurrentRaycast.worldPosition;
             Vector3 localMouse = transform.InverseTransformPoint(worldMouse);
-            Debug.Log(localMouse.x);
             float width = boxCollider.size.x;
             float halfWidth = width / 2f;
             float x = Mathf.Clamp(localMouse.x, -halfWidth, halfWidth);

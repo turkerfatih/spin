@@ -24,13 +24,13 @@ namespace Game
             EventBus.OnDropSlotSelected -= DropSlotSelected;
         }
 
-        public void StartDragging(CardView targetCard)
+        public void StartDragging(CardView targetCard, Vector3 dragOffset)
         {
             card = targetCard;
             card.SetOrder(10000);
             enabled = true;
-            Vector3 mousePos = Services.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-            offset = card.transform.position - new Vector3(mousePos.x, mousePos.y, card.transform.position.z);
+
+            offset = dragOffset;
             dragging = true;
             DOVirtual.Int(0, 1, 0.15f, (t) =>
             {
