@@ -10,9 +10,9 @@ namespace Game
     {
         private Vector3 offset;
         private CardView card;
-        private bool dragging = false;
+        private bool dragging;
         [SerializeField] private float SmoothTime = 1;
-
+        private Vector3 velocity;
 
         private void OnEnable()
         {
@@ -26,6 +26,7 @@ namespace Game
 
         public void StartDragging(CardView targetCard, Vector3 dragOffset)
         {
+            velocity=Vector3.zero;
             card = targetCard;
             card.SetOrder(10000);
             enabled = true;
@@ -46,15 +47,15 @@ namespace Game
                 CancelDragging();
                 return;
             }
-
-            Vector3 mousePos = Services.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-            var targetPos = new Vector3(mousePos.x, mousePos.y, card.transform.position.z) + offset;
-            card.transform.position=Vector3.Lerp(card.transform.position,targetPos,Time.deltaTime*SmoothTime);
             
-            /*/Vector3 localMouse = card.transform.InverseTransformPoint(
-                Services.MainCamera.ScreenToWorldPoint(Input.mousePosition)
-            );
-            card.UpdateRotate(localMouse);*/
+            Vector3 mousePos = Input.mousePosition;
+            var cam = Services.MainCamera;
+            mousePos.z = Mathf.Abs(cam.transform.position.z - card.transform.position.z);
+            Vector3 mouseWorldPos = cam.ScreenToWorldPoint(mousePos);
+            mousePos.z = card.transform.position.z;
+            var targetPos = mouseWorldPos + offset;
+            //card.transform.position=Vector3.Lerp(card.transform.position,targetPos,Time.deltaTime*SmoothTime);
+            card.transform.position = Vector3.SmoothDamp(card.transform.position, targetPos, ref velocity, 1f / SmoothTime);
         }
 
         private void CancelDragging()

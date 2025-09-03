@@ -258,6 +258,7 @@ namespace Game.Core
             var lastCardTrans = cards[lastSelectedIndex].transform;
             var mouseWorldPos = eventData.pointerCurrentRaycast.worldPosition;
             dragOffset = lastCardTrans.position - new Vector3(mouseWorldPos.x, mouseWorldPos.y, lastCardTrans.position.z);
+            dragOffset.z = 0;
             DragCard();
         }
 
