@@ -25,7 +25,7 @@ namespace Game.Core
         {
             Durability--;
             View?.UpdateDurability();
-            return Durability > 0;
+            return Durability <= 0;
         }
 
         public void Reset()

@@ -12,6 +12,7 @@ namespace Game.Core
         private int index;
         private CardView current;
         [CanBeNull] public Card GetCard => current?.Model;
+        public int Index => index;
         public void SetIndex(int sel)
         {
             index = sel;

@@ -90,10 +90,15 @@ namespace Game
             foreach (var slot in dropSlots)
             {
                 var card = slot.GetCard;
-                if(card == null)
+                if (card == null)
+                {
+                    Debug.Log($"Slot[{slot.Index}] no card skipped ");
                     continue;
+                }
+
                 if (card.OnAfterSpin())
                 {
+                    Debug.Log($"Slot[{slot.Index}] clear call ");
                     slot.ClearCard();
                     Services.Hand.OnCardReturnFromSlot(card);
                 }

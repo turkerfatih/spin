@@ -1,5 +1,4 @@
-﻿using System;
-using Game.Core;
+﻿using Game.Core;
 using Game.Event;
 using TMPro;
 using UnityEngine;
@@ -9,7 +8,7 @@ namespace Game.UI
     public class CoinDisplay:MonoBehaviour
     {
         [SerializeField]
-        private TextMeshProUGUI Text;
+        private TextMeshPro Text;
 
         private double collected = 0;
 
