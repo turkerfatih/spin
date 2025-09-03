@@ -19,10 +19,10 @@ namespace Game.Core
         
         [SerializeField] private Transform rotater;
         
-        private SortingGroup sortingGroup;
+        [SerializeField]private SortingGroup sortingGroup;
         private void Awake()
         {
-            sortingGroup = GetComponent<SortingGroup>();
+            
         }
         
 
@@ -47,14 +47,16 @@ namespace Game.Core
             durability.SetText(Model.Definition.Durability.ToString());
         }
 
-        public void DiscardAnimation(Vector3 position)
+        public void DiscardAnimation()
         {
-            transform.DOMove(position, 0.2f);
+            
         }
 
-        public void DrawAnimation(Vector3 position)
+        public void DrawAnimation()
         {
-            transform.DOMove(position, 0.2f);
+            transform.localScale = Vector3.zero;
+            gameObject.SetActive(true);
+            transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
         }
 
         public void ReturnPool()

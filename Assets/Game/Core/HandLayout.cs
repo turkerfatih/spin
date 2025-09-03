@@ -19,10 +19,7 @@ namespace Game.Core
         // Fan settings
         [SerializeField] private float SelectRaiseY = 0.5f;
         
-        [SerializeField] private Transform DrawStack;
-        [SerializeField] private Transform DiscardStack;
-        [SerializeField] private Transform ShowPos;
-       
+        
         private readonly List<CardView> cards = new List<CardView>();
         private readonly List<Vector3> positions = new List<Vector3>();
 
@@ -46,17 +43,13 @@ namespace Game.Core
         void UpdateLayout()
         {
             CalculatePositions();
-            SetPositions();
-        }
-
-        void SetPositions()
-        {
             for (int i = 0; i < cards.Count; i++)
             {
                 cards[i].transform.localPosition = positions[i];
                 cards[i].SetOrder(i);
             }
         }
+
 
         void CalculatePositions()
         {
@@ -169,19 +162,9 @@ namespace Game.Core
         {
             card.gameObject.name="card"+cards.Count.ToString();
             card.transform.parent = transform;
-
             cards.Add(card);
             positions.Add(new Vector3());
-            CalculatePositions();
-            var targetPos = positions[cards.Count-1];
-            var startPos = DrawStack.localPosition;
-            var showPos = ShowPos.localPosition;
-            var trans = card.transform;
-            trans.localPosition = startPos;
-            card.gameObject.SetActive(true);
-            trans.DOLocalMove(showPos, 0.15f);
-            trans.DOLocalMove(targetPos, 0.15f).SetDelay(0.15f);
-
+            UpdateLayout();
         }
 
         

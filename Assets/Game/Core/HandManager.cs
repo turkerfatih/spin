@@ -8,8 +8,6 @@ namespace Game.Core
     {
         [SerializeField] private int StartingCount;
         [SerializeField] private bool DrawAll;
-        [SerializeField] private Transform DrawStack;
-        [SerializeField] private Transform DiscardStack;
         private void Awake()
         {
             Services.Hand = this;
@@ -59,15 +57,15 @@ namespace Game.Core
 
         private void AddCard(Card card)
         {
-            
             EventBus.OnCardAddToHand?.Invoke(card.View as CardView);
+            card.View.DrawAnimation();
         }
         
         private void DiscardCard(Card card)
         {
             var deck = Services.Deck;
             deck.Discard(card);
-            card.View.DiscardAnimation(DiscardStack.position);
+            card.View.DiscardAnimation();
         }
 
         private bool CanDrawCard()
