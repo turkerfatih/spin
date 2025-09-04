@@ -23,8 +23,8 @@ namespace Game.Core
         {
             Symbols = symbols;
         }
-        
-        public async UniTask Spin(float delay)
+
+        private async UniTask SpinWith(UniTask task)
         {
             foreach (var effect in effects)
             {
@@ -34,14 +34,52 @@ namespace Game.Core
                     return;
                 }
             }
-            CurrentSymbolIndex=Services.Random.Range(0, Symbols.Count);
-            var item = Symbols[CurrentSymbolIndex];
-            await View.SpinAnimation(item.Id,delay);
+            await task;
             foreach (var effect in effects)
             {
                 effect.OnAfterSpin(this);
             }
         }
-        
+        public async UniTask Spin(float delay)
+        {
+            await SpinWith(SpinTask(delay));
+        }
+
+        private  UniTask SpinTask(float delay)
+        {
+            CurrentSymbolIndex=Services.Random.Range(0, Symbols.Count);
+            var item = Symbols[CurrentSymbolIndex];
+            return View.SpinAnimation(item.Id,delay);
+        }
+
+        public async UniTask Pull(float delay)
+        {
+            await SpinWith(PullTask(delay));
+        }
+        public async UniTask Push(float delay)
+        {
+            await SpinWith(PushTask(delay));
+        }
+
+        private UniTask PullTask(float delay)
+        {
+            MoveCurrentSymbol(-1);
+            return View.PullAnimation(delay);
+        }
+        private  UniTask PushTask(float delay)
+        {
+            MoveCurrentSymbol(1);
+            return View.PushAnimation(delay);
+        }
+
+        private void MoveCurrentSymbol(int dir)
+        {
+            CurrentSymbolIndex+=dir;
+            if (CurrentSymbolIndex < 0)
+                CurrentSymbolIndex = Symbols.Count - 1;
+            if (CurrentSymbolIndex >= Symbols.Count)
+                CurrentSymbolIndex = 0;
+        }
+
     }
 }

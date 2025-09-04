@@ -24,6 +24,9 @@ namespace Game
         private List<SymbolView> views;
         private int reelIndex;
         private float bottomLimit;
+        
+        public async UniTask PushAnimation(float delay) => await PushOrPull(1,delay);
+        public async UniTask PullAnimation(float delay) => await PushOrPull(-1,delay);
 
         public void Setup(List<Symbol> items, int index)
         {
@@ -65,9 +68,19 @@ namespace Game
             views.Add(symbolView);
             symbolView.transform.localPosition = pos;
         }
-        
+        public async UniTask SpinAnimation(Guid symbolId, float delay = 0f)
+        {
+            int targetIndex = symbols.FindIndex(s => s.Id == symbolId);
+            if (targetIndex == -1)
+            {
+                Debug.LogWarning("Symbol ID not found on reel.");
+                return;
+            }
+            Debug.Log($" Reel {reelIndex} target index: {targetIndex}  ");
+            await Spin(targetIndex, delay);
+        }
 
-        private async UniTask Spin(int targetIndex, float delay = 0f)
+        public async UniTask Spin(int targetIndex, float delay = 0f)
         {
             
             // random stagger so reels don’t start perfectly together
@@ -125,11 +138,7 @@ namespace Game
         }
         
 
-        // Optional Push/Pull nudges
-        public void Push() => PushOrPull(1);
-        public void Pull() => PushOrPull(-1);
-
-        private void PushOrPull(int dir)
+        private async UniTask PushOrPull(int dir,float delay = 0f)
         {
             float amount = SymbolView.Height * dir;
             float currentY = VerticalList.localPosition.y;
@@ -137,24 +146,17 @@ namespace Game
 
             // wrap downward
             targetY = targetY % bottomLimit;
-            if (targetY < 0) targetY += bottomLimit;
-
-            VerticalList.DOLocalMoveY(targetY, 0.75f)
-                .SetEase(dir > 0 ? Ease.InBack : Ease.OutBack)
-                .OnComplete(OnSpinComplete);
-        }
-
-        public async UniTask SpinAnimation(Guid symbolId, float delay = 0f)
-        {
-            int targetIndex = symbols.FindIndex(s => s.Id == symbolId);
-            if (targetIndex == -1)
             {
-                Debug.LogWarning("Symbol ID not found on reel.");
-                return;
+                if (targetY < 0) targetY += bottomLimit;
+                VerticalList.localPosition = new Vector3(0, targetY-amount, 0);
+                
             }
-            //Debug.Log($" Reel {reelIndex} target index: {targetIndex}  ");
-            await Spin(targetIndex, delay);
+
+            await VerticalList.DOLocalMoveY(targetY, 0.75f)
+                .SetEase(dir > 0 ? Ease.InBack : Ease.OutBack).SetDelay(delay)
+                .OnComplete(OnSpinComplete).ToUniTask();
         }
+        
 
         public async UniTask FreezeAnimation()
         {

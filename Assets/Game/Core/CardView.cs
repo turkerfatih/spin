@@ -58,11 +58,7 @@ namespace Game.Core
             gameObject.SetActive(true);
             transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
         }
-
-        public void ReturnPool()
-        {
-            
-        }
+        
 
         public void SetOrder(int index)
         {
