@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Game.Core;
+using UnityEngine;
 
 namespace Game.Actions
 {
@@ -23,6 +24,7 @@ namespace Game.Actions
 
         public async UniTask ExecuteAsync()
         {
+            Debug.Log("Spin Action");
             tasks.Clear();
             var machine = Services.Machine;
             machine.IsSpinning = true;

@@ -41,7 +41,7 @@ namespace Game
                 dropSlots.Add(null);
                 var symbols=new List<Symbol>();
                 ReelSymbolPlacement.GenerateReelSymbols(configuration,ref symbols);
-                Reels.Add(new Reel(symbols));
+                Reels.Add(new Reel(symbols,i));
             }
 
         }
@@ -92,13 +92,13 @@ namespace Game
                 var card = slot.GetCard;
                 if (card == null)
                 {
-                    Debug.Log($"Slot[{slot.Index}] no card skipped ");
+                    //Debug.Log($"Slot[{slot.Index}] no card skipped ");
                     continue;
                 }
 
                 if (card.OnAfterSpin())
                 {
-                    Debug.Log($"Slot[{slot.Index}] clear call ");
+                    //Debug.Log($"Slot[{slot.Index}] clear call ");
                     slot.ClearCard();
                     Services.Hand.OnCardReturnFromSlot(card);
                 }

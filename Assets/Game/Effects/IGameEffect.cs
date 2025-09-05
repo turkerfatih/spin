@@ -10,8 +10,6 @@
 
         /// <summary>Called after a spin ends (optional).</summary>
         void OnAfterSpin();
-
-        /// <summary>Whether the effect has expired (durability, etc).</summary>
-        bool IsExpired { get; }
+        
     }
 }

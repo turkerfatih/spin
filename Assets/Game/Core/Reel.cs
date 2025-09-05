@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Game.Effects;
+
 using UnityEngine;
 
 namespace Game.Core
@@ -11,7 +13,8 @@ namespace Game.Core
         public bool IsFrozen { get; set; }
         public int CurrentSymbolIndex { get;private set; }
         public Symbol CurrentSymbol => Symbols[CurrentSymbolIndex];
-
+        
+        public int Index { get; private set; }
         public IReelView View { get; set; }
 
         private readonly List<ReelEffect> effects = new();
@@ -24,29 +27,33 @@ namespace Game.Core
 
         public void RemoveEffect(ReelEffect effect) => effects.Remove(effect);
 
-        public Reel(List<Symbol> symbols)
+        public Reel(List<Symbol> symbols,int index)
         {
             Symbols = symbols;
+            Index = index;
         }
 
-        private async UniTask SpinWith(UniTask task)
+        private async UniTask SpinWith(Func<UniTask> spinTask)
         {
             for (var i = effects.Count - 1; i >= 0; i--)
             {
                 var effect = effects[i];
                 effect.OnBeforeSpin(this);
             }
-
-            await task;
+            if(!IsFrozen)
+                await spinTask.Invoke();
+            //if(IsFrozen)
+             //   Debug.Log("Reel ["+Index+"] is frozen");
             for (var i = effects.Count - 1; i >= 0; i--)
             {
+                
                 var effect = effects[i];
                 effect.OnAfterSpin(this);
             }
         }
         public async UniTask Spin(float delay)
         {
-            await SpinWith(SpinTask(delay));
+            await SpinWith(()=>SpinTask(delay));
         }
 
         private  UniTask SpinTask(float delay)
@@ -58,11 +65,11 @@ namespace Game.Core
 
         public async UniTask Pull(float delay)
         {
-            await SpinWith(PullTask(delay));
+            await SpinWith(()=>PullTask(delay));
         }
         public async UniTask Push(float delay)
         {
-            await SpinWith(PushTask(delay));
+            await SpinWith(()=>PushTask(delay));
         }
 
         private UniTask PullTask(float delay)

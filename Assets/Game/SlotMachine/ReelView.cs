@@ -27,7 +27,7 @@ namespace Game
         
         public async UniTask PushAnimation(float delay) => await PushOrPull(1,delay);
         public async UniTask PullAnimation(float delay) => await PushOrPull(-1,delay);
-
+        
         public void Setup(List<Symbol> items, int index)
         {
             Services.Machine.RegisterDropSlot(dropSlot,index);

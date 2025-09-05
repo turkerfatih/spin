@@ -47,6 +47,7 @@ namespace Game.Effects
         {
             if (Tick())
             {
+                OnExpire(reel);
                 reel.RemoveEffect(this);
                 return true;
             }
@@ -67,7 +68,6 @@ namespace Game.Effects
         {
             
         }
-
-        public bool IsExpired { get; }
+        
     }
 }
