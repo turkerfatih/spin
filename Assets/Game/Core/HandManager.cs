@@ -52,6 +52,8 @@ namespace Game.Core
                 if(!CanDrawCard())
                     break;
                 var card = Services.Deck.Draw();
+                EventBus.OnDrawPileChanged?.Invoke(Services.Deck.Library.Size);
+                EventBus.OnDiscardPileChanged?.Invoke(Services.Deck.Discarded.Size);
                 AddCard(card);
             }
         }
@@ -66,9 +68,6 @@ namespace Game.Core
 
             await DrawNewHand();
         }
-
-
-
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -76,6 +75,7 @@ namespace Game.Core
                 if (CanDrawCard())
                 {
                     var card = Services.Deck.Draw();
+                    EventBus.OnDrawPileChanged?.Invoke(Services.Deck.Library.Size);
                     AddCard(card);
                 }
             }
@@ -88,12 +88,17 @@ namespace Game.Core
             card.View.DrawAnimation();
         }
         
-        private void DiscardCard(Card card)
+        private void DiscardCard(Card card,bool fromSlot=false)
         {
+            Debug.Log("Card discarded from slot:"+fromSlot);
             var deck = Services.Deck;
             deck.Discard(card);
-            hand.Remove(card);
-            View.DiscardCard(card);
+            EventBus.OnDiscardPileChanged?.Invoke(deck.Discarded.Size);
+            if (!fromSlot)
+            {
+                hand.Remove(card);
+                View.DiscardCard(card);
+            }
             card.View.DiscardAnimation();
         }
 
@@ -106,16 +111,17 @@ namespace Game.Core
         }
         
 
-        private void OnCardDroppedToSlot(CardView card, int droppedSlot)
+        private void OnCardDroppedToSlot(CardView cardView, int droppedSlot)
         {
             var slot= Services.Machine.GetDropSlot(droppedSlot);
-            slot.SetCard(card);
-            EventBus.OnCardRemovedFromHand?.Invoke(card);
+            slot.SetCard(cardView);
+            hand.Remove(cardView.Model);
+            View.RemoveCard(cardView.Model);
         }
 
         public void OnCardReturnFromSlot(Card card)
         {
-            DiscardCard(card);
+            DiscardCard(card,fromSlot:true);
             card.Reset();
             //AddCard(card);
         }

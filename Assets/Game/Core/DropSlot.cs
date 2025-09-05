@@ -34,7 +34,7 @@ namespace Game.Core
         }
         public void ClearCard()
         {
-            Services.Deck.Discard(current.Model);
+          
             current.DiscardAnimation();
             current=null;
         }

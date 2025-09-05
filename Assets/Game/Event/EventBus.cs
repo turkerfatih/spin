@@ -15,6 +15,5 @@ namespace Game.Event
         public static Action<CardView> OnDragCancel;
         public static Action<int> OnDropSlotSelected;
         public static Action<CardView,int> OnCardDroppedToSlot;
-        public static Action<CardView> OnCardRemovedFromHand;
     }
 }

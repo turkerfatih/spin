@@ -10,11 +10,12 @@ namespace Game.Actions
 
         private static InfiniteRandomBag<float> delays=new (new[] { 0, 0.15f, 0.25f });
         private readonly List<UniTask> tasks = new List<UniTask>();
-        private readonly int single=-1;
+        private readonly int single;
         private bool isReSpin;
         public SpinAction()
         {
-            
+            isReSpin = false;
+            single = -1;
         }
         public SpinAction(int reelIndex)
         {
