@@ -39,6 +39,7 @@ namespace Game.Actions
             await UniTask.WhenAll(tasks);
             await machine.ResolveSpin();
             await machine.AdvanceSlots();
+            await Services.Hand.PostSpinAction();
             machine.IsSpinning = false;
         }
     }

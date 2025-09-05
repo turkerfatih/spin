@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 namespace Game.Core
 {
-    public class HandLayout : MonoBehaviour,IPointerEnterHandler,IPointerDownHandler,IPointerUpHandler,IPointerExitHandler,IPointerMoveHandler
+    public class HandLayout : MonoBehaviour,IHandView,IPointerEnterHandler,IPointerDownHandler,IPointerUpHandler,IPointerExitHandler,IPointerMoveHandler
     {
         [SerializeField] private SpriteRenderer Box;
         [SerializeField] private float MaxWidth = 8f;
@@ -38,6 +38,11 @@ namespace Game.Core
         {
             boxCollider = GetComponent<BoxCollider>();
             currentTotalWidth = MinWidth;
+        }
+
+        private void Start()
+        {
+            Services.Hand.View = this;
         }
 
         void UpdateLayout()
@@ -140,16 +145,12 @@ namespace Game.Core
 
         private void OnEnable()
         {
-            EventBus.OnCardAddToHand += OnCardAddedToHand;
             EventBus.OnDragCancel += OnDraggingCancel;
-            EventBus.OnCardRemovedFromHand+= OnCardRemovedFromHand;
         }
 
         private void OnDisable()
         {
-            EventBus.OnCardAddToHand -= OnCardAddedToHand;
             EventBus.OnDragCancel -= OnDraggingCancel;
-            EventBus.OnCardRemovedFromHand-= OnCardRemovedFromHand;
         }
 
         private void OnCardRemovedFromHand(CardView card)
@@ -287,6 +288,23 @@ namespace Game.Core
                 selectedIndex = index;
                 Select();
             }
+        }
+
+        public void AddCard(Card card)
+        {
+            OnCardAddedToHand(card.View as CardView);
+        }
+
+        public void RemoveCard(Card card)
+        {
+            OnCardRemovedFromHand(card.View as CardView);
+        }
+
+        public void DiscardCard(Card card)
+        {
+            var view=card.View as CardView;
+            if(cards.Contains(view))
+                OnCardRemovedFromHand(card.View as CardView);
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Game.Event;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Core
 {
@@ -8,6 +11,13 @@ namespace Game.Core
     {
         [SerializeField] private int StartingCount;
         [SerializeField] private bool DrawAll;
+        
+        
+        private List<Card> hand = new List<Card>();
+
+        public IHandView View { get;  set; }
+        
+
         private void Awake()
         {
             Services.Hand = this;
@@ -25,6 +35,11 @@ namespace Game.Core
 
         private void Start()
         {
+            DrawNewHand().Forget();
+        }
+
+        private async UniTask DrawNewHand()
+        {
             if(!CanDrawCard())
                 return;
             var count = StartingCount;
@@ -40,8 +55,19 @@ namespace Game.Core
                 AddCard(card);
             }
         }
-        
-        
+
+        public async UniTask PostSpinAction()
+        {
+            for (var i = hand.Count - 1; i >= 0; i--)
+            {
+                var card = hand[i];
+                DiscardCard(card);
+            }
+
+            await DrawNewHand();
+        }
+
+
 
         private void Update()
         {
@@ -57,7 +83,8 @@ namespace Game.Core
 
         private void AddCard(Card card)
         {
-            EventBus.OnCardAddToHand?.Invoke(card.View as CardView);
+            hand.Add(card);
+            View.AddCard(card);
             card.View.DrawAnimation();
         }
         
@@ -65,6 +92,8 @@ namespace Game.Core
         {
             var deck = Services.Deck;
             deck.Discard(card);
+            hand.Remove(card);
+            View.DiscardCard(card);
             card.View.DiscardAnimation();
         }
 
