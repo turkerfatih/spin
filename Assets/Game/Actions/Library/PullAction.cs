@@ -21,7 +21,7 @@ namespace Game.Actions
             {
                 await Services.Machine.Reels[reelIndex].Push(0);
             }
-            await machine.ResolveSpin();
+            await machine.ResolvePayout();
             await machine.AdvanceSlots();
             machine.IsSpinning = false;
         }

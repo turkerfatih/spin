@@ -46,7 +46,7 @@ namespace Game
 
         }
 
-        public async UniTask ResolveSpin()
+        public async UniTask ResolvePayout()
         {
             spinResult.Inputs.Clear();
             foreach (var reel in Reels)

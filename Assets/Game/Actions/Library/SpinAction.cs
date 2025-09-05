@@ -11,7 +11,7 @@ namespace Game.Actions
         private static InfiniteRandomBag<float> delays=new (new[] { 0, 0.15f, 0.25f });
         private readonly List<UniTask> tasks = new List<UniTask>();
         private readonly int single=-1;
-
+        private bool isReSpin;
         public SpinAction()
         {
             
@@ -19,6 +19,7 @@ namespace Game.Actions
         public SpinAction(int reelIndex)
         {
             single = reelIndex;
+            isReSpin = true;
         }
 
 
@@ -37,9 +38,12 @@ namespace Game.Actions
                 tasks.Add(Services.Machine.Reels[i].Spin(delays.GetRandom()));   
             }
             await UniTask.WhenAll(tasks);
-            await machine.ResolveSpin();
+            await machine.ResolvePayout();
             await machine.AdvanceSlots();
-            await Services.Hand.PostSpinAction();
+            if (!isReSpin)
+            {
+                await Services.Hand.PostSpinAction();
+            }
             machine.IsSpinning = false;
         }
     }
