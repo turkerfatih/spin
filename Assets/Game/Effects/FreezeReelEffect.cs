@@ -10,11 +10,7 @@ namespace Game.Effects
         {
             reel.IsFrozen = true; // apply immediately
         }
-
-        public override bool OnBeforeSpin(Reel reel)
-        { 
-            return false;
-        }
+        
 
         public override void OnAfterSpin(Reel reel)
         {

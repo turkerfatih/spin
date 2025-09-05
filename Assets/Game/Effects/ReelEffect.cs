@@ -20,7 +20,9 @@ namespace Game.Effects
         /// Called before a spin attempt. 
         /// Return false to block the reel from spinning.
         /// </summary>
-        public virtual bool OnBeforeSpin(Reel reel) => true;
+        public virtual void OnBeforeSpin(Reel reel)
+        {
+        }
 
         /// <summary>
         /// Called after a spin attempt finishes (or is skipped).

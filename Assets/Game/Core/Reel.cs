@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Game.Effects;
+using UnityEngine;
 
 namespace Game.Core
 {
@@ -15,7 +16,11 @@ namespace Game.Core
 
         private readonly List<ReelEffect> effects = new();
 
-        public void AddEffect(ReelEffect effect) => effects.Add(effect);
+        public void AddEffect(ReelEffect effect)
+        {
+            effects.Add(effect);
+            effect.OnApply(this);
+        }
 
         public void RemoveEffect(ReelEffect effect) => effects.Remove(effect);
 
@@ -26,17 +31,16 @@ namespace Game.Core
 
         private async UniTask SpinWith(UniTask task)
         {
-            foreach (var effect in effects)
+            for (var i = effects.Count - 1; i >= 0; i--)
             {
-                if (!effect.OnBeforeSpin(this))
-                {
-                    effect.OnAfterSpin(this);
-                    return;
-                }
+                var effect = effects[i];
+                effect.OnBeforeSpin(this);
             }
+
             await task;
-            foreach (var effect in effects)
+            for (var i = effects.Count - 1; i >= 0; i--)
             {
+                var effect = effects[i];
                 effect.OnAfterSpin(this);
             }
         }
