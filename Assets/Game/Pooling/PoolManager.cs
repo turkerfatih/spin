@@ -1,24 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Pooling
 {
-    public class PoolManager : MonoBehaviour
+    public class PoolManager : MonoBehaviour, IPoolManager
     {
-        public static PoolManager Instance { get; private set; }
-
-        private readonly Dictionary<GameObject, object> gameObjectPools = new();
-
-        void Awake()
+        private void Awake()
         {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            Instance = this;
+            Services.Pool = this;
         }
 
+        private readonly Dictionary<GameObject, object> gameObjectPools = new();
+        
         public void CreatePool<T>(T prefab, int initialSize = 10) where T : PoolableMonoBehaviour
         {
             if (gameObjectPools.ContainsKey(prefab.gameObject)) return;
@@ -29,11 +23,7 @@ namespace Game.Pooling
 
         public T Get<T>(T prefab, Vector3 position, Quaternion rotation) where T : PoolableMonoBehaviour
         {
-            if (!gameObjectPools.ContainsKey(prefab.gameObject))
-                CreatePool(prefab, 5);
-
-            var pool = gameObjectPools[prefab.gameObject] as GameObjectPool<T>;
-            var obj = pool.Get();
+            var obj=Get(prefab);
             obj.transform.SetPositionAndRotation(position, rotation);
             return obj;
         }
@@ -41,6 +31,16 @@ namespace Game.Pooling
         public void Return<T>(T obj) where T : PoolableMonoBehaviour
         {
             obj.ReturnToPool();
+        }
+
+        public T Get<T>(T prefab) where T : PoolableMonoBehaviour
+        {
+            if (!gameObjectPools.ContainsKey(prefab.gameObject))
+                CreatePool(prefab, 5);
+
+            var pool = gameObjectPools[prefab.gameObject] as GameObjectPool<T>;
+            var obj = pool.Get();
+            return obj;
         }
     }
 }

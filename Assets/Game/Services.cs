@@ -2,6 +2,7 @@
 using CardFramework.RandomProvider;
 using Game.Actions;
 using Game.Core;
+using Game.Pooling;
 using UnityEngine;
 
 namespace Game
@@ -16,6 +17,7 @@ namespace Game
         public static HandManager Hand;
         public static PayTable PayTable;
         public static Camera MainCamera;
+        public static IPoolManager Pool;
         
         public static ICardHand CurrentHand;
         public static ICardDatabaseService Cards;
