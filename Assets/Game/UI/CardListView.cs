@@ -41,13 +41,11 @@ namespace Game.UI
                 var child=itemContainer.GetChild(i);
                 if (child.gameObject.TryGetComponent<CardListItem>(out var item))
                 {
-                    Debug.Log("remove item");
                     item.transform.SetParent(null);// unity UI parenting is problematic, so this is required
                     Services.Pool.Return(item);
                 }
             }
             
-            Debug.Log(itemContainer.childCount);
             gameObject.SetActive(false);
         }
     }
