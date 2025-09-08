@@ -17,12 +17,7 @@ namespace Game
             Icon.sprite = sprite;
             Id.SetText(id.ToString());
         }
-
-        public void Setup(Symbol symbol)
-        {
-            var sprite = Services.SymbolBuilder.GetSymbolVisual(symbol);
-            Icon.sprite = sprite;
-        }
+        
 
         public void Show(bool val)
         {

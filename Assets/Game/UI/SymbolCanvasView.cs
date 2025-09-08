@@ -10,9 +10,10 @@ namespace Game.UI
         [SerializeField] private Image Icon;
         [SerializeField] private TextMeshProUGUI Id;
         
-        public void Setup(Symbol symbol)
+        public void Setup(SymbolType symbol,int count)
         {
             var sprite = Services.SymbolBuilder.GetSymbolVisual(symbol);
+            Id.SetText($"x{count}");
             Icon.sprite = sprite;
         }
     }

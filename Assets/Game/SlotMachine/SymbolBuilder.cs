@@ -34,10 +34,10 @@ namespace Game
             return symbolView;
         }
 
-        public Sprite GetSymbolVisual(Symbol symbol)
+        public Sprite GetSymbolVisual(SymbolType type)
         {
-             var symbolType = symbol.Type;
-             if (!dictionary.TryGetValue(symbolType, out var symbolVisual))
+ 
+             if (!dictionary.TryGetValue(type, out var symbolVisual))
              {
                  return null;
              }

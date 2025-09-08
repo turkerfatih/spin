@@ -6,6 +6,7 @@
         public double Target;
         public int BeginSpinCount;
         public int RemainingSpins;
+        public int Number;
 
     }
 }

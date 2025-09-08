@@ -22,11 +22,17 @@ namespace Game.UI
             if(symbols.Count <= 0)
                 return;
             var pool = Services.Pool;
+            
+            var selected=symbols.GroupBy(x=>x.Type).Select(n=>new
+            {
+                Type = n.Key,
+                Count=n.Count()
+            }).OrderByDescending(x=>x.Count);
 
-            foreach (var symbol in symbols)
+            foreach (var symbol in selected)
             {
                 var item=pool.Get(itemPrefab);
-                item.Setup(symbol);
+                item.Setup(symbol.Type,symbol.Count);
                 item.transform.SetParent(itemContainer, false);
             }
             gameObject.SetActive(true);
