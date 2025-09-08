@@ -34,16 +34,22 @@ namespace Game
             symbolsOnTheReels = new List<Symbol>[Count];
             dropSlots=new List<DropSlot>(Count);
             Reels=new List<Reel>(Count);
+            var symbols=new List<Symbol>();
             for (var i = 0; i < ReelConfigurations.Count; i++)
             {
                 var configuration = ReelConfigurations[i];
                 symbolsOnTheReels[i] = new List<Symbol>();
                 dropSlots.Add(null);
-                var symbols=new List<Symbol>();
+                symbols.Clear();
                 ReelSymbolPlacement.GenerateReelSymbols(configuration,ref symbols);
                 Reels.Add(new Reel(symbols,i));
             }
 
+        }
+
+        public List<Symbol> GetSymbolsOnTheReel(int index )
+        {
+            return Reels[index].Symbols;
         }
 
         public async UniTask ResolvePayout()

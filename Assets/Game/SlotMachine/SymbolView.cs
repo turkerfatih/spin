@@ -1,10 +1,11 @@
-﻿using TMPro;
+﻿using Game.Pooling;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Game
 {
-    public class SymbolView:MonoBehaviour
+    public class SymbolView:PoolableMonoBehaviour
     {
         public const float Height = 1.28f;
         public SymbolType Type;
@@ -15,6 +16,12 @@ namespace Game
         {
             Icon.sprite = sprite;
             Id.SetText(id.ToString());
+        }
+
+        public void Setup(Symbol symbol)
+        {
+            var sprite = Services.SymbolBuilder.GetSymbolVisual(symbol);
+            Icon.sprite = sprite;
         }
 
         public void Show(bool val)

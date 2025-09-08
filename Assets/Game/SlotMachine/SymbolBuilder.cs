@@ -33,5 +33,16 @@ namespace Game
             symbolView.Setup(symbolVisual.Sprite,index);
             return symbolView;
         }
+
+        public Sprite GetSymbolVisual(Symbol symbol)
+        {
+             var symbolType = symbol.Type;
+             if (!dictionary.TryGetValue(symbolType, out var symbolVisual))
+             {
+                 return null;
+             }
+
+             return symbolVisual.Sprite;
+        }
     }
 }
