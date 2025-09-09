@@ -33,80 +33,84 @@ public class PayTable
             { (SymbolType.Jackpot, 5), 2000 }, { (SymbolType.Jackpot, 6), 10000 },
         };
 
-        public void Evaluate(List<Symbol> symbols, List<PayoutResult> results)
+    public void Evaluate(List<Symbol> symbols, List<PayoutResult> results)
+    {
+        results.Clear();
+
+        if (symbols.Count < 3)
+            return;
+
+        int n = symbols.Count;
+
+        // Special case: all wilds = jackpot
+        if (symbols.All(s => s.Type == SymbolType.Wild))
         {
-            results.Clear();
-
-            if (symbols.Count < 3)
-                return;
-
-            int n = symbols.Count;
-            int i = 0;
-
-            while (i < n)
+            if (table.TryGetValue((SymbolType.Jackpot, n), out int jackpotPayout))
             {
-                if (symbols[i].Type == SymbolType.None)
-                {
-                    i++;
-                    continue;
-                }
+                results.Add(new PayoutResult(new List<Symbol>(symbols), jackpotPayout));
+            }
+            return;
+        }
 
-                // Find base type for this run
-                SymbolType baseType = symbols[i].Type;
+        // Track the best (longest) run we find per base type
+        var bestRuns = new Dictionary<SymbolType, (int length, List<Symbol> chain)>();
 
-                if (baseType == SymbolType.Wild)
+        for (int start = 0; start < n; start++)
+        {
+            if (symbols[start].Type == SymbolType.None)
+                continue;
+
+            // Figure out candidate base types
+            HashSet<SymbolType> candidates = new();
+            if (symbols[start].Type != SymbolType.Wild)
+            {
+                candidates.Add(symbols[start].Type);
+            }
+            else
+            {
+                // Look ahead to seed candidate
+                for (int k = start + 1; k < n; k++)
                 {
-                    for (int k = i + 1; k < n; k++)
+                    if (symbols[k].Type != SymbolType.Wild && symbols[k].Type != SymbolType.None)
                     {
-                        if (symbols[k].Type != SymbolType.Wild && symbols[k].Type != SymbolType.None)
-                        {
-                            baseType = symbols[k].Type;
-                            break;
-                        }
-                    }
-                    // Still wild means it's an all-wild block, jackpot handled later
-                    if (baseType == SymbolType.Wild)
-                    {
+                        candidates.Add(symbols[k].Type);
                         break;
                     }
                 }
-
-                // Collect contiguous run
-                List<Symbol> chain = new();
-                int j = i;
-                while (j < n)
-                {
-                    var sym = symbols[j];
-                    if (sym.Type == SymbolType.None)
-                        break;
-
-                    if (sym.Type == baseType || sym.Type == SymbolType.Wild)
-                    {
-                        chain.Add(sym);
-                        j++;
-                    }
-                    else
-                        break;
-                }
-
-                // Only score the *longest run* of this block
-                if (chain.Count >= 3 && table.TryGetValue((baseType, chain.Count), out int payout))
-                {
-                    results.Add(new PayoutResult(new List<Symbol>(chain), payout));
-                }
-
-                i = j; // move to next block
             }
 
-            // Special case: all wilds = jackpot
-            if (symbols.All(s => s.Type == SymbolType.Wild))
+            foreach (var baseType in candidates)
             {
-                if (table.TryGetValue((SymbolType.Jackpot, symbols.Count), out int payout))
+                int end = start;
+                while (end < n &&
+                    (symbols[end].Type == baseType ||
+                        symbols[end].Type == SymbolType.Wild))
                 {
-                    results.Add(new PayoutResult(new List<Symbol>(symbols), payout));
+                    end++;
+                }
+
+                int length = end - start;
+                if (length >= 3 && table.TryGetValue((baseType, length), out int payout))
+                {
+                    var segment = symbols.GetRange(start, length);
+
+                    // Only keep longest run per baseType
+                    if (!bestRuns.TryGetValue(baseType, out var current) || length > current.length)
+                    {
+                        bestRuns[baseType] = (length, segment);
+                    }
                 }
             }
         }
+
+        // Add results for each baseType’s longest run
+        foreach (var kvp in bestRuns)
+        {
+            var (len, chain) = kvp.Value;
+            int payout = table[(kvp.Key, len)];
+            results.Add(new PayoutResult(chain, payout));
+        }
+    }
 
     }
     

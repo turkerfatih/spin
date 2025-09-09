@@ -21,13 +21,6 @@ namespace Game.Pooling
             gameObjectPools.Add(prefab.gameObject, pool);
         }
 
-        public T Get<T>(T prefab, Vector3 position, Quaternion rotation) where T : PoolableMonoBehaviour
-        {
-            var obj=Get(prefab);
-            obj.transform.SetPositionAndRotation(position, rotation);
-            return obj;
-        }
-
         public void Return<T>(T obj) where T : PoolableMonoBehaviour
         {
             obj.ReturnToPool();

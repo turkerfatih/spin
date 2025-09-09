@@ -72,12 +72,13 @@ namespace Game.Core
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (CanDrawCard())
+                /*if (CanDrawCard())
                 {
                     var card = Services.Deck.Draw();
                     EventBus.OnDrawPileChanged?.Invoke(Services.Deck.Library.Size);
                     AddCard(card);
-                }
+                }*/
+                Services.Machine.PrintCurrentSymbols();
             }
         }
 

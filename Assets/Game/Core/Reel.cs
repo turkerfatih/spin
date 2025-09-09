@@ -29,6 +29,7 @@ namespace Game.Core
 
         public Reel(List<Symbol> symbols,int index)
         {
+            //todo: we need to create new list for symbols sharing guid across reels!?
             Symbols = symbols;
             Index = index;
         }

@@ -41,10 +41,19 @@ namespace Game
                 symbolsOnTheReels[i] = new List<Symbol>();
                 dropSlots.Add(null);
                 symbols.Clear();
+                //todo:new symbols list created for each reel but they are identical 
                 ReelSymbolPlacement.GenerateReelSymbols(configuration,ref symbols);
                 Reels.Add(new Reel(symbols,i));
             }
 
+        }
+
+        public void PrintCurrentSymbols()
+        {
+            foreach (var reel in Reels)
+            {
+                Debug.Log(reel.CurrentSymbol.Id);
+            }
         }
 
         public List<Symbol> GetSymbolsOnTheReel(int index )
@@ -65,6 +74,7 @@ namespace Game
             Debug.Log("Payout Count:"+spinResult.Payouts.Count);
             foreach (var payout in spinResult.Payouts)
             {
+                await AnimateSymbols(payout);
                 Debug.Log("Payout:"+payout.Amount +" for ");
                 foreach (var symbol  in payout.Symbols)
                 {
@@ -72,7 +82,25 @@ namespace Game
                 }
                 EventBus.OnCoinGiven?.Invoke(payout.Amount);
             }
+            
             //todo: animate rewards
+        }
+
+        private async UniTask AnimateSymbols(PayoutResult payout)
+        {
+            foreach (var symbol in payout.Symbols)
+            {
+                foreach (var reel in Reels)
+                {
+                    foreach (var reelSymbol in reel.Symbols)
+                    {
+                        if (reelSymbol.Id == symbol.Id)
+                        {
+                            
+                        }
+                    }
+                }
+            }
         }
 
         public void RegisterDropSlot(DropSlot dropSlot, int index)
