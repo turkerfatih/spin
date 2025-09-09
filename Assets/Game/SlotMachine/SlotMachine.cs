@@ -5,22 +5,24 @@ using Game.Core;
 using Game.Effects;
 using Game.Event;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game
 {
     public class SlotMachine : MonoBehaviour
     {
-        [SerializeField] private List<ReelConfiguration> ReelConfigurations;
+         [SerializeField] private ReelConfiguration ReelConfiguration;
+         [SerializeField] private int ReelCount;
 
         private readonly List<MachineEffect> effects = new();
 
         public void AddEffect(MachineEffect effect) => effects.Add(effect);
         public void RemoveEffect(MachineEffect effect) => effects.Remove(effect);
-        public int Count => ReelConfigurations.Count;
-
-        private List<Symbol>[] symbolsOnTheReels;
+        public int Count => ReelCount;
+        
         private List<DropSlot> dropSlots;
         public List<Reel> Reels;
+        private List<Symbol> symbols;
         
         private SpinResult spinResult;
 
@@ -31,21 +33,17 @@ namespace Game
             Services.Machine = this;
             spinResult = new SpinResult();
             
-            symbolsOnTheReels = new List<Symbol>[Count];
             dropSlots=new List<DropSlot>(Count);
             Reels=new List<Reel>(Count);
-            var symbols=new List<Symbol>();
-            for (var i = 0; i < ReelConfigurations.Count; i++)
+            symbols=new List<Symbol>();
+            var configuration = ReelConfiguration;
+            ReelSymbolPlacement.GenerateReelSymbols(configuration,ref symbols);
+            for (var i = 0; i < ReelCount; i++)
             {
-                var configuration = ReelConfigurations[i];
-                symbolsOnTheReels[i] = new List<Symbol>();
                 dropSlots.Add(null);
-                symbols.Clear();
-                //todo:new symbols list created for each reel but they are identical 
-                ReelSymbolPlacement.GenerateReelSymbols(configuration,ref symbols);
                 Reels.Add(new Reel(symbols,i));
             }
-
+            
         }
 
         public void PrintCurrentSymbols()
@@ -88,30 +86,21 @@ namespace Game
 
         private async UniTask AnimateSymbols(PayoutResult payout)
         {
-            foreach (var symbol in payout.Symbols)
+            List<UniTask> animations=new List<UniTask>();
+            for (var i = 0; i < payout.Symbols.Count; i++)
             {
-                foreach (var reel in Reels)
-                {
-                    foreach (var reelSymbol in reel.Symbols)
-                    {
-                        if (reelSymbol.Id == symbol.Id)
-                        {
-                            
-                        }
-                    }
-                }
+                var symbol = payout.Symbols[i];
+                var reelIndex = payout.Indexes[i];
+                animations.Add( Reels[reelIndex].AnimateSymbol(symbol.Id,0));
             }
+            await UniTask.WhenAll(animations);
         }
 
         public void RegisterDropSlot(DropSlot dropSlot, int index)
         {
             dropSlots[index] = dropSlot;
         }
-
-        public List<Symbol> GetReel(int index)
-        {
-            return symbolsOnTheReels[index];
-        }
+        
 
         
         public DropSlot GetDropSlot(int index)

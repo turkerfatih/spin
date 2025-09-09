@@ -26,6 +26,14 @@ namespace Game
         private float bottomLimit;
         
         public async UniTask PushAnimation(float delay) => await PushOrPull(1,delay);
+        public UniTask AnimateMatch(Guid id,float delay = 0)
+        {
+            int targetIndex = symbols.FindIndex(s => s.Id == id)+DuplicatesNeeded;
+            return views[targetIndex].transform
+                .DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.2f)
+                .SetDelay(delay).ToUniTask();
+        }
+
         public async UniTask PullAnimation(float delay) => await PushOrPull(-1,delay);
         
         public void Setup(List<Symbol> items, int index)
@@ -71,6 +79,7 @@ namespace Game
         public async UniTask SpinAnimation(Guid symbolId, float delay = 0f)
         {
             int targetIndex = symbols.FindIndex(s => s.Id == symbolId);
+            
             if (targetIndex == -1)
             {
                 Debug.LogWarning("Symbol ID not found on reel.");
@@ -80,7 +89,7 @@ namespace Game
             await Spin(targetIndex, delay);
         }
 
-        public async UniTask Spin(int targetIndex, float delay = 0f)
+        private async UniTask Spin(int targetIndex, float delay = 0f)
         {
             
             // random stagger so reels don’t start perfectly together

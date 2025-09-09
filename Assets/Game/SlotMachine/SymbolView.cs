@@ -1,4 +1,7 @@
-﻿using Game.Pooling;
+﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using Game.Core;
+using Game.Pooling;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,10 +21,10 @@ namespace Game
             Id.SetText(id.ToString());
         }
         
-
         public void Show(bool val)
         {
             Icon.enabled = val;
         }
+        
     }
 }

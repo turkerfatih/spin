@@ -34,6 +34,11 @@ namespace Game.Core
             Index = index;
         }
 
+        public UniTask AnimateSymbol(Guid id,float delay=0)
+        {
+            return View.AnimateMatch(id,delay);
+        }
+
         private async UniTask SpinWith(Func<UniTask> spinTask)
         {
             for (var i = effects.Count - 1; i >= 0; i--)
