@@ -16,7 +16,6 @@ namespace Game
         public Deck<Card> Deck;
         [SerializeField] private CardView CardViewPrefab;
         
-        public CardDatabase CardDatabase;
 
         private void Awake()
         {
@@ -55,15 +54,7 @@ namespace Game
             Deck.Library.Shuffle();
             Debug.Log(Deck.Library.Size);
         }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                
-            }
-        }
-
+        
         public void StartNewRun()
         {
             var seedReadable = SeedGenerator.Readable();
@@ -74,10 +65,7 @@ namespace Game
             //SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
             EventBus.OnNewGameLoaded?.Invoke();
         }
-        public void ContinueLastRun()
-        {
-            
-        }
+
         public CardDefinition GetCardData(string cardId)
         {
             foreach (var item in StartingDeck.StartingDeckItems)

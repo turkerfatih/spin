@@ -31,6 +31,7 @@ namespace Game
             int targetIndex = symbols.FindIndex(s => s.Id == id)+DuplicatesNeeded;
             return views[targetIndex].transform
                 .DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.2f)
+                .SetLoops(2)
                 .SetDelay(delay).ToUniTask();
         }
 
