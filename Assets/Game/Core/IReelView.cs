@@ -11,5 +11,6 @@ namespace Game.Core
         public UniTask PullAnimation(float delay = 0f);
         public UniTask PushAnimation(float delay = 0f);
         public UniTask AnimateMatch(Guid id,float delay = 0f);
+        public void UpdateSymbolChange(Symbol symbol);
     }
 }

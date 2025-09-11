@@ -91,7 +91,7 @@ namespace Game.Core
         
         private void DiscardCard(Card card,bool fromSlot=false)
         {
-            Debug.Log("Card discarded from slot:"+fromSlot);
+            //Debug.Log("Card discarded from slot:"+fromSlot);
             var deck = Services.Deck;
             deck.Discard(card);
             EventBus.OnDiscardPileChanged?.Invoke(deck.Discarded.Size);

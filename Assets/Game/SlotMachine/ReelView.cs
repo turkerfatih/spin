@@ -173,5 +173,17 @@ namespace Game
         {
             
         }
+
+        public void UpdateSymbolChange(Symbol symbol)
+        {
+            foreach (var symbolView in views)
+            {
+                if (symbol == symbolView.Model)
+                {
+                    symbolView.ModelChanged();
+                    break;
+                }
+            }
+        }
     }
 }

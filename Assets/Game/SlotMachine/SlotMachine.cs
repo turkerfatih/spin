@@ -85,6 +85,47 @@ namespace Game
             //todo: animate rewards
         }
 
+        public async UniTask ResolveRocks()
+        {
+            spinResult.Inputs.Clear();
+            foreach (var reel in Reels)
+            {
+                spinResult.Inputs.Add(reel.CurrentSymbol);
+            }
+            Services.PayTable.Evaluate(spinResult.Inputs,spinResult.Payouts);
+            Debug.Log("ResolveRocks Payouts.Count:"+spinResult.Payouts.Count);
+            if(spinResult.Payouts.Count==0)
+                return;
+            
+            foreach (var payout in spinResult.Payouts)
+            {
+                if(payout.Amount!=0)
+                    continue;
+                if (payout.Symbols[0].Type == SymbolType.Rock)
+                {
+                    for (int i = 0; i < payout.Symbols.Count; i++)
+                    {
+                        var sym=payout.Symbols[i];
+                        var ri = payout.Indexes[i];
+                        if(sym.Type != SymbolType.Rock)
+                            continue;
+                        await Reels[ri].ChangeSymbol(sym,SymbolType.Rock2);
+                    }   
+                }else if (payout.Symbols[0].Type == SymbolType.Rock2)
+                {
+                    for (int i = 0; i < payout.Symbols.Count; i++)
+                    {
+                        var sym=payout.Symbols[i];
+                        var ri = payout.Indexes[i];
+                        if(sym.Type != SymbolType.Rock2)
+                            continue;
+                        await Reels[ri].ChangeSymbol(sym,SymbolType.GoldOre);
+                    } 
+                }
+            }
+        }
+
+
         private async UniTask AnimateSymbols(PayoutResult payout)
         {
             List<UniTask> animations=new List<UniTask>();

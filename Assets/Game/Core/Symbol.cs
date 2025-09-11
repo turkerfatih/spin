@@ -17,5 +17,18 @@ namespace Game
             Id = Guid.NewGuid();
             Type = type;
         }
+
+        public Symbol Clone()
+        {
+            return (Symbol)MemberwiseClone();
+        }
+
+        public void ChangeType(SymbolType type)
+        {
+            this.Type = type;
+        }
+        
+        public Action OnChange;
+        
     }
 }

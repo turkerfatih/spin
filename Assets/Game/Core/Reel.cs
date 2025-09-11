@@ -30,7 +30,13 @@ namespace Game.Core
         public Reel(List<Symbol> symbols,int index)
         {
             //todo: we need to create new list for symbols sharing guid across reels!?
-            Symbols = symbols;
+            Symbols = new List<Symbol>(symbols.Count);
+            foreach (var symbol in symbols)
+            {
+                Symbols.Add(symbol.Clone());
+            }
+
+            //Symbols = symbols;
             Index = index;
         }
 
@@ -96,6 +102,19 @@ namespace Game.Core
                 CurrentSymbolIndex = Symbols.Count - 1;
             if (CurrentSymbolIndex >= Symbols.Count)
                 CurrentSymbolIndex = 0;
+        }
+
+        public async UniTask ChangeSymbol(Symbol from, SymbolType symbolType)
+        {
+            Debug.Log("change symbol "+from.Type+" to "+symbolType);
+            foreach (var symbol in Symbols)
+            {
+                if(symbol!=from)
+                    continue;
+                from.ChangeType(symbolType);
+                View.UpdateSymbolChange(symbol);
+                break;
+            }
         }
 
     }

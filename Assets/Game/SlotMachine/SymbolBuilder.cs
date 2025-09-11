@@ -31,7 +31,7 @@ namespace Game
 
             var symbolView = Instantiate(SymbolViewPrefab, parent);
             symbolView.Type = symbolType;
-            symbolView.Setup(symbolVisual.Sprite,index);
+            symbolView.Setup(symbolVisual.Sprite,index,symbol);
             return symbolView;
         }
 

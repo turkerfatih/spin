@@ -39,6 +39,7 @@ namespace Game.Actions
                 tasks.Add(Services.Machine.Reels[i].Spin(delays.GetRandom()));   
             }
             await UniTask.WhenAll(tasks);
+            await machine.ResolveRocks();
             await machine.ResolvePayout();
             await machine.AdvanceSlots();
             if (!isReSpin)

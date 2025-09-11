@@ -8,10 +8,10 @@ public class PayTable
     {
         private static readonly Dictionary<(SymbolType, int), int> table = new()
         {
-            { (SymbolType.Rock, 0), 0 }, { (SymbolType.Rock, 4), 0 },
+            { (SymbolType.Rock, 3), 0 }, { (SymbolType.Rock, 4), 0 },
             { (SymbolType.Rock, 5), 0 }, { (SymbolType.Rock, 6), 0 },
             
-            { (SymbolType.Rock2, 0), 0 }, { (SymbolType.Rock2, 4), 0 },
+            { (SymbolType.Rock2, 3), 0 }, { (SymbolType.Rock2, 4), 0 },
             { (SymbolType.Rock2, 5), 0 }, { (SymbolType.Rock2, 6), 0 },
             
             { (SymbolType.GoldOre, 3), 3 }, { (SymbolType.GoldOre, 4), 4 },
