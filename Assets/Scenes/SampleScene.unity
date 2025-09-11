@@ -393,7 +393,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000015223974}
+  m_AnchoredPosition: {x: 0, y: 0.000030401461}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &160452938
@@ -661,7 +661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000015223974}
+  m_AnchoredPosition: {x: 0, y: -0.000008735338}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &354662024
@@ -867,7 +867,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2084515355}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999915
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1227,7 +1227,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 58.09173
+  field of view: 73.01468
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1823,7 +1823,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1578369553}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999915
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2465,7 +2465,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000015223974}
+  m_AnchoredPosition: {x: 0, y: -0.000008735338}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1266977392
@@ -2927,7 +2927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a961b038688143e39d221dcf2cd50cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReelConfiguration: {fileID: 11400000, guid: 27bdf5e06068c0b428519732a94ed4dd, type: 2}
+  ReelConfiguration: {fileID: 11400000, guid: 1e9a9a3289d6b45468af53d48995bd61, type: 2}
   ReelCount: 3
 --- !u!114 &1364209455
 MonoBehaviour:
@@ -2950,6 +2950,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0861f4989d7873c40b93754d8c420d1c, type: 2}
   - {fileID: 11400000, guid: cf231eee7e4c6d441bc6d6456c6832a8, type: 2}
   - {fileID: 11400000, guid: fcda54aaad261ef40989f1960d280c7c, type: 2}
+  - {fileID: 11400000, guid: 161dfbe6c24b2b24ab7518a42847579d, type: 2}
+  - {fileID: 11400000, guid: d12291a5dbcf3ef448debc64f8b691d4, type: 2}
+  - {fileID: 11400000, guid: 4b735c89c6ad905438d7225c047837fc, type: 2}
+  - {fileID: 11400000, guid: d3fde7768fdfc7a46bb6b9655090aa4d, type: 2}
   SymbolViewPrefab: {fileID: 3942779535106810325, guid: c355612e38ea61c489c373e40c58ef82, type: 3}
 --- !u!1 &1542649935
 GameObject:
@@ -3034,7 +3038,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 855233857}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999915
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

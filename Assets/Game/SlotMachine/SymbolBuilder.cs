@@ -25,6 +25,7 @@ namespace Game
             var symbolType = symbol.Type;
             if (!dictionary.TryGetValue(symbolType, out var symbolVisual))
             {
+                Debug.LogWarning(symbolType+" not found");
                 return null;
             }
 

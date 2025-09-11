@@ -15,7 +15,7 @@ namespace Game
         [SerializeField] private SpriteRenderer Icon;
         [SerializeField] private TextMeshPro Id;
 
-        public void Setup(Sprite sprite,int id)
+        public void Setup(Sprite sprite, int id)
         {
             Icon.sprite = sprite;
             Id.SetText(id.ToString());

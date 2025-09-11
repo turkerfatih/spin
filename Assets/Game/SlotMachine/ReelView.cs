@@ -74,6 +74,7 @@ namespace Game
         {
             var sym = symbols[index];
             var symbolView = Services.SymbolBuilder.GetView(VerticalList, sym, index);
+
             views.Add(symbolView);
             symbolView.transform.localPosition = pos;
         }

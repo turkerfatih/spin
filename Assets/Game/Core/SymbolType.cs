@@ -11,5 +11,9 @@
         Red7,
         Wild,
         Jackpot,
+        Rock,
+        Rock2,
+        GoldOre,
+        Empty,
     }
 }

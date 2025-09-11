@@ -38,6 +38,7 @@ namespace Game
             symbols=new List<Symbol>();
             var configuration = ReelConfiguration;
             ReelSymbolPlacement.GenerateReelSymbols(configuration,ref symbols);
+            Debug.Log(symbols.Count);
             for (var i = 0; i < ReelCount; i++)
             {
                 dropSlots.Add(null);

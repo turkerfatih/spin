@@ -5,7 +5,6 @@ using Game.Actions;
 using Game.Core;
 using Game.Event;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Game
 {
