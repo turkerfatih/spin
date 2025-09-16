@@ -73,6 +73,8 @@ namespace Game
             Debug.Log("Payout Count:"+spinResult.Payouts.Count);
             foreach (var payout in spinResult.Payouts)
             {
+                if(payout.Amount<=0)
+                    continue;
                 await AnimateSymbols(payout);
                 Debug.Log("Payout:"+payout.Amount +" for ");
                 foreach (var symbol  in payout.Symbols)

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Items:
   - SymbolType: 9
-    Count: 16
+    Count: 5
   - SymbolType: 12
-    Count: 30
+    Count: 3
