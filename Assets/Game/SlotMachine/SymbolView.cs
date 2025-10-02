@@ -14,9 +14,13 @@ namespace Game
         public SymbolType Type;
         [SerializeField] private SpriteRenderer Icon;
         [SerializeField] private TextMeshPro Id;
+        
+        [HideInInspector]
+        public Symbol Model;
 
-        public void Setup(Sprite sprite,int id)
+        public void Setup(Sprite sprite, int id,Symbol model)
         {
+            Model = model;
             Icon.sprite = sprite;
             Id.SetText(id.ToString());
         }
@@ -25,6 +29,11 @@ namespace Game
         {
             Icon.enabled = val;
         }
-        
+
+        public void ModelChanged()
+        {
+            Icon.sprite=Services.SymbolBuilder.GetSymbolVisual(Model.Type);
+        }
+
     }
 }
