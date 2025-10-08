@@ -20,6 +20,10 @@ namespace Game.Core
         [SerializeField] private Transform rotater;
         
         [SerializeField]private SortingGroup sortingGroup;
+        
+        [SerializeField] private SpriteRenderer DurabilityBackground;
+      
+        
         private void Awake()
         {
             
@@ -76,6 +80,13 @@ namespace Game.Core
 
             // Smooth transition
             rotater.localRotation = Quaternion.Lerp(rotater.localRotation, targetRot, Time.deltaTime * smoothSpeed);
+        }
+
+        public void SetMasked(bool masked)
+        {
+            var maskInteraction=masked?SpriteMaskInteraction.VisibleInsideMask:SpriteMaskInteraction.None;
+            DurabilityBackground.maskInteraction = maskInteraction;
+            Visual.maskInteraction = maskInteraction;
         }
     }
 }
