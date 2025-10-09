@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Game.Core;
+using Game.UI.Component;
 using UnityEngine;
 
 namespace Game.UI
@@ -9,12 +10,15 @@ namespace Game.UI
     public class CardListView:MonoBehaviour
     {
         [SerializeField]
-        private CardListItem itemPrefab;
-        [SerializeField]
-        private Transform itemContainer;
+        private CardView ItemPrefab;
+ 
+        private GridView grid;
+        
+        private List<CardView> items = new List<CardView>(30);
 
         private void Awake()
         {
+            grid = GetComponent<GridView>();
             gameObject.SetActive(false);
         }
 
@@ -26,26 +30,24 @@ namespace Game.UI
             var pool = Services.Pool;
             foreach (var card in cards)
             {
-                var item=pool.Get(itemPrefab);
-                item.Setup(card);
-                item.transform.SetParent(itemContainer, false);
+                var item=pool.Get(ItemPrefab);
+                item.Bind(card);
+                item.transform.SetParent(grid.Content);
+                items.Add(item);
             }
+            grid.Setup(items);
             gameObject.SetActive(true);
         }
 
         public void Hide()
         {
-            
-            for (int i = itemContainer.childCount - 1; i >= 0; i--)
+
+            for (var index = items.Count - 1; index >= 0; index--)
             {
-                var child=itemContainer.GetChild(i);
-                if (child.gameObject.TryGetComponent<CardListItem>(out var item))
-                {
-                    item.transform.SetParent(null);// unity UI parenting is problematic, so this is required
-                    Services.Pool.Return(item);
-                }
+                var item = items[index];
+                Services.Pool.Return(item);
             }
-            
+
             gameObject.SetActive(false);
         }
     }

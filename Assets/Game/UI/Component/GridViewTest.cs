@@ -1,34 +1,50 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Game.Core;
 using UnityEngine;
 
 namespace Game.UI.Component
 {
     public class GridViewTest:MonoBehaviour
     {
-        public GameObject Prefab;
+        public CardView Prefab;
         public int Count=30;
         public GridView View;
 
-        private List<Transform> list;
+        private List<CardView> list;
         
-        private void Awake()
+
+        IEnumerator  Start()
         {
-            list = new List<Transform>(Count);
+            yield return null; // wait one frame to let TMP initialize
+            list = new List<CardView>(Count);
             var parent=View.Content;
             for (int i = 0; i < Count; i++)
             {
-                var go = Instantiate(Prefab, parent);
-                go.SetActive(true);
-                list.Add(go.transform);
+                var cardView = Instantiate(Prefab, parent);
+                cardView.gameObject.SetActive(true);
+                list.Add(cardView);
+                cardView.SetMasked(true);
             }
             View.Setup(list);
         }
+
         private void Update()
         {
             if (Input.mouseScrollDelta.y != 0)
             {
                 View.Scroll(Input.mouseScrollDelta.y);
             }
+
+            /*if (Input.GetMouseButtonDown(0))
+            {
+                foreach (var item in list)
+                {
+                    var view = item.GetComponent<CardView>();
+                    view.SetMasked(!view.IsMasked);
+                }
+            }*/
         }
     }
 }

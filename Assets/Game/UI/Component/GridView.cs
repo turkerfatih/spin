@@ -22,9 +22,9 @@ namespace Game.UI.Component
         private float thumbHalfHeight=0.5f;
         private float thumbHalfWidth = 1f;
 
-        public void Setup(List<Transform> items)
+        public void Setup<T>(IReadOnlyList<T> items) where T:ITransform
         {
-            if (items == null || items.Count == 0) return;
+            if (items == null) return;
             if (Background == null)
             {
                 Debug.LogWarning("GridView.Setup: Background not assigned!");
@@ -50,7 +50,7 @@ namespace Game.UI.Component
                 float x = col * (ItemWidth + HorizontalSpacing);
                 scrollBottomLimit = -row * (ItemHeight + VerticalSpacing);
 
-                items[i].localPosition = new Vector3(x, scrollBottomLimit, 0f);
+                items[i].Position = new Vector3(x, scrollBottomLimit, 0f);
             }
 
             // Center content relative to background bounds

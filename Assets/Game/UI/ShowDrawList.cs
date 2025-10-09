@@ -10,13 +10,18 @@ namespace Game.UI
 
         private void OnMouseEnter()
         {
-            var mousePos = Input.mousePosition;
-            View.Show(mousePos,Services.Deck.Library.Items);
+           
         }
 
         private void OnMouseExit()
         {
             View.Hide();
+        }
+
+
+        private void OnMouseUp()
+        {
+            View.Show(transform.position,Services.Deck.Library.Items);
         }
     }
 }

@@ -1,12 +1,14 @@
 ﻿using System;
 using DG.Tweening;
+using Game.Pooling;
+using Game.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace Game.Core
 {
-    public class CardView:MonoBehaviour,ICardView
+    public class CardView:PoolableMonoBehaviour,ICardView,ITransform
     {
         public Card Model { get; private set; }
         
@@ -21,12 +23,21 @@ namespace Game.Core
         
         [SerializeField]private SortingGroup sortingGroup;
         
+        [SerializeField] private SpriteRenderer Background;
         [SerializeField] private SpriteRenderer DurabilityBackground;
-      
+        [SerializeField] private SpriteRenderer Shadow;
+        [SerializeField] private Material MaskedLabelFont;
+        [SerializeField] private Material MaskedDurabilityFont;
+        
+        private Material labelFont;
+        private Material durabilityFont;
+        private bool masked=false;
+        public bool IsMasked=>masked;
         
         private void Awake()
         {
-            
+            labelFont = label.fontSharedMaterial;
+            durabilityFont = durability.fontSharedMaterial;
         }
         
 
@@ -82,11 +93,22 @@ namespace Game.Core
             rotater.localRotation = Quaternion.Lerp(rotater.localRotation, targetRot, Time.deltaTime * smoothSpeed);
         }
 
-        public void SetMasked(bool masked)
+        public void SetMasked(bool isMasked)
         {
+            masked=isMasked;
             var maskInteraction=masked?SpriteMaskInteraction.VisibleInsideMask:SpriteMaskInteraction.None;
+            Background.maskInteraction = maskInteraction;
             DurabilityBackground.maskInteraction = maskInteraction;
             Visual.maskInteraction = maskInteraction;
+            Shadow.maskInteraction = maskInteraction;
+            label.fontSharedMaterial = masked ? MaskedLabelFont : labelFont;
+            durability.fontSharedMaterial = masked ? MaskedDurabilityFont : durabilityFont;
+        }
+
+        public Vector3 Position
+        {
+            get => transform.localPosition;
+            set => transform.localPosition = value;
         }
     }
 }
