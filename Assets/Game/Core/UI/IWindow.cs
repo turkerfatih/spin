@@ -1,0 +1,7 @@
+﻿namespace Game.Core.UI
+{
+    public interface IWindow
+    {
+        void SetActive(bool isActive);
+    }
+}

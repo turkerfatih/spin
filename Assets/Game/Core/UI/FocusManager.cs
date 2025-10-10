@@ -4,7 +4,9 @@ namespace Game.Core.UI
 {
     public class FocusManager:MonoBehaviour
     {
+        public static FocusManager Instance { get; private set; }
         public ISelectable Current { get; private set; }
+        void Awake() => Instance = this;
         public void SetFocus(ISelectable target)
         {
             if (Current == target) return;
