@@ -3,9 +3,9 @@
     [System.Serializable]
     public class SelectableNavigation
     {
-        public ISelectable Up;
-        public ISelectable Down;
-        public ISelectable Left;
-        public ISelectable Right;
+        public SelectableComponent Up;
+        public SelectableComponent Down;
+        public SelectableComponent Left;
+        public SelectableComponent Right;
     }
 }

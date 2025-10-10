@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Game.Core.UI
 {
@@ -6,10 +7,53 @@ namespace Game.Core.UI
     {
         public static FocusManager Instance { get; private set; }
         public ISelectable Current { get; private set; }
-        void Awake() => Instance = this;
-        public void SetFocus(ISelectable target)
+        private InputDeviceType activeDevice;
+        void Awake()
         {
-            if (Current == target) return;
+            Instance = this;
+        }
+
+        void Start()
+        {
+            activeDevice = InputManager.Instance.ActiveDevice;
+        }
+
+        private void OnEnable()
+        {
+            InputManager.Instance.OnDeviceChanged += OnDeviceChanged;
+        }
+
+        private void OnDisable()
+        {
+            InputManager.Instance.OnDeviceChanged -= OnDeviceChanged;
+        }
+
+        void OnDestroy()
+        {
+            if (InputManager.Instance != null)
+                InputManager.Instance.OnDeviceChanged -= OnDeviceChanged;
+        }
+
+        private void OnDeviceChanged(InputDeviceType device)
+        {
+            activeDevice = device;
+            Cursor.visible = device == InputDeviceType.MouseKeyboard;
+        }
+        public void SetFocus(ISelectable target, bool fromMouse = false)
+        {
+            // Only allow mouse focus if mouse is active
+            if (fromMouse && activeDevice != InputDeviceType.MouseKeyboard)
+            {
+                //Debug.Log("SetFocus cancelled");
+                return;
+            }
+
+            if (Current == target)
+            {
+                //Debug.Log("SetFocus cancelled for same");
+                return;
+            }
+
             Current?.OnDeselected();
             Current = target;
             Current?.OnSelected();
@@ -27,6 +71,33 @@ namespace Game.Core.UI
 
             if (next != null)
                 SetFocus(next);
+        }
+        void Update()
+        {
+            var input = InputManager.Instance;
+
+            if (input.ActiveDevice == InputDeviceType.Gamepad)
+            {
+                Vector2 nav = input.GetNavigate();
+                if (nav != Vector2.zero)
+                    Instance.Navigate(nav);
+
+                if (input.SubmitPressed())
+                    Instance.Submit();
+            }
+        }
+        public void Submit()
+        {
+            if (Current == null)
+                return;
+
+            Current.OnSubmit();
+        }
+
+        // Optional, for Esc/B button behavior
+        public void Cancel()
+        {
+            // Could close popup, go back, etc.
         }
     }
 }

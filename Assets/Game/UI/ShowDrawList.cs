@@ -1,26 +1,17 @@
 ﻿using System;
+using Game.Core.UI;
 using UnityEngine;
 
 namespace Game.UI
 {
-    public class ShowDrawList:MonoBehaviour
+    public class ShowDrawList:Button
     {
         [SerializeField]
         private CardListView View;
 
-        private void OnMouseEnter()
+        protected override void SubmitAction()
         {
-           
-        }
-
-        private void OnMouseExit()
-        {
-            View.Hide();
-        }
-
-
-        private void OnMouseUp()
-        {
+            Debug.Log("ShowDrawList submit action");
             View.Show(transform.position,Services.Deck.Library.Items);
         }
     }
