@@ -4354,6 +4354,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21bd4b177fa465eb1b475bdba25f8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navigation:
+    Up: {fileID: 0}
+    Down: {fileID: 0}
+    Left: {fileID: 0}
+    Right: {fileID: 0}
 --- !u!65 &2125618050
 BoxCollider:
   m_ObjectHideFlags: 0
