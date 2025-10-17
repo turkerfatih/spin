@@ -9,14 +9,9 @@ namespace Game
         [SerializeField] private ReelView ReelViewPrefab;
         private List<ReelView> reelViews;
         
-        private void Awake()
+        public void Setup()
         {
             Services.MachineView = this;
-            
-        }
-
-        private void Start()
-        {
             var reelCount = Services.Machine.Count;
             reelViews = new List<ReelView>(reelCount);
             var left = (-ReelView.Width * reelCount/2f)+(ReelView.Width/2);
@@ -32,8 +27,6 @@ namespace Game
             }
             
         }
-        
-
         
     }
 }

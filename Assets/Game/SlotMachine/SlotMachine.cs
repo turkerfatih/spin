@@ -28,7 +28,7 @@ namespace Game
 
         public bool IsSpinning { get;  set; }
         
-        private void Awake()
+        public void Setup()
         {
             Services.Machine = this;
             spinResult = new SpinResult();

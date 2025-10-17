@@ -18,11 +18,6 @@ namespace Game.Core
         public IHandView View { get;  set; }
         
 
-        private void Awake()
-        {
-            Services.Hand = this;
-        }
-
         private void OnEnable()
         {
             EventBus.OnCardDroppedToSlot += OnCardDroppedToSlot;
@@ -33,7 +28,7 @@ namespace Game.Core
             EventBus.OnCardDroppedToSlot -= OnCardDroppedToSlot;
         }
 
-        private void Start()
+        public void StartDraw()
         {
             DrawNewHand().Forget();
         }

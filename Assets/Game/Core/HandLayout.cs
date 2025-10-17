@@ -30,7 +30,7 @@ namespace Game.Core
         private float currentTotalWidth;
         
         private bool isDragging = false;
-        [SerializeField] private CardDragger Dragger;
+        private CardDragger dragger;
         
         private Vector3 dragOffset;
         
@@ -40,9 +40,9 @@ namespace Game.Core
             currentTotalWidth = MinWidth;
         }
 
-        private void Start()
+        public void SetDragger(CardDragger cardDragger)
         {
-            Services.Hand.View = this;
+            dragger=cardDragger;
         }
 
         void UpdateLayout()
@@ -233,7 +233,7 @@ namespace Game.Core
                 return;
             }
             isDragging = true;
-            Dragger.StartDragging(cards[lastSelectedIndex],dragOffset);
+            dragger.StartDragging(cards[lastSelectedIndex],dragOffset);
         }
 
         private void OnDraggingCancel(CardView card)
