@@ -11,10 +11,10 @@ namespace Game.UI
     {
         [SerializeField]
         private CardView ItemPrefab;
- 
         private GridView grid;
         
         private List<CardView> items = new List<CardView>(30);
+        
 
         private void Awake()
         {
@@ -32,6 +32,8 @@ namespace Game.UI
             {
                 var item=pool.Get(ItemPrefab);
                 item.Bind(card);
+                item.SetSortingLayer(LayerHelper.Popup);
+                item.SetOrder(1);
                 item.transform.SetParent(grid.Content);
                 items.Add(item);
             }

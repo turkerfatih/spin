@@ -19,6 +19,7 @@ namespace Game
 
         private void Awake()
         {
+            LayerHelper.Setup();
             CardViewPrefab.gameObject.SetActive(false);
             Services.Actions = new ActionQueue();
             Services.Cards = this;

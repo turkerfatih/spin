@@ -16,7 +16,7 @@ namespace Game.UI
 
         private void OnDisable()
         {  
-            EventBus.OnDrawPileChanged-=UpdateText;
+            EventBus.OnDrawPileChanged-= UpdateText;
         }
 
         private void UpdateText(int value)

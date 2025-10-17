@@ -12,7 +12,7 @@ namespace Game.UI
         protected override void SubmitAction()
         {
             Debug.Log("ShowDrawList submit action");
-            View.Show(transform.position,Services.Deck.Library.Items);
+            View.Show(Vector3.zero, Services.Deck.Library.Items);
         }
     }
 }

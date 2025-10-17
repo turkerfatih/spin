@@ -50,5 +50,8 @@ TagManager:
   - name: Drag
     uniqueID: 3558525981
     locked: 0
+  - name: Popup
+    uniqueID: 3474488267
+    locked: 0
   m_RenderingLayers:
   - Default

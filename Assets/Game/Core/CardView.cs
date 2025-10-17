@@ -79,6 +79,12 @@ namespace Game.Core
         {
             sortingGroup.sortingOrder = index;
         }
+
+        public void SetSortingLayer(int sortingLayer)
+        {
+            sortingGroup.sortingLayerID = sortingLayer;
+        }
+
         public void UpdateRotate(Vector3 localPosRef)
         {
 
