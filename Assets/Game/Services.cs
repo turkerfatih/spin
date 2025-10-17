@@ -9,6 +9,7 @@ namespace Game
 {
     public static class Services
     {
+        public static GameSetup GameSetup;
         public static SymbolBuilder SymbolBuilder;
         public static SlotMachine Machine;
         public static SlotMachineView MachineView;
@@ -23,5 +24,6 @@ namespace Game
         public static ICardDatabaseService Cards;
         public static SoundService Sound;
         public static ActionQueue Actions;
+        
     }
 }

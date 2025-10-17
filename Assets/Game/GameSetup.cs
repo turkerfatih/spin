@@ -19,13 +19,13 @@ namespace Game
 
         private void Awake()
         {
+            Services.GameSetup=this;
             LayerHelper.Setup();
             CardViewPrefab.gameObject.SetActive(false);
             Services.Actions = new ActionQueue();
             Services.Cards = this;
             Services.PayTable = new PayTable();
             Services.MainCamera=Camera.main;
-            StartNewRun();
         }
         
 
@@ -63,7 +63,7 @@ namespace Game
             var seedNumeric=SeedGenerator.ToNumeric(seedReadable);
             Debug.Log(seedNumeric);
             CreateNewGame(seedNumeric);
-            //SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
             EventBus.OnNewGameLoaded?.Invoke();
         }
 
