@@ -47,12 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Box: {fileID: 900835953206248250}
-  MaxWidth: 8
+  MaxWidth: 11
   MinWidth: 2
-  Gap: 0.2
+  Gap: 0.5
   MinOverlap: 0.2
   SelectRaiseY: 0.5
-  Dragger: {fileID: 0}
 --- !u!65 &4216010278540572587
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72,7 +71,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8, y: 1.6, z: 1}
+  m_Size: {x: 11, y: 1.6, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5773807642813237782
 GameObject:

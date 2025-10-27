@@ -11,7 +11,7 @@ namespace Game
 {
     public class ReelView : MonoBehaviour,IReelView
     {
-        public const float Width = 2f;
+        public const float Width = 1.84f;
         private const float SpinDuration = 1.5f;      // total spin time (ease-in + ease-out)
         private const int DuplicatesNeeded = 3;
         
