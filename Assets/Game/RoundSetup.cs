@@ -12,7 +12,7 @@ namespace Game
         [SerializeField] private SlotMachine SlotMachinePrefab;
         [SerializeField] private SlotMachineView SlotMachineViewPrefab;
         [SerializeField] private CardDragger CardDraggerPrefab;
-
+        [SerializeField] private SlotMachine3dModel MachineModelPrefab;
 
         private void Start()
         {
@@ -22,6 +22,7 @@ namespace Game
             var slotMachine = Instantiate(SlotMachinePrefab);
             var slotMachineView = Instantiate(SlotMachineViewPrefab);
             var handManager = Instantiate(HandManagerPrefab);
+            var machineModel = Instantiate(MachineModelPrefab);
             Services.Hand = handManager;
             Services.Hand.View=handLayout;
             handLayout.SetDragger(cardDragger);

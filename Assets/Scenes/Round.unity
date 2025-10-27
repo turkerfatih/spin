@@ -169,6 +169,7 @@ MonoBehaviour:
   SlotMachinePrefab: {fileID: 6977799269576315250, guid: 22011514ac5a9914e9a341341931e84d, type: 3}
   SlotMachineViewPrefab: {fileID: 3122055008076385536, guid: d0aaa51ed02e723408e531a7b9bc0202, type: 3}
   CardDraggerPrefab: {fileID: 3876143351643004826, guid: 4cd96fc5b6b1a064797c6f5020fd0ab9, type: 3}
+  MachineModelPrefab: {fileID: 788993889411900330, guid: 2361bfce6050f8041b843caf93101cc9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
