@@ -2256,6 +2256,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3168310506822298634, guid: 32e4a350a53b3e44093a2a060f0e9a91, type: 3}
+      propertyPath: m_Size.x
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168310506822298634, guid: 32e4a350a53b3e44093a2a060f0e9a91, type: 3}
+      propertyPath: m_Size.y
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4908183156645398515, guid: 32e4a350a53b3e44093a2a060f0e9a91, type: 3}
       propertyPath: m_Layer
       value: 5
