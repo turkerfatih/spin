@@ -29,7 +29,6 @@ namespace Game.UI
         {
             if(cards.Count <= 0)
                 return;
-            items.Clear();
             transform.position=position;
             var pool = Services.Pool;
             foreach (var card in cards)
@@ -42,19 +41,26 @@ namespace Game.UI
                 items.Add(item);
             }
             grid.Setup(items);
-            gameObject.SetActive(true);
+            base.Show();
         }
 
-        public void Hide()
+        private void OnDisable()
+        {
+            Hide();
+            Clear();
+        }
+
+        private void Clear()
         {
 
+            if(items.Count==0)
+                return;
             for (var index = items.Count - 1; index >= 0; index--)
             {
                 var item = items[index];
                 Services.Pool.Return(item);
             }
-
-            gameObject.SetActive(false);
+            items.Clear();
         }
     }
 }

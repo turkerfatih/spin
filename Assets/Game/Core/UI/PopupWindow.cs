@@ -2,20 +2,21 @@
 
 namespace Game.Core.UI
 {
-    public class PopupWindow:MonoBehaviour
+    public class PopupWindow:MonoBehaviour,IWindow
     {
         public void Show()
         {
-            //todo:we should use window manager
-            if (!UIOverlay.Instance.IsOpen)
-            {
-                UIOverlay.Instance.Show();
-            }
+            WindowManager.Instance.Show(this);
         }
 
         public void Hide()
         {
             
+        }
+
+        public void SetActive(bool isActive)
+        {
+            gameObject.SetActive(isActive);
         }
     }
 }

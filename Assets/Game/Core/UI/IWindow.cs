@@ -3,5 +3,6 @@
     public interface IWindow
     {
         void SetActive(bool isActive);
+        void Hide();
     }
 }
