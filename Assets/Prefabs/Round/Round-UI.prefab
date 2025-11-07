@@ -2050,7 +2050,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1212c5df8344c3d83da11bf871277d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  View: {fileID: 0}
+  Selectable: {fileID: 0}
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  Highlight: {fileID: 0}
+  View: {fileID: 3687613719847319819}
 --- !u!65 &5752894588065456080
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2270,7 +2275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122498139045346427, guid: 32e4a350a53b3e44093a2a060f0e9a91, type: 3}
       propertyPath: m_Name
-      value: DrawPilePopup
+      value: CardGridView
       objectReference: {fileID: 0}
     - target: {fileID: 5122498139045346427, guid: 32e4a350a53b3e44093a2a060f0e9a91, type: 3}
       propertyPath: m_Layer

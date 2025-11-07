@@ -1,22 +1,17 @@
 ﻿using System;
 using UnityEngine;
-
+using Game.Core.UI;
 namespace Game.UI
 {
-    public class ShowDiscardList:MonoBehaviour
+    public class ShowDiscardList:Button
     {
         [SerializeField]
         private CardListView View;
 
-        private void OnMouseEnter()
+        protected override void SubmitAction()
         {
-            var mousePos = Input.mousePosition;
-            View.Show(mousePos,Services.Deck.Discarded.Items);
-        }
-
-        private void OnMouseExit()
-        {
-            View.Hide();
+            Debug.Log("ShowDrawList submit action");
+            View.Show(Vector3.zero, Services.Deck.Discarded.Items);
         }
     }
 }

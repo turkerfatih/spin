@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 5868100069448981502}
   - component: {fileID: 4626103631895904935}
   m_Layer: 0
-  m_Name: GridViewer
+  m_Name: GridView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,14 +9,26 @@ namespace Game.Core.UI
 
         public static UIOverlay Instance { get; private set; }
 
+        public bool IsOpen => gameObject.activeSelf;
         private void Awake()
         {
             Instance = this;
+            gameObject.SetActive(false);
         }
 
         private void Start()
         {
             Setup(Camera.main);
+        }
+
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            gameObject.SetActive(false);
         }
 
         public void Setup(Camera cam)

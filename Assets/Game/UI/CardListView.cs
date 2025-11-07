@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using Game.Core;
+using Game.Core.UI;
 using Game.UI.Component;
 using UnityEngine;
 
 namespace Game.UI
 {
-    public class CardListView:MonoBehaviour
+    public class CardListView:PopupWindow
     {
         [SerializeField]
         private CardView ItemPrefab;
@@ -22,10 +23,13 @@ namespace Game.UI
             gameObject.SetActive(false);
         }
 
+        
+
         public void Show(Vector3 position, List<Card> cards)
         {
             if(cards.Count <= 0)
                 return;
+            items.Clear();
             transform.position=position;
             var pool = Services.Pool;
             foreach (var card in cards)
