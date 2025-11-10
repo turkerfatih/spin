@@ -186,6 +186,8 @@ GameObject:
   - component: {fileID: 676670303418263967}
   - component: {fileID: 2481136444067407517}
   - component: {fileID: 7675504419204825988}
+  - component: {fileID: 8025095352070234207}
+  - component: {fileID: 4443757253628785220}
   m_Layer: 5
   m_Name: SymbolsViewButton
   m_TagString: Untagged
@@ -288,6 +290,41 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8025095352070234207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220304979942820083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21bd4b177fa465eb1b475bdba25f8de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Core.UI.SelectableComponent
+  navigation:
+    Up: {fileID: 0}
+    Down: {fileID: 0}
+    Left: {fileID: 0}
+    Right: {fileID: 0}
+--- !u!114 &4443757253628785220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220304979942820083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 087d6022a6d043968cc337d6b443574e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.UI.ShowSymbols
+  Selectable: {fileID: 0}
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  Highlight: {fileID: 0}
+  View: {fileID: 8278143498955293595}
 --- !u!1 &1302598395813124128
 GameObject:
   m_ObjectHideFlags: 0
@@ -2448,8 +2485,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5122498139045346427, guid: 32e4a350a53b3e44093a2a060f0e9a91, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8278143498955293595}
   m_SourcePrefab: {fileID: 100100000, guid: 32e4a350a53b3e44093a2a060f0e9a91, type: 3}
+--- !u!1 &852970476186142827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5122498139045346427, guid: 32e4a350a53b3e44093a2a060f0e9a91, type: 3}
+  m_PrefabInstance: {fileID: 5530588336443175952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8278143498955293595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852970476186142827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0102a922f224f1fa37036b2e1898b63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.UI.SymbolListView
+  ItemPrefab: {fileID: 3942779535106810325, guid: c355612e38ea61c489c373e40c58ef82, type: 3}
 --- !u!4 &2138986785775988718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5868100069448981502, guid: 32e4a350a53b3e44093a2a060f0e9a91, type: 3}

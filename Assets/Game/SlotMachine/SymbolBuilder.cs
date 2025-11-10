@@ -33,6 +33,7 @@ namespace Game
             symbolView.Setup(symbolVisual.Sprite,index,symbol);
             return symbolView;
         }
+        
 
         public Sprite GetSymbolVisual(SymbolType type)
         {

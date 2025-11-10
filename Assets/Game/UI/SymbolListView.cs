@@ -1,6 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Game.Core;
 using Game.Core.UI;
 using Game.UI.Component;
@@ -8,13 +6,12 @@ using UnityEngine;
 
 namespace Game.UI
 {
-    public class CardListView:PopupWindow
+    public class SymbolListView:PopupWindow
     {
         [SerializeField]
-        private CardView ItemPrefab;
+        private SymbolView ItemPrefab;
         private GridView grid;
-        
-        private List<CardView> items = new List<CardView>(30);
+        private List<SymbolView> items = new List<SymbolView>(30);
 
 
         protected override void Awake()
@@ -23,27 +20,24 @@ namespace Game.UI
             grid = GetComponent<GridView>();
             gameObject.SetActive(false);
         }
-        
-        public void Show(Vector3 position, List<Card> cards)
+        public  void Setup(List<Symbol> symbols)
         {
-            if(cards.Count <= 0)
+            if(symbols.Count <= 0)
                 return;
             //Clear();
-            transform.position=position;
+
             var pool = Services.Pool;
-            foreach (var card in cards)
+            foreach (var symbol in symbols)
             {
                 var item=pool.Get(ItemPrefab);
-                item.Bind(card);
-                item.SetSortingLayer(LayerHelper.Popup);
-                item.SetOrder(1);
                 item.transform.SetParent(grid.Content);
+                item.Setup(symbol);
+                item.SetSortingLayer(SortingLayerId);
                 items.Add(item);
             }
             grid.Setup(items);
-            base.Show();
+            Show();
         }
-
         private void OnDisable()
         {
             Hide();
@@ -55,7 +49,7 @@ namespace Game.UI
 
             if(items.Count==0)
                 return;
-            Debug.Log("CardListView clear");
+            Debug.Log("SymbolsListView clear");
             for (var index = items.Count - 1; index >= 0; index--)
             {
                 var item = items[index];
