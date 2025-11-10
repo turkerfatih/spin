@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Game.Pooling
 {
-    public class ObjectPool<T> : IBasePool<T> where T : IPoolable
+    public class ObjectPool<T> : IBasePool<T> where T : IPoolable<T>
     {
         private readonly Queue<T> pool = new();
         private readonly Func<T> factory;
@@ -11,6 +12,7 @@ namespace Game.Pooling
         public ObjectPool(Func<T> factory, int initialSize = 0)
         {
             this.factory = factory;
+
             for (int i = 0; i < initialSize; i++)
             {
                 var obj = factory();

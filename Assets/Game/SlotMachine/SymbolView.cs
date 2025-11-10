@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Game
 {
-    public class SymbolView:PoolableMonoBehaviour
+    public class SymbolView:PoolableMonoBehaviour<SymbolView>
     {
         public const float Height = 1.28f;
         public SymbolType Type;

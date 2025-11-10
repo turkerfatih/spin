@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Game.UI
 {
-    public class SymbolCanvasView:PoolableMonoBehaviour
+    public class SymbolCanvasView:PoolableMonoBehaviour<SymbolCanvasView>
     {
         [SerializeField] private Image Icon;
         [SerializeField] private TextMeshProUGUI Id;

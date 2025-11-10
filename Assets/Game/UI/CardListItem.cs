@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.UI
 {
-    public class CardListItem:PoolableMonoBehaviour
+    public class CardListItem:PoolableMonoBehaviour<CardListItem>
     {
         [SerializeField]
         private TextMeshProUGUI text;

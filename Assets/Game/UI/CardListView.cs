@@ -29,6 +29,7 @@ namespace Game.UI
         {
             if(cards.Count <= 0)
                 return;
+            //Clear();
             transform.position=position;
             var pool = Services.Pool;
             foreach (var card in cards)
@@ -55,6 +56,7 @@ namespace Game.UI
 
             if(items.Count==0)
                 return;
+            Debug.Log("CardListView clear");
             for (var index = items.Count - 1; index >= 0; index--)
             {
                 var item = items[index];

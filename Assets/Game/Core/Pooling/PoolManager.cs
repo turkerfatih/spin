@@ -6,34 +6,40 @@ namespace Game.Pooling
 {
     public class PoolManager : MonoBehaviour, IPoolManager
     {
+        private readonly Dictionary<int, object> pools = new();
+
         private void Awake()
         {
             Services.Pool = this;
         }
 
-        private readonly Dictionary<GameObject, object> gameObjectPools = new();
-        
-        public void CreatePool<T>(T prefab, int initialSize = 10) where T : PoolableMonoBehaviour
+        public void CreatePool<T>(T prefab, int initialSize = 10) where T : PoolableMonoBehaviour<T>
         {
-            if (gameObjectPools.ContainsKey(prefab.gameObject)) return;
+            int key = prefab.GetInstanceID();
+            if (pools.ContainsKey(key))
+                return;
 
             var pool = new GameObjectPool<T>(prefab, initialSize, transform);
-            gameObjectPools.Add(prefab.gameObject, pool);
+            pools.Add(key, pool);
         }
 
-        public void Return<T>(T obj) where T : PoolableMonoBehaviour
+        public T Get<T>(T prefab) where T : PoolableMonoBehaviour<T>
+        {
+            int key = prefab.GetInstanceID();
+
+            if (!pools.TryGetValue(key, out var poolObj))
+            {
+                CreatePool(prefab, 5);
+                poolObj = pools[key];
+            }
+
+            var pool = poolObj as GameObjectPool<T>;
+            return pool.Get();
+        }
+
+        public void Return<T>(T obj) where T : PoolableMonoBehaviour<T>
         {
             obj.ReturnToPool();
-        }
-
-        public T Get<T>(T prefab) where T : PoolableMonoBehaviour
-        {
-            if (!gameObjectPools.ContainsKey(prefab.gameObject))
-                CreatePool(prefab, 5);
-
-            var pool = gameObjectPools[prefab.gameObject] as GameObjectPool<T>;
-            var obj = pool.Get();
-            return obj;
         }
     }
 }

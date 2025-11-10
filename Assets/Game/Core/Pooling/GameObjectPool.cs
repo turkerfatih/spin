@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Pooling
 {
-    public class GameObjectPool<T> : IBasePool<T> where T : PoolableMonoBehaviour
+    public class GameObjectPool<T> : IBasePool<T> where T : PoolableMonoBehaviour<T>
     {
         private readonly Queue<T> pool = new();
         private readonly T prefab;
@@ -43,6 +43,7 @@ namespace Game.Pooling
 
         public void Return(T obj)
         {
+            Debug.Log("GameObject pool returned");
             obj.OnReturnToPool();
             obj.gameObject.SetActive(false);
             obj.transform.SetParent(container);

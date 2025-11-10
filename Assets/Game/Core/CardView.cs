@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 
 namespace Game.Core
 {
-    public class CardView:PoolableMonoBehaviour,ICardView,ITransform
+    public class CardView:PoolableMonoBehaviour<CardView>,ICardView,ITransform
     {
         public Card Model { get; private set; }
         

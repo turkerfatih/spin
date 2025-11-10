@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 namespace Game.Core.UI
 {
     [RequireComponent(typeof(SelectableComponent))]
-    public class Button:PoolableMonoBehaviour, ISelectable
+    public class Button:PoolableMonoBehaviour<Button>, ISelectable
     {
         [SerializeField] protected SelectableComponent Selectable;
         [SerializeField] protected UnityEvent OnClick;

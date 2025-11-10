@@ -1,9 +1,9 @@
 ﻿namespace Game.Pooling
 {
-    public interface IPoolable
+    public interface IPoolable<T> where T : IPoolable<T>
     {
         void OnSpawnFromPool();
         void OnReturnToPool();
-        void SetPool<T>(IBasePool<T> pool) where T : IPoolable;
+        void SetPool(IBasePool<T> pool);
     }
 }

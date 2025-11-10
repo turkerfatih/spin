@@ -11,7 +11,7 @@ namespace Game.UI
 
         protected override void SubmitAction()
         {
-            Debug.Log("ShowDrawList submit action");
+            Debug.Log("ShowDrawList submit action:"+Services.Deck.Library.Items.Count);
             View.Show(Vector3.zero, Services.Deck.Library.Items);
         }
     }
