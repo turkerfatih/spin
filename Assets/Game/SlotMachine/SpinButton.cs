@@ -28,6 +28,8 @@ namespace Game
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            if(!Services.Machine.CanSpin())
+                return;
             Services.Actions.Add(new SpinAction());
         }
 

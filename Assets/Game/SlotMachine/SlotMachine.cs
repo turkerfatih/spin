@@ -129,6 +129,11 @@ namespace Game
             }
         }
 
+        public bool CanSpin()
+        {
+            return !IsSpinning;
+        }
+
 
     }
 
