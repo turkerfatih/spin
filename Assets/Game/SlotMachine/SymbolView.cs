@@ -15,6 +15,7 @@ namespace Game
         public SymbolType Type;
         [SerializeField] private SpriteRenderer Icon;
         [SerializeField] private TextMeshPro Id;
+        [SerializeField] private TextMeshPro Count;
         
         [HideInInspector]
         public Symbol Model;
@@ -32,9 +33,22 @@ namespace Game
             Icon.sprite = Services.SymbolBuilder.GetSymbolVisual(model.Type);
         }
 
+        public void SetCount(int count)
+        {
+            Count.SetText(count.ToString());
+            Count.gameObject.SetActive(true);
+        }
+
+        public void HideCount()
+        {
+            Count.gameObject.SetActive(false);
+        }
+
         public void SetSortingLayer(int sortingLayer)
         {
             Icon.sortingLayerID = sortingLayer;
+            Count.sortingLayerID = sortingLayer;
+            Count.sortingOrder = 1;
         }
 
         public void Show(bool val)
@@ -55,7 +69,9 @@ namespace Game
 
         public override void OnReturnToPool()
         {
-            SetSortingLayer(0);
+            SetSortingLayer(SortingLayer.NameToID("Default"));
+            HideCount();
+            transform.localScale=Vector3.one;
         }
     }
 }

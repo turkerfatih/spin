@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Game.Core;
 using Game.Core.UI;
 using Game.UI.Component;
@@ -20,19 +21,32 @@ namespace Game.UI
             grid = GetComponent<GridView>();
             gameObject.SetActive(false);
         }
-        public  void Setup(List<Symbol> symbols)
+        public  void Setup(List<Symbol> list)
         {
-            if(symbols.Count <= 0)
+            
+            if(list.Count <= 0)
                 return;
             //Clear();
-
+            var groupedSymbols = list
+                .GroupBy(s => new { s.Type, s.Variant })
+                .Select(g => new
+                {
+                    Type = g.Key.Type,
+                    Variant = g.Key.Variant,
+                    Count = g.Count(),
+                })
+                .ToList();
+            
             var pool = Services.Pool;
-            foreach (var symbol in symbols)
+            foreach (var groupItem in groupedSymbols)
             {
                 var item=pool.Get(ItemPrefab);
                 item.transform.SetParent(grid.Content);
+                var symbol=new Symbol(groupItem.Type, groupItem.Variant);
+                item.transform.localScale = new Vector3(2, 2, 2);
                 item.Setup(symbol);
                 item.SetSortingLayer(SortingLayerId);
+                item.SetCount(groupItem.Count);
                 items.Add(item);
             }
             grid.Setup(items);
