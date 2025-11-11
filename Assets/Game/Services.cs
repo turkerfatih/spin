@@ -1,4 +1,5 @@
-﻿using CardFramework.Deck;
+﻿using System.Collections.Generic;
+using CardFramework.Deck;
 using CardFramework.RandomProvider;
 using Game.Actions;
 using Game.Core;
@@ -14,16 +15,19 @@ namespace Game
         public static SlotMachine Machine;
         public static SlotMachineView MachineView;
         public static IRandomProvider Random;
-        public static Deck<Card> Deck;
+        public static List<Card> Cards;
+        public static Deck<Card> PlayDeck;
         public static HandManager Hand;
         public static PayTable PayTable;
         public static Camera MainCamera;
         public static IPoolManager Pool;
         
         public static ICardHand CurrentHand;
-        public static ICardDatabaseService Cards;
+        public static ICardDatabaseService CardsDatabase;
         public static SoundService Sound;
         public static ActionQueue Actions;
-        
+        public static RoundData Round;
+        public static int HandSize;
+
     }
 }

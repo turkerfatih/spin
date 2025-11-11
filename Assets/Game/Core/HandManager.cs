@@ -9,7 +9,6 @@ namespace Game.Core
 {
     public class HandManager:MonoBehaviour
     {
-        [SerializeField] private int StartingCount;
         [SerializeField] private bool DrawAll;
         
         
@@ -37,18 +36,18 @@ namespace Game.Core
         {
             if(!CanDrawCard())
                 return;
-            var count = StartingCount;
+            var count = Services.HandSize; //StartingCount;
             if(DrawAll)
             {
-                count = Services.Deck.Library.Size;
+                count = Services.PlayDeck.Library.Size;
             }
             for (int i = 0; i < count; i++)
             {
                 if(!CanDrawCard())
                     break;
-                var card = Services.Deck.Draw();
-                EventBus.OnDrawPileChanged?.Invoke(Services.Deck.Library.Size);
-                EventBus.OnDiscardPileChanged?.Invoke(Services.Deck.Discarded.Size);
+                var card = Services.PlayDeck.Draw();
+                EventBus.OnDrawPileChanged?.Invoke(Services.PlayDeck.Library.Size);
+                EventBus.OnDiscardPileChanged?.Invoke(Services.PlayDeck.Discarded.Size);
                 AddCard(card);
             }
         }
@@ -87,7 +86,7 @@ namespace Game.Core
         private void DiscardCard(Card card,bool fromSlot=false)
         {
             Debug.Log("Card discarded from slot:"+fromSlot);
-            var deck = Services.Deck;
+            var deck = Services.PlayDeck;
             deck.Discard(card);
             EventBus.OnDiscardPileChanged?.Invoke(deck.Discarded.Size);
             if (!fromSlot)
@@ -100,7 +99,7 @@ namespace Game.Core
 
         private bool CanDrawCard()
         {
-            var deck = Services.Deck;
+            var deck = Services.PlayDeck;
             if(deck.Library.Size==0 && deck.Discarded.Size==0)
                 return false;
             return true;

@@ -72,17 +72,17 @@ namespace Game.Core
             }
         }
 
-        public static void LoadSavedCards(RunData runData)
+        public static void LoadSavedCards(RunData runData,List<Card> cards)
         {
-            if(runData.RuntimeCards==null)
-                runData.RuntimeCards = new List<Card>();
+            if(cards==null)
+                cards = new List<Card>();
             else
             {
-                runData.RuntimeCards.Clear();
+                cards.Clear();
             }
             foreach (var card in runData.Cards)
             {
-                runData.RuntimeCards.Add(CreateFromSave(card));
+                cards.Add(CreateFromSave(card));
             }
         }
     }

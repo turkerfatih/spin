@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CardFramework.Deck;
 using CardFramework.RandomProvider;
 using Game.Actions;
@@ -13,7 +14,7 @@ namespace Game
     {
         public Transform DeckParent;
         public StartingDeck StartingDeck;
-        public Deck<Card> Deck;
+        private Deck<Card> playDeck;
         [SerializeField] private CardView CardViewPrefab;
         
 
@@ -23,7 +24,7 @@ namespace Game
             LayerHelper.Setup();
             CardViewPrefab.gameObject.SetActive(false);
             Services.Actions = new ActionQueue();
-            Services.Cards = this;
+            Services.CardsDatabase = this;
             Services.PayTable = new PayTable();
             Services.MainCamera=Camera.main;
         }
@@ -31,29 +32,32 @@ namespace Game
 
         private void CreateNewGame(ulong seed)
         {
-
             Services.Random = new PermuteCongruentialGenerator(seed);
-            Deck = new Deck<Card>(Services.Random);
-            Services.Deck = Deck;
+            playDeck = new Deck<Card>(Services.Random);
+            Services.PlayDeck = playDeck;
             CreateDeck();
+            Services.Round = RoundBuilder.GetFirstRound();
+            Services.HandSize = 5;
         }
 
         private void CreateDeck()
         {
+            Services.Cards = new List<Card>();
             foreach (var item in StartingDeck.StartingDeckItems)
             {
                 for (int i = 0; i < item.Count; i++)
                 {
                     var definition = item.Data;
                     var card = new Card(definition);
+                    Services.Cards.Add(card);
                     var cardView=Instantiate(CardViewPrefab,Vector3.zero, Quaternion.identity, DeckParent);
                     cardView.Bind(card);
                     card.View=cardView;
-                    Deck.Library.Add(card); 
+                    playDeck.Library.Add(card); 
                 }
             }
-            Deck.Library.Shuffle();
-            Debug.Log(Deck.Library.Size);
+            playDeck.Library.Shuffle();
+            Debug.Log(playDeck.Library.Size);
         }
         
         public void StartNewRun()

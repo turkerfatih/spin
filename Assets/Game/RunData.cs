@@ -14,6 +14,5 @@ namespace Game
         public RandomStateData RandomState;
         public int Round;
         public List<Symbol> Symbols;
-        public List<Card> RuntimeCards;
     }
 }
