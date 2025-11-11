@@ -17,9 +17,8 @@ namespace Game.UI
         private List<CardView> items = new List<CardView>(30);
 
 
-        protected override void Awake()
+        protected  void Awake()
         {
-            base.Awake();
             grid = GetComponent<GridView>();
             gameObject.SetActive(false);
         }

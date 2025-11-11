@@ -15,9 +15,8 @@ namespace Game.UI
         private List<SymbolView> items = new List<SymbolView>(30);
 
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             grid = GetComponent<GridView>();
             gameObject.SetActive(false);
         }
@@ -45,7 +44,7 @@ namespace Game.UI
                 var symbol=new Symbol(groupItem.Type, groupItem.Variant);
                 item.transform.localScale = new Vector3(2, 2, 2);
                 item.Setup(symbol);
-                item.SetSortingLayer(SortingLayerId);
+                item.SetSortingLayer(LayerHelper.Popup);
                 item.SetCount(groupItem.Count);
                 items.Add(item);
             }
