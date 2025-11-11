@@ -9,14 +9,14 @@ namespace Game.Core
 {
     public class Card
     {
-        public Guid Id { get; } = Guid.NewGuid();
+        public Guid Id { get; private set; }
         public int Durability;
         public CardDefinition Definition { get; }
         public ICardView View { get; set; }
 
         public Card(CardDefinition definition)
         {
-            
+            Id = Guid.NewGuid();
             Definition =  definition;
             Durability = definition.Durability;
         }

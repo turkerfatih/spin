@@ -12,5 +12,6 @@ namespace Game
         public string Seed;
         public RandomStateData RandomState;
         public int Round;
+        public List<Symbol> Symbols;
     }
 }
