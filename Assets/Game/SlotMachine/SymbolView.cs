@@ -11,7 +11,7 @@ namespace Game
 {
     public class SymbolView:PoolableMonoBehaviour<SymbolView>, ITransform
     {
-        public const float Height = 1.28f;
+        public const float Height = 1.38f;
         public SymbolType Type;
         [SerializeField] private SpriteRenderer Icon;
         [SerializeField] private TextMeshPro Id;
