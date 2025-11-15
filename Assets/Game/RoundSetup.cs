@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Core;
+using Game.Event;
 using UnityEngine;
 
 namespace Game
@@ -23,6 +24,7 @@ namespace Game
             var slotMachineView = Instantiate(SlotMachineViewPrefab);
             var handManager = Instantiate(HandManagerPrefab);
             var machineModel = Instantiate(MachineModelPrefab);
+            EventBus.RoundDataChange?.Invoke(Services.Round);
             Services.Hand = handManager;
             Services.Hand.View=handLayout;
             handLayout.SetDragger(cardDragger);

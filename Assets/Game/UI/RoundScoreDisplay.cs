@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.UI
 {
-    public class CoinDisplay:MonoBehaviour
+    public class RoundScoreDisplay:MonoBehaviour
     {
         [SerializeField]
         private TextMeshPro Text;
@@ -14,15 +14,15 @@ namespace Game.UI
 
         private void OnEnable()
         {
-            EventBus.OnCoinGiven += OnCoinGiven;
-            Text.SetText("");
+            EventBus.OnScoreGiven += OnScoreGiven;
+            Text.SetText("0");
         }
         private void OnDisable()
         {
-            EventBus.OnCoinGiven -= OnCoinGiven;
+            EventBus.OnScoreGiven -= OnScoreGiven;
         }
 
-        private void OnCoinGiven(double givenAmount)
+        private void OnScoreGiven(double givenAmount)
         {
             collected += givenAmount;
             Text.SetText(NumberFormatter.ToReadableString(collected));

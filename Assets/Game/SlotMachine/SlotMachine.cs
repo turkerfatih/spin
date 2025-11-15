@@ -78,7 +78,7 @@ namespace Game
                 {
                     Debug.Log(" - Symbol:"+symbol.Type);
                 }
-                EventBus.OnCoinGiven?.Invoke(payout.Amount);
+                EventBus.OnScoreGiven?.Invoke(payout.Amount);
             }
             
             //todo: animate rewards

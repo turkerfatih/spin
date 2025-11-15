@@ -1,5 +1,8 @@
-﻿namespace Game
+﻿using System;
+
+namespace Game
 {
+    [Serializable]
     public class RoundData
     {
         public double Collected;
