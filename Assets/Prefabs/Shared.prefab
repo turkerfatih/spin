@@ -322,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 1180684001421659499}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -13.839409}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -338,7 +338,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.10279459, g: 0.36320752, b: 0.20924838, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -361,9 +361,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 66.07325
+  field of view: 14
   orthographic: 1
-  orthographic size: 9
+  orthographic size: 10.7775
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1147,8 +1147,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 32, y: 18, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 38.32, y: 21.555, z: 1.1975}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7577937860907836874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1223,7 +1223,7 @@ MonoBehaviour:
   cam: {fileID: 6063405370271569461}
   boardRenderer: {fileID: 6317688345010899579}
   padding: 0
-  fitMode: 1
+  fitMode: 0
   autoUpdate: 1
 --- !u!1 &7589836912614977728
 GameObject:
