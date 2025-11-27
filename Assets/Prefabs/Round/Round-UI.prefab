@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d0f1e75665460ead71f007bb8952ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  label: {fileID: 7489532821317780984}
 --- !u!212 &7887372733980147132
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -173,7 +174,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1, z: 0.2}
+  m_Size: {x: 3.49, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &987679356945368682
 GameObject:
@@ -1470,7 +1471,7 @@ GameObject:
   - component: {fileID: 548447649356402440}
   - component: {fileID: 7489532821317780984}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: CountLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2387,7 +2388,7 @@ GameObject:
   - component: {fileID: 923583671483121853}
   - component: {fileID: 77242675187346889}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: SpinLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2409,8 +2410,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.285, y: 0}
-  m_SizeDelta: {x: 2.32, y: 0.6}
+  m_AnchoredPosition: {x: 0.4125, y: 0}
+  m_SizeDelta: {x: 2.065, y: 0.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &923583671483121853
 MeshRenderer:

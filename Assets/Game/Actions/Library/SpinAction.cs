@@ -14,6 +14,7 @@ namespace Game.Actions
         private bool isReSpin;
         public SpinAction()
         {
+            Services.Round.Spin();
             isReSpin = false;
             single = -1;
         }

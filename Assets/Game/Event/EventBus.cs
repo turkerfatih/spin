@@ -12,6 +12,7 @@ namespace Game.Event
         public static Action<int> OnDiscardPileChanged;
         public static Action<double> OnScoreGiven;
         public static Action<RoundData> RoundDataChange;
+        public static Action<int> OnSpinCountChanged;
         
         public static Action<CardView> OnDragCancel;
         public static Action<int> OnDropSlotSelected;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Event;
 
 namespace Game
 {
@@ -26,7 +27,8 @@ namespace Game
 
         public void Spin()
         {
-            
+            RemainingSpins--;
+            EventBus.OnSpinCountChanged?.Invoke(RemainingSpins);
         }
 
     }
