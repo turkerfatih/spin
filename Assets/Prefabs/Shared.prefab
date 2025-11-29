@@ -876,6 +876,7 @@ MonoBehaviour:
   DeckParent: {fileID: 2771556353173225487}
   StartingDeck: {fileID: 11400000, guid: 8c137ed51e3a1404282889a05a350312, type: 2}
   CardViewPrefab: {fileID: 8196339257687785414, guid: 38aa6ba35be5144dc931edb1e6e43818, type: 3}
+  Database: {fileID: 11400000, guid: 5c0193b220c7bdc458445b87c582f211, type: 2}
 --- !u!114 &1947019802430106926
 MonoBehaviour:
   m_ObjectHideFlags: 0

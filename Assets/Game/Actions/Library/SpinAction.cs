@@ -46,6 +46,8 @@ namespace Game.Actions
             {
                 await Services.Hand.PostSpinAction();
             }
+
+            await Services.WinLoseCheck.ExecuteAsync();
             machine.IsSpinning = false;
         }
     }

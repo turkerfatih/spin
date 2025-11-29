@@ -7,6 +7,7 @@ using Game.Core;
 using Game.Event;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Game
 {
@@ -16,6 +17,7 @@ namespace Game
         public StartingDeck StartingDeck;
         private Deck<Card> playDeck;
         [SerializeField] private CardView CardViewPrefab;
+        public CardDatabase Database;
         
 
         private void Awake()
@@ -27,6 +29,7 @@ namespace Game
             Services.CardsDatabase = this;
             Services.PayTable = new PayTable();
             Services.MainCamera=Camera.main;
+            Services.WinLoseCheck = new WinLoseCheckAction();
         }
         
 
@@ -81,6 +84,37 @@ namespace Game
                 }
             }
             return null;
+        }
+
+        public void GetCardsForSelection(List<CardDefinition> cards)
+        {
+            var count = Database.AllCards.Count;
+            int a = Services.Random.Range(0, count);
+
+            int b;
+            do { b = Services.Random.Range(0, count); }
+            while (b == a);
+
+            int c;
+            do { c = Services.Random.Range(0, count); }
+            while (c == a || c == b);
+            cards.Add(Database.AllCards[a]);
+            cards.Add(Database.AllCards[b]);
+            cards.Add(Database.AllCards[c]);
+        }
+
+        public CardView CreateCard(CardDefinition cardDefinition)
+        {
+            var card = new Card(cardDefinition);
+            var cardView=Instantiate(CardViewPrefab,Vector3.zero, Quaternion.identity, DeckParent);
+            cardView.Bind(card);
+            card.View=cardView;
+            return cardView;
+        }
+
+        public void LoseRun()
+        {
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
         }
     }
 }

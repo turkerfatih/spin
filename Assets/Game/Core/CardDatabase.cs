@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Game.Core;
 using UnityEngine;
 
-namespace Game.Core
+namespace Game
 {
-    [CreateAssetMenu(menuName = "Create CardDatabase", fileName = "CardDatabase", order = 0)]
-    public class CardDatabase:ScriptableObject
+    [CreateAssetMenu(menuName = "Game/Card Database")]
+    public class CardDatabase : ScriptableObject
     {
-        public List<CardDefinition> Cards;
+        public List<CardDefinition> AllCards;
     }
 }

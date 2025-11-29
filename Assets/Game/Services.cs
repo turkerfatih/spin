@@ -4,6 +4,7 @@ using CardFramework.RandomProvider;
 using Game.Actions;
 using Game.Core;
 using Game.Pooling;
+using Game.UI;
 using UnityEngine;
 
 namespace Game
@@ -28,6 +29,8 @@ namespace Game
         public static ActionQueue Actions;
         public static RoundData Round;
         public static int HandSize;
+        public static CardSelection CardSelection;
+        public static WinLoseCheckAction WinLoseCheck;
 
     }
 }

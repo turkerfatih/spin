@@ -23,6 +23,7 @@ namespace Game.Actions
             }
             await machine.ResolvePayout();
             await machine.AdvanceSlots();
+            await Services.WinLoseCheck.ExecuteAsync();
             machine.IsSpinning = false;
         }
     }

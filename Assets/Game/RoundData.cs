@@ -31,5 +31,15 @@ namespace Game
             EventBus.OnSpinCountChanged?.Invoke(RemainingSpins);
         }
 
+        public bool IsWin()
+        {
+            return Target <= Collected;
+        }
+
+        public bool IsLose()
+        {
+            return RemainingSpins <=0 &&  Services.Hand.NumberOfCardsInHand==0;
+        }
+
     }
 }

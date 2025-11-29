@@ -120,5 +120,6 @@ namespace Game.Core
             card.Reset();
             //AddCard(card);
         }
+        public int NumberOfCardsInHand=> hand.Count;
     }
 }
