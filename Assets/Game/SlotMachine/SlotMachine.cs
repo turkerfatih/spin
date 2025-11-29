@@ -79,6 +79,7 @@ namespace Game
                     Debug.Log(" - Symbol:"+symbol.Type);
                 }
                 EventBus.OnScoreGiven?.Invoke(payout.Amount);
+                Services.Round.Collect(payout.Amount);
             }
             
             //todo: animate rewards

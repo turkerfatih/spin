@@ -4,18 +4,20 @@ namespace Game.Actions
 {
     public class WinLoseCheckAction:IGameAction
     {
-        public async UniTask ExecuteAsync()
+        public  UniTask ExecuteAsync()
         {
             if (Services.Round.IsWin())
             {
                 Services.CardSelection.Show();
-                return;
+                return UniTask.CompletedTask;
             }
 
             if (Services.Round.IsLose())
             {
                 Services.GameSetup.LoseRun();
             }
+
+            return UniTask.CompletedTask;
         }
     }
 }

@@ -41,5 +41,10 @@ namespace Game
             return RemainingSpins <=0 &&  Services.Hand.NumberOfCardsInHand==0;
         }
 
+        public void Collect(double amount)
+        {
+            Collected+=amount;
+        }
+
     }
 }

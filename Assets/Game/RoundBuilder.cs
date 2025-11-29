@@ -22,7 +22,7 @@ namespace Game
             var round = new RoundData
             {
                 Number = 1,
-                Target = 50,
+                Target = 25,
                 RemainingSpins = 5,
                 BeginSpinCount = 5,
                 Collected = 0

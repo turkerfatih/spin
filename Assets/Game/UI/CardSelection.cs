@@ -21,13 +21,17 @@ namespace Game.UI
 
         public void Show()
         {
+            Debug.Log("Card selection Show");
             Services.CardsDatabase.GetCardsForSelection(cardDefinitions);
             for (var i = 0; i < cardDefinitions.Count; i++)
             {
                 var cardDefinition = cardDefinitions[i];
                 var card = Services.CardsDatabase.CreateCard(cardDefinition);
                 cardViews.Add(card);
-                card.gameObject.transform.SetParent(CardHolders[i].transform);
+                card.gameObject.transform.SetParent(CardHolders[i].transform, false);
+                card.SetSortingLayer(LayerHelper.Popup);
+                card.SetOrder(5);
+                card.gameObject.SetActive(true);
             }
             if (!UIOverlay.Instance.IsOpen)
             {
