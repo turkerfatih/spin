@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using Game.Core;
 using Game.Core.UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.UI
 {
-    public class CardSelection:MonoBehaviour
+    public class CardSelection:MonoBehaviour, ICardSelectionHandler
     {
         [SerializeField]
         private List<Transform> CardHolders;
@@ -23,15 +24,21 @@ namespace Game.UI
         {
             Debug.Log("Card selection Show");
             Services.CardsDatabase.GetCardsForSelection(cardDefinitions);
+            cardViews.Clear();
             for (var i = 0; i < cardDefinitions.Count; i++)
             {
                 var cardDefinition = cardDefinitions[i];
-                var card = Services.CardsDatabase.CreateCard(cardDefinition);
-                cardViews.Add(card);
-                card.gameObject.transform.SetParent(CardHolders[i].transform, false);
-                card.SetSortingLayer(LayerHelper.Popup);
-                card.SetOrder(5);
-                card.gameObject.SetActive(true);
+                var cardView = Services.CardsDatabase.CreateCard(cardDefinition);
+                cardViews.Add(cardView);
+                cardView.gameObject.transform.SetParent(CardHolders[i].transform, false);
+                cardView.SetSortingLayer(SortLayerHelper.Popup);
+                cardView.SetOrder(5);
+                cardView.gameObject.SetActive(true);
+                var button = cardView.GetComponent<CardButton>();
+                button.gameObject.layer = LayerHelper.UI;
+                button.Index = i;
+                button.View = cardView;
+                button.SelectionHandler = this;
             }
             if (!UIOverlay.Instance.IsOpen)
             {
@@ -40,5 +47,10 @@ namespace Game.UI
             gameObject.SetActive(true);
         }
 
+        public void OnCardSelected(CardButton button)
+        {
+            Debug.Log($"Selection Index {button.Index}");
+            Debug.Log("add card to deck and close gameplay probably save game state");
+        }
     }
 }

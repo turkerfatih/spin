@@ -1,7 +1,6 @@
 ﻿using Game.Pooling;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 namespace Game.Core.UI
 {

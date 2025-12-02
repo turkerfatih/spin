@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5572352588833319164}
   - component: {fileID: 3412936738324689169}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: DurabilityBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8897800965281550292}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Scaler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371719476816236683}
   - component: {fileID: 5451336337744693344}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,9 @@ GameObject:
   - component: {fileID: 5022138334874546374}
   - component: {fileID: 1965738428792182014}
   - component: {fileID: 8196339257687785414}
-  m_Layer: 6
+  - component: {fileID: 1986925101410375316}
+  - component: {fileID: 2887234723469098698}
+  m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +260,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -267,7 +269,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 2.1, z: 0.025}
+  m_Size: {x: 2.2, y: 3.1, z: 0.025}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!210 &1965738428792182014
 SortingGroup:
@@ -303,6 +305,40 @@ MonoBehaviour:
   Shadow: {fileID: 5451336337744693344}
   MaskedLabelFont: {fileID: 2100000, guid: 47980863f7353a64ebd530ebb96b586d, type: 2}
   MaskedDurabilityFont: {fileID: 2100000, guid: 47980863f7353a64ebd530ebb96b586d, type: 2}
+--- !u!114 &1986925101410375316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4587021187503434157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21bd4b177fa465eb1b475bdba25f8de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Core.UI.SelectableComponent
+  navigation:
+    Up: {fileID: 0}
+    Down: {fileID: 0}
+    Left: {fileID: 0}
+    Right: {fileID: 0}
+--- !u!114 &2887234723469098698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4587021187503434157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b784ee1c420b4869bde9306881a2f78a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Core.UI.CardButton
+  Selectable: {fileID: 0}
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  Highlight: {fileID: 0}
 --- !u!1 &7349981470678587081
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +350,7 @@ GameObject:
   - component: {fileID: 1577223900024189106}
   - component: {fileID: 3557389337152789629}
   - component: {fileID: 1606323774540241837}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: TextLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +529,7 @@ GameObject:
   - component: {fileID: 6656986892306349689}
   - component: {fileID: 595533669423423655}
   - component: {fileID: 6888832871487871811}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: TextDurability
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,7 +706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8705541971012135465}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Rotater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -703,7 +739,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2804109517616334704}
   - component: {fileID: 972470633179046356}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: CardModel2d
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,7 +833,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6767917061001155515}
   - component: {fileID: 216156566966521305}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

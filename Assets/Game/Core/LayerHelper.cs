@@ -4,12 +4,13 @@ namespace Game.Core
 {
     public static class LayerHelper
     {
-        public static int Popup;
-        public static int Card;
+        public static int Default;
+        public static int UI;
+
         public static void Setup()
         {
-            Popup=SortingLayer.NameToID("Popup");
-            Card=SortingLayer.NameToID("Card");
+            Default=LayerMask.NameToLayer("Default");
+            UI=LayerMask.NameToLayer("UI");
         }
 
     }

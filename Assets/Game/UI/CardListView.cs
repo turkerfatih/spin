@@ -34,7 +34,7 @@ namespace Game.UI
             {
                 var item=pool.Get(ItemPrefab);
                 item.Bind(card);
-                item.SetSortingLayer(LayerHelper.Popup);
+                item.SetSortingLayer(SortLayerHelper.Popup);
                 item.SetOrder(1);
                 item.transform.SetParent(grid.Content);
                 items.Add(item);

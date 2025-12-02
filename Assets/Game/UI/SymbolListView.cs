@@ -44,7 +44,7 @@ namespace Game.UI
                 var symbol=new Symbol(groupItem.Type, groupItem.Variant);
                 item.transform.localScale = new Vector3(2, 2, 2);
                 item.Setup(symbol);
-                item.SetSortingLayer(LayerHelper.Popup);
+                item.SetSortingLayer(SortLayerHelper.Popup);
                 item.SetCount(groupItem.Count);
                 items.Add(item);
             }

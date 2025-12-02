@@ -59,6 +59,7 @@ namespace Game.Core.UI
                     if (input.ClickPressed())
                         FocusManager.Instance.Submit();
                 }
+                
             }
             else
             {

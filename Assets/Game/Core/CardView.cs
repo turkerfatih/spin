@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 
 namespace Game.Core
 {
-    public class CardView:PoolableMonoBehaviour<CardView>,ICardView,ITransform
+    public class CardView:PoolableMonoBehaviour<CardView>,ICardView,ITransform,ICardSelectable
     {
         public Card Model { get; private set; }
         
@@ -115,6 +115,12 @@ namespace Game.Core
         {
             get => transform.localPosition;
             set => transform.localPosition = value;
+        }
+
+        public ICardSelectionHandler SelectionHandler { get; set; }
+        public void Focus()
+        {
+            throw new NotImplementedException();
         }
     }
 }
