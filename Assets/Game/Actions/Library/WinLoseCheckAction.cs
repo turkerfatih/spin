@@ -8,7 +8,7 @@ namespace Game.Actions
         {
             if (Services.Round.IsWin())
             {
-                Services.CardSelection.Show();
+                Services.WinDisplay.Show();
                 return UniTask.CompletedTask;
             }
 

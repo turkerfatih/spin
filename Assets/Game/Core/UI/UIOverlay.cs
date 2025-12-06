@@ -6,6 +6,7 @@ namespace Game.Core.UI
     public class UIOverlay:MonoBehaviour
     {
         [SerializeField] private SpriteRenderer Renderer;
+        [SerializeField] private BackButton Back;
 
         public static UIOverlay Instance { get; private set; }
 
@@ -21,8 +22,9 @@ namespace Game.Core.UI
             Setup(Camera.main);
         }
 
-        public void Show()
+        public void Show(bool hideBackButton=false)
         {
+            Back.gameObject.SetActive(!hideBackButton);
             gameObject.SetActive(true);
         }
 

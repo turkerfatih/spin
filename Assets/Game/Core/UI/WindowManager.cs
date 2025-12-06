@@ -21,7 +21,7 @@ namespace Game.Core.UI
             windows.Push(window);
             if (!UIOverlay.Instance.IsOpen)
             {
-                UIOverlay.Instance.Show();
+                UIOverlay.Instance.Show(window.HasCustomClose);
             }
 
             window.SetActive(true);

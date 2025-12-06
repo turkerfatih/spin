@@ -30,6 +30,7 @@ namespace Game
         public static RoundData Round;
         public static int HandSize;
         public static CardSelection CardSelection;
+        public static WinDisplay WinDisplay;
         public static WinLoseCheckAction WinLoseCheck;
 
     }

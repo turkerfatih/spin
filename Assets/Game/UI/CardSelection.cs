@@ -51,6 +51,8 @@ namespace Game.UI
         {
             Debug.Log($"Selection Index {button.Index}");
             Debug.Log("add card to deck and close gameplay probably save game state");
+            Services.Cards.Add(button.View.Model);
+            //todo: where to proceed, lets proceed to decision scene
         }
     }
 }

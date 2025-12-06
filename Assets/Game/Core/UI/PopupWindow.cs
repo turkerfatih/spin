@@ -16,6 +16,8 @@ namespace Game.Core.UI
             
         }
 
+        public virtual bool HasCustomClose => false;
+
         public void SetActive(bool isActive)
         {
             gameObject.SetActive(isActive);

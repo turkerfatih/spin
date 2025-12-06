@@ -4,5 +4,6 @@
     {
         void SetActive(bool isActive);
         void Hide();
+        bool HasCustomClose { get; }
     }
 }
