@@ -20,6 +20,7 @@ namespace Game.UI
 
         public void Close()
         {
+            UIOverlay.Instance.Hide();
             Hide();
             SceneManager.LoadScene(Scenes.Shop, LoadSceneMode.Single);
         }
