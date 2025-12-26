@@ -16,6 +16,7 @@ namespace Game.UI
             
         }
         
+        
         public override bool HasCustomClose => true;
 
         public void Close()

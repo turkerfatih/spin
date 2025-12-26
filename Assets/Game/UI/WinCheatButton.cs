@@ -6,6 +6,7 @@ namespace Game.UI
     {
         protected override void SubmitAction()
         {
+            Services.WinLoseCheck.PreWinDisplayAction();
             Services.WinDisplay.Show();
         }
     }

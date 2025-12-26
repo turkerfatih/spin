@@ -28,6 +28,7 @@ namespace Game.UI
         }
         private void OnRoundDataChange(RoundData data)
         {
+            Debug.Log("OnRoundDataChange:"+data.Number);
             if(roundNumber==data.Number)
                 return;
             roundNumber = data.Number;

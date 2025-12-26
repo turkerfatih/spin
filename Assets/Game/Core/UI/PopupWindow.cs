@@ -13,7 +13,7 @@ namespace Game.Core.UI
 
         public void Hide()
         {
-            
+            WindowManager.Instance.Hide();
         }
 
         public virtual bool HasCustomClose => false;

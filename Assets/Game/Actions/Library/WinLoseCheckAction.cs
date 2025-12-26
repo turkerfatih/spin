@@ -8,6 +8,7 @@ namespace Game.Actions
         {
             if (Services.Round.IsWin())
             {
+                PreWinDisplayAction();
                 Services.WinDisplay.Show();
                 return UniTask.CompletedTask;
             }
@@ -18,6 +19,11 @@ namespace Game.Actions
             }
 
             return UniTask.CompletedTask;
+        }
+
+        public void PreWinDisplayAction()
+        {
+            Services.Round = RoundBuilder.GetNextRound(Services.Round);
         }
     }
 }
