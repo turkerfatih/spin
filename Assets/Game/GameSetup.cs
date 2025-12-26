@@ -70,7 +70,7 @@ namespace Game
             var seedNumeric=SeedGenerator.ToNumeric(seedReadable);
             Debug.Log(seedNumeric);
             CreateNewGame(seedNumeric);
-            SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+            SceneManager.LoadSceneAsync(Scenes.Round, LoadSceneMode.Single);
             EventBus.OnNewGameLoaded?.Invoke();
         }
 
