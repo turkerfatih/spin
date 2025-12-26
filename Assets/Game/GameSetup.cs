@@ -20,10 +20,10 @@ namespace Game
         public CardDatabase Database;
         
 
+        public CardView GetCardViewPrefab=>CardViewPrefab;
         private void Awake()
         {
             Services.GameSetup=this;
-            
             CardViewPrefab.gameObject.SetActive(false);
             Services.Actions = new ActionQueue();
             Services.CardsDatabase = this;
@@ -46,6 +46,7 @@ namespace Game
         private void CreateDeck()
         {
             Services.Cards = new List<Card>();
+            Services.Pool.CreatePool(CardViewPrefab,10);
             foreach (var item in StartingDeck.StartingDeckItems)
             {
                 for (int i = 0; i < item.Count; i++)
@@ -53,9 +54,6 @@ namespace Game
                     var definition = item.Data;
                     var card = new Card(definition);
                     Services.Cards.Add(card);
-                    var cardView=Instantiate(CardViewPrefab,Vector3.zero, Quaternion.identity, DeckParent);
-                    cardView.Bind(card);
-                    card.View=cardView;
                     playDeck.Library.Add(card); 
                 }
             }

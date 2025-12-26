@@ -22,6 +22,7 @@ namespace Game.UI
         {
             UIOverlay.Instance.Hide();
             Hide();
+            Services.Hand.RoundFinished();
             SceneManager.LoadScene(Scenes.Shop, LoadSceneMode.Single);
         }
     }

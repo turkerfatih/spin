@@ -32,7 +32,7 @@ namespace Game.UI
             var pool = Services.Pool;
             foreach (var card in cards)
             {
-                var item=pool.Get(ItemPrefab);
+                var item=pool.Get<CardView>();
                 item.Bind(card);
                 item.SetSortingLayer(SortLayerHelper.Popup);
                 item.SetOrder(1);

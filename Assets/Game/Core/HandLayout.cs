@@ -159,11 +159,16 @@ namespace Game.Core
             ResetValues();
         }
 
-        private void OnCardAddedToHand(CardView card)
+        private void OnCardAddedToHand(CardView cardView)
         {
-            card.gameObject.name="card"+cards.Count.ToString();
-            card.transform.parent = transform;
-            cards.Add(card);
+            if (cardView == null)
+            {
+                Debug.LogError("Cardview is null");
+            }
+
+            cardView.gameObject.name="card"+cards.Count.ToString();
+            cardView.transform.parent = transform;
+            cards.Add(cardView);
             positions.Add(new Vector3());
             UpdateLayout();
         }
@@ -306,5 +311,6 @@ namespace Game.Core
             if(cards.Contains(view))
                 OnCardRemovedFromHand(card.View as CardView);
         }
+        
     }
 }

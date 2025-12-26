@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Game.Event;
+using Game.Pooling;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,10 +16,14 @@ namespace Game.Core
         private List<Card> hand = new List<Card>();
 
         public IHandView View { get;  set; }
+
+        [NonSerialized]
+        public Transform DeckParent;
         
 
         private void OnEnable()
         {
+            DeckParent = Services.GameSetup.DeckParent;
             EventBus.OnCardDroppedToSlot += OnCardDroppedToSlot;
         }
 
@@ -34,8 +39,12 @@ namespace Game.Core
 
         private async UniTask DrawNewHand()
         {
-            if(!CanDrawCard())
+            if (!CanDrawCard())
+            {
+                Debug.LogWarning("Cant draw card");
                 return;
+            }
+            Services.PlayDeck.Library.Shuffle();
             var count = Services.HandSize; //StartingCount;
             if(DrawAll)
             {
@@ -43,8 +52,12 @@ namespace Game.Core
             }
             for (int i = 0; i < count; i++)
             {
-                if(!CanDrawCard())
+                if (!CanDrawCard())
+                {
+                    Debug.LogWarning("Cant draw card");
                     break;
+                }
+
                 var card = Services.PlayDeck.Draw();
                 EventBus.OnDrawPileChanged?.Invoke(Services.PlayDeck.Library.Size);
                 EventBus.OnDiscardPileChanged?.Invoke(Services.PlayDeck.Discarded.Size);
@@ -79,6 +92,9 @@ namespace Game.Core
         private void AddCard(Card card)
         {
             hand.Add(card);
+            var cardView=Services.Pool.Get<CardView>();
+            cardView.Bind(card);
+            card.View=cardView;
             View.AddCard(card);
             card.View.DrawAnimation();
         }
@@ -93,8 +109,8 @@ namespace Game.Core
             {
                 hand.Remove(card);
                 View.DiscardCard(card);
+                card.View.DiscardAnimation();
             }
-            card.View.DiscardAnimation();
         }
 
         private bool CanDrawCard()
@@ -121,5 +137,11 @@ namespace Game.Core
             //AddCard(card);
         }
         public int NumberOfCardsInHand=> hand.Count;
+        
+        public void RoundFinished()
+        {
+            Services.PlayDeck.ReturnDiscardsToBottomOfLibrary();
+            Services.PlayDeck.ReturnExiledToBottomOfLibrary();
+        }
     }
 }

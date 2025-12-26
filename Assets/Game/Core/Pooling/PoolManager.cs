@@ -6,7 +6,7 @@ namespace Game.Pooling
 {
     public class PoolManager : MonoBehaviour, IPoolManager
     {
-        private readonly Dictionary<int, object> pools = new();
+        private readonly Dictionary<Type, object> pools = new();
 
         private void Awake()
         {
@@ -15,7 +15,7 @@ namespace Game.Pooling
 
         public void CreatePool<T>(T prefab, int initialSize = 10) where T : PoolableMonoBehaviour<T>
         {
-            int key = prefab.GetInstanceID();
+            var key = typeof(T);
             if (pools.ContainsKey(key))
                 return;
 
@@ -23,19 +23,13 @@ namespace Game.Pooling
             pools.Add(key, pool);
         }
 
-        public T Get<T>(T prefab) where T : PoolableMonoBehaviour<T>
+        public T Get<T>() where T : PoolableMonoBehaviour<T>
         {
-            int key = prefab.GetInstanceID();
-
-            if (!pools.TryGetValue(key, out var poolObj))
-            {
-                CreatePool(prefab, 5);
-                poolObj = pools[key];
-            }
-
-            var pool = poolObj as GameObjectPool<T>;
+            var key = typeof(T);
+            var pool = pools[key] as GameObjectPool<T>;
             return pool.Get();
         }
+        
 
         public void Return<T>(T obj) where T : PoolableMonoBehaviour<T>
         {

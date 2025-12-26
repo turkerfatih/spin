@@ -17,6 +17,7 @@ namespace Game.UI
 
         protected void Awake()
         {
+            Services.Pool.CreatePool(ItemPrefab,10);
             grid = GetComponent<GridView>();
             gameObject.SetActive(false);
         }
@@ -39,7 +40,7 @@ namespace Game.UI
             var pool = Services.Pool;
             foreach (var groupItem in groupedSymbols)
             {
-                var item=pool.Get(ItemPrefab);
+                var item=pool.Get<SymbolView>();
                 item.transform.SetParent(grid.Content);
                 var symbol=new Symbol(groupItem.Type, groupItem.Variant);
                 item.transform.localScale = new Vector3(2, 2, 2);

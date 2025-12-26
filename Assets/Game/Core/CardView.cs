@@ -64,7 +64,15 @@ namespace Game.Core
 
         public void DiscardAnimation()
         {
+            Debug.Log("Discard Animation");
             gameObject.SetActive(false);
+            OnAfterDiscard();
+        }
+
+        public void OnAfterDiscard()
+        {
+            Model.View = null;
+            ReturnToPool();
         }
 
         public void DrawAnimation()
