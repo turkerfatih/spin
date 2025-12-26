@@ -54,7 +54,6 @@ namespace Game.Core
             {
                 if (!CanDrawCard())
                 {
-                    Debug.LogWarning("Cant draw card");
                     break;
                 }
 

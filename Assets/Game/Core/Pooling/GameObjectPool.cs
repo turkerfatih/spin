@@ -43,7 +43,7 @@ namespace Game.Pooling
 
         public void Return(T obj)
         {
-            Debug.Log("GameObject pool returned");
+            //Debug.Log("GameObject pool returned");
             obj.OnReturnToPool();
             obj.gameObject.SetActive(false);
             obj.transform.SetParent(container);
