@@ -8,7 +8,7 @@ namespace Game.Actions
     public class SpinAction:IGameAction
     {
 
-        private static InfiniteRandomBag<float> delays=new (new[] { 0, 0.15f, 0.25f });
+        private static InfiniteRandomBag<float> delays=new (new[] { 0, 0.15f, 0.35f });
         private readonly List<UniTask> tasks = new List<UniTask>();
         private readonly int single;
         private bool isReSpin;
