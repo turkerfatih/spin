@@ -404,12 +404,10 @@ MonoBehaviour:
   headCollider: {fileID: 7980351311178234420}
   startX: -50
   pulledX: -100
-  pullSpeed: 0.25
   completeThreshold: 0.98
-  releaseDuration: 0.2
-  releaseEase: 27
-  cancelDuration: 0.25
-  cancelEase: 24
+  springStrength: 120
+  damping: 18
+  dragForce: 2.5
 --- !u!1001 &6557166991999056813
 PrefabInstance:
   m_ObjectHideFlags: 0
