@@ -37,12 +37,14 @@ namespace Game.UIComponent
         private SpringHandle scaleHandle;
         private Vector3 startLocalPos;
 
+        public Transform frame;
 
         private void Awake()
         {
             startLocalPos = transform.localPosition;
             posHandle = new SpringHandle(this, new FloatSpring(), UpdateVisualPosition);
-            scaleHandle = new SpringHandle(this, new FloatSpring(), UpdateScale);
+            var scaleSpring = new FloatSpring(){CurrentValue = upScale,CurrentVelocity = 0};
+            scaleHandle = new SpringHandle(this,scaleSpring , UpdateScale);
             posHandle.OnSettled += () => {
                 if (currentState == ButtonState.Releasing) 
                     currentState = ButtonState.Idle;
@@ -65,10 +67,17 @@ namespace Game.UIComponent
 
         private void UpdateScale(float t)
         {
-            var delta =  t-1f;
-            var newScale = new Vector3(1f-delta,1f+delta, 1f-delta);
-            transform.localScale = newScale;
+            float squash = t;
+            float stretch = 1f / Mathf.Max(t, 0.1f); // Volume preservation: if it gets shorter, it gets wider
             
+            var val= new Vector3(
+                 stretch, 
+                  squash, 
+                 stretch
+            );
+            transform.localScale = val;
+            frame.localScale = val;
+
         }
 
         // Call these from your Raycast script

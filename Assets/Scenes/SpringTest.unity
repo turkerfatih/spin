@@ -657,7 +657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &6180541633440737853
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,8 +737,9 @@ MonoBehaviour:
   upScale: 1
   upScaleFreq: 10
   upScaleDamping: 0.5
-  pressDepth: 0.7
+  pressDepth: 0.5
   clickThreshold: 0.95
+  frame: {fileID: 7015369212541598418}
 --- !u!114 &8625904541423217547
 MonoBehaviour:
   m_ObjectHideFlags: 0
