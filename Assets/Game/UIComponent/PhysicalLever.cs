@@ -13,12 +13,12 @@ namespace Game.UIComponent
         [SerializeField] private Transform leverPivot; // The part that actually rotates
 
         [Header("Angle Settings")]
-        public float maxPullAngle = 90f;
-        public float actuationAngle = 80f;
+        public float maxPullAngle = 70f;
+        public float actuationAngle = 50f;
 
         [Header("Spring Profiles")]
-        public float pullFreq = 10f;
-        public float pullDamping = 0.9f;
+        public float pullFreq = 25f;
+        public float pullDamping = 5f;
         public float releaseFreq = 25f;
         public float releaseDamping = 0.3f; // Bouncy release!
 
@@ -43,7 +43,6 @@ namespace Game.UIComponent
             if (currentState == LeverState.Pulling && currentAngle >= actuationAngle)
             {
                 currentState = LeverState.Actuated;
-                OnLeverPulled();
             }
         }
 
@@ -59,6 +58,11 @@ namespace Game.UIComponent
 
         public void PointerUp()
         {
+            if (currentState == LeverState.Actuated)
+            {
+                OnLeverPulled();
+            }
+
             currentState = LeverState.Releasing;
             
             // Snap back to 0
@@ -71,6 +75,12 @@ namespace Game.UIComponent
         {
             Debug.Log("JACKPOT! Slot machine spinning...");
             // Play "Click" sound here
+        }
+        public void UpdateDragAngle(float targetAngle)
+        {
+            // We don't change the state here (it's already Pulling)
+            // We just tell the spring to follow the new target
+            rotationHandle.Play(targetAngle).Forget();
         }
     }
 }
