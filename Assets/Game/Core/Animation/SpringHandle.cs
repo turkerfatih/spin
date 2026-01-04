@@ -64,4 +64,25 @@ namespace Game.Core.Animation
             }
         }
     }
+
+    public class SpringHandle:SpringHandle<float,FloatSpring>
+    {
+        public SpringHandle(MonoBehaviour owner, FloatSpring spring, Action<float> onUpdate) : base(owner, spring, onUpdate)
+        {
+        }
+    }
+
+    public class Spring2Handle : SpringHandle<Vector2, Vector2Spring>
+    {
+        public Spring2Handle(MonoBehaviour owner, Vector2Spring spring, Action<Vector2> onUpdate) : base(owner, spring, onUpdate)
+        {
+        }
+    }
+
+    public class Spring3Handle : SpringHandle<Vector3, Vector3Spring>
+    {
+        public Spring3Handle(MonoBehaviour owner, Vector3Spring spring, Action<Vector3> onUpdate) : base(owner, spring, onUpdate)
+        {
+        }
+    }
 }

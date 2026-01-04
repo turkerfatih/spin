@@ -291,7 +291,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -427,9 +427,9 @@ GameObject:
   - component: {fileID: 3421167384467975506}
   - component: {fileID: 8625904541423217544}
   - component: {fileID: 3282182948962150195}
-  - component: {fileID: 8625904541423217546}
   - component: {fileID: 8625904541423217545}
   - component: {fileID: 8625904541423217547}
+  - component: {fileID: 8625904541423217548}
   m_Layer: 0
   m_Name: ButtonMove
   m_TagString: Untagged
@@ -657,7 +657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6180541633440737853
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,9 +731,27 @@ MonoBehaviour:
   pressDamping: 0.8
   releaseFreq: 30
   releaseDamping: 0.4
+  downScale: 0.8
+  downScaleFreq: 5
+  downScaleDamping: 1
+  upScale: 1
+  upScaleFreq: 10
+  upScaleDamping: 0.5
   pressDepth: 0.7
-  clickThreshold: 0.9
---- !u!65 &8625904541423217546
+  clickThreshold: 0.95
+--- !u!114 &8625904541423217547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035152100927637451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b64a40def740a58ca5957905489690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.UIComponent.RaycastInteractor
+--- !u!65 &8625904541423217548
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -753,19 +771,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2.6846728, y: 1.3094834, z: 4.6022854}
-  m_Center: {x: 0.0000046815126, y: 1.0854985, z: -0.0000010728836}
---- !u!114 &8625904541423217547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035152100927637451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1b64a40def740a58ca5957905489690, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.UIComponent.RaycastInteractor
+  m_Center: {x: 0.00000013872209, y: 0.6547408, z: -0.00000011920928}
 --- !u!4 &9099345710301110609
 Transform:
   m_ObjectHideFlags: 0
