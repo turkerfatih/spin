@@ -22,12 +22,12 @@ namespace Game.UIComponent
         public float releaseFreq = 25f;
         public float releaseDamping = 0.3f; // Bouncy release!
 
-        private SpringHandle<float, FloatSpring> rotationHandle;
+        private SpringHandle<float, FloatSpring,float> rotationHandle;
 
         private void Awake()
         {
             // Initialize spring at 0 angle
-            rotationHandle = new SpringHandle<float, FloatSpring>(this, new FloatSpring(), UpdateLeverRotation);
+            rotationHandle = new SpringHandle<float, FloatSpring,float>(this, new FloatSpring(), UpdateLeverRotation);
             
             rotationHandle.OnSettled += () => {
                 if (currentState == LeverState.Releasing) currentState = LeverState.Idle;

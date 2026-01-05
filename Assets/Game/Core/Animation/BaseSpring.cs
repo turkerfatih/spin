@@ -2,7 +2,7 @@
 
 namespace Game.Core.Animation
 {
-    public abstract class BaseSpring<T>:ICachedEvaluate
+    public abstract class BaseSpring<T,K>:ICachedEvaluate,INudgeable<K>
     {
         public float AngularFrequency = 15.0f;
         public float DampingRatio = 0.6f;
@@ -25,5 +25,7 @@ namespace Game.Core.Animation
         // Batch update (Uses pre-calculated params for performance)
         public abstract void Evaluate(DampedSpringMotionParams cachedParams);
         public abstract bool IsSettled(float precision = Springs.Epsilon);
+
+        public abstract void Nudge(K t);
     }
 }

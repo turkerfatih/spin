@@ -61,7 +61,7 @@ namespace Game.UIComponent
             {
                 currentState=ButtonState.Pressed;
                 Debug.Log("Button Primed (Threshold Reached)");
-                //ApplyImpactSquash();
+                //scaleHandle.Spring.Nudge(5f);
             }
         }
 

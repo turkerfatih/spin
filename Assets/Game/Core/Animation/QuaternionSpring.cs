@@ -2,7 +2,7 @@
 
 namespace Game.Core.Animation
 {
-    public class QuaternionSpring : BaseSpring<Quaternion>
+    public class QuaternionSpring : BaseSpring<Quaternion,Vector3>
     {
         // Overriding velocity type because Quaternion velocity is a 3D vector (angular velocity)
         public new Vector3 CurrentVelocity;
@@ -41,6 +41,11 @@ namespace Game.Core.Animation
             bool isVelSettled = CurrentVelocity.sqrMagnitude < (precision * precision);
     
             return isRotationSettled && isVelSettled;
+        }
+
+        public override void Nudge(Vector3 amount)
+        {
+            CurrentVelocity += amount;
         }
     }
 }

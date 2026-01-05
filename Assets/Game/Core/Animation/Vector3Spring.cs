@@ -1,6 +1,8 @@
-﻿namespace Game.Core.Animation
+﻿using UnityEngine;
+
+namespace Game.Core.Animation
 {
-    public class Vector3Spring : BaseSpring<UnityEngine.Vector3>
+    public class Vector3Spring : BaseSpring<UnityEngine.Vector3, UnityEngine.Vector3>
     {
         public override UnityEngine.Vector3 Evaluate(float deltaTime)
         {
@@ -30,6 +32,11 @@
             bool isPosSettled = (CurrentValue - EndValue).sqrMagnitude < sqrPrecision;
             bool isVelSettled = CurrentVelocity.sqrMagnitude < sqrPrecision;
             return isPosSettled && isVelSettled;
+        }
+
+        public override void Nudge(Vector3 amount)
+        {
+            CurrentVelocity += amount;
         }
     }
 }

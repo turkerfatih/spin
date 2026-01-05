@@ -2,7 +2,7 @@
 
 namespace Game.Core.Animation
 {
-    public class FloatSpring : BaseSpring<float>
+    public class FloatSpring : BaseSpring<float,float>
     {
         public override float Evaluate(float deltaTime)
         {
@@ -24,6 +24,11 @@ namespace Game.Core.Animation
         {
             return Mathf.Abs(CurrentValue - EndValue) < precision && 
                    Mathf.Abs(CurrentVelocity) < precision;
+        }
+
+        public override void Nudge(float amount)
+        {
+            CurrentVelocity += amount;
         }
     }
 }

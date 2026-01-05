@@ -160,8 +160,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 590683699}
-  - component: {fileID: 590683700}
-  - component: {fileID: 590683701}
   m_Layer: 0
   m_Name: ButtonHolder
   m_TagString: Untagged
@@ -186,50 +184,6 @@ Transform:
   - {fileID: 7015369212541598418}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -45.9}
---- !u!65 &590683700
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 590683698}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 2.84, y: 1.23, z: 4.74}
-  m_Center: {x: 0, y: 1.23, z: 0}
---- !u!114 &590683701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 590683698}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79d35eaf42d741e2839ea5d6139d6d0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Test.ButtonTest
-  MoveHandle: {fileID: 3421167384467975506}
-  Frame: {fileID: 7015369212541598418}
-  Frequency: 15
-  Damping: 0.5
-  goalPosition: 0
-  goalScale: 0
-  downHeight: -1
-  upHeight: 0
-  downScale: 0.75
-  upScale: 1
-  wasPressed: 0
 --- !u!1 &1193714451
 GameObject:
   m_ObjectHideFlags: 0
