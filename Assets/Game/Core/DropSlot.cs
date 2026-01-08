@@ -9,6 +9,7 @@ namespace Game.Core
 {
     public class DropSlot:MonoBehaviour
     {
+        public const float Width=3.906f;
         private int index;
         private CardView current;
         [CanBeNull] public Card GetCard => current?.Model;

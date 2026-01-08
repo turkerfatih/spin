@@ -14,7 +14,7 @@ namespace Game
             Services.MachineView = this;
             var reelCount = Services.Machine.Count;
             reelViews = new List<ReelView>(reelCount);
-            var left = (-ReelView.Width * reelCount/2f)+(ReelView.Width/2);
+            var left = (-ReelView.Width * reelCount/2f)+(ReelView.Width/2f);
             for (int i = 0; i < reelCount; i++)
             {
                 var reel = Services.Machine.Reels[i];

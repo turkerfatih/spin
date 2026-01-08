@@ -15,7 +15,7 @@ namespace Game
         private const float SpinDuration = 1.5f;      // total spin time (ease-in + ease-out)
         private const int DuplicatesNeeded = 3;
         
-        [SerializeField] private DropSlot dropSlot;
+        private DropSlot dropSlot;
 
         [SerializeField]
         private Transform VerticalList;
@@ -39,7 +39,7 @@ namespace Game
         
         public void Setup(List<Symbol> items, int index)
         {
-            Services.Machine.RegisterDropSlot(dropSlot,index);
+            dropSlot = Services.DropSlot.GetDropSlot(index);
             dropSlot.SetIndex(index);
             reelIndex = index;
             symbols = items;

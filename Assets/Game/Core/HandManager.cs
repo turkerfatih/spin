@@ -123,7 +123,7 @@ namespace Game.Core
 
         private void OnCardDroppedToSlot(CardView cardView, int droppedSlot)
         {
-            var slot= Services.Machine.GetDropSlot(droppedSlot);
+            var slot= Services.DropSlot.GetDropSlot(droppedSlot);
             slot.SetCard(cardView);
             hand.Remove(cardView.Model);
             View.RemoveCard(cardView.Model);

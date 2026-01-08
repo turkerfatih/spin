@@ -22,13 +22,13 @@ namespace Game
 
         private void Start()
         {
+            var machineModel = Instantiate(MachineModelPrefab);
             var cardDragger=Instantiate(CardDraggerPrefab);
             var roundUI = Instantiate(RoundUIPrefab);
             var handLayout = Instantiate(HandLayoutPrefab);
             var slotMachine = Instantiate(SlotMachinePrefab);
             var slotMachineView = Instantiate(SlotMachineViewPrefab);
             var handManager = Instantiate(HandManagerPrefab);
-            var machineModel = Instantiate(MachineModelPrefab);
             EventBus.RoundDataChange?.Invoke(Services.Round);
             Services.Hand = handManager;
             Services.Hand.View=handLayout;

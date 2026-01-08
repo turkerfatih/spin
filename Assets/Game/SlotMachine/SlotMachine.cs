@@ -20,7 +20,6 @@ namespace Game
         public void RemoveEffect(MachineEffect effect) => effects.Remove(effect);
         public int Count => ReelCount;
         
-        private List<DropSlot> dropSlots;
         public List<Reel> Reels;
         private List<Symbol> symbols;
         
@@ -33,14 +32,12 @@ namespace Game
             Services.Machine = this;
             spinResult = new SpinResult();
             
-            dropSlots=new List<DropSlot>(Count);
             Reels=new List<Reel>(Count);
             symbols=new List<Symbol>();
             var configuration = ReelConfiguration;
             ReelSymbolPlacement.GenerateReelSymbols(configuration,ref symbols);
             for (var i = 0; i < ReelCount; i++)
             {
-                dropSlots.Add(null);
                 Reels.Add(new Reel(symbols,i));
             }
             
@@ -97,20 +94,15 @@ namespace Game
             await UniTask.WhenAll(animations);
         }
 
-        public void RegisterDropSlot(DropSlot dropSlot, int index)
-        {
-            dropSlots[index] = dropSlot;
-        }
+
         
 
         
-        public DropSlot GetDropSlot(int index)
-        {
-            return dropSlots[index];
-        }
+
 
         public async UniTask AdvanceSlots()
         {
+            var dropSlots = Services.DropSlot.GetDropSlots();
             foreach (var slot in dropSlots)
             {
                 var card = slot.GetCard;
