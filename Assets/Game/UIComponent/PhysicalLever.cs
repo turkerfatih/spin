@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Game.Actions;
 using UnityEngine;
 using Game.Core.Animation;
 
@@ -48,6 +49,10 @@ namespace Game.UIComponent
 
         public void PointerDown()
         {
+            if(currentState==LeverState.Releasing)
+                return;
+            if(!Services.Machine.CanSpin())
+                return;
             currentState = LeverState.Pulling;
             rotationHandle.Spring.AngularFrequency = pullFreq;
             rotationHandle.Spring.DampingRatio = pullDamping;
@@ -73,8 +78,9 @@ namespace Game.UIComponent
 
         private void OnLeverPulled()
         {
-            Debug.Log("JACKPOT! Slot machine spinning...");
-            // Play "Click" sound here
+            if(!Services.Machine.CanSpin())
+                return;
+            Services.Actions.Add(new SpinAction());
         }
         public void UpdateDragAngle(float targetAngle)
         {

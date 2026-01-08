@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Game.Event;
+using UnityEngine;
 
 namespace Game
 {
@@ -7,6 +9,11 @@ namespace Game
         public void NewGame()
         {
             Services.GameSetup.StartNewRun();
+        }
+
+        private void Awake()
+        {
+            EventBus.OnLightChanged?.Invoke(0.1f);
         }
     }
 }

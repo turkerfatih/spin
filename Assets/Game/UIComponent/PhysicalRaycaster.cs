@@ -2,7 +2,7 @@
 
 namespace Game.UIComponent
 {
-    public class RaycastInteractor : MonoBehaviour
+    public class PhysicalRaycaster : MonoBehaviour
     {
         [Header("Settings")]
         public LayerMask interactableLayer;

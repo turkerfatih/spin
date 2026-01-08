@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Game.Actions;
 using UnityEngine;
 using Game.Core.Animation;
 
@@ -83,6 +84,9 @@ namespace Game.UIComponent
         // Call these from your Raycast script
         public void PointerDown()
         {
+            if(currentState== ButtonState.Releasing)
+                return;
+  
             currentState= ButtonState.Pressing;
             posHandle.Spring.AngularFrequency = pressFreq;
             posHandle.Spring.DampingRatio = pressDamping;
@@ -107,7 +111,7 @@ namespace Game.UIComponent
         }
         private void OnSuccessfulClick()
         {
-            Debug.Log("Success! Button pressed and released.");
+
         }
 
     }

@@ -15,6 +15,11 @@ namespace Game
         [SerializeField] private CardDragger CardDraggerPrefab;
         [SerializeField] private SlotMachine3dModel MachineModelPrefab;
 
+        private void Awake()
+        {
+            EventBus.OnLightChanged?.Invoke(1f);
+        }
+
         private void Start()
         {
             var cardDragger=Instantiate(CardDraggerPrefab);
