@@ -19,6 +19,8 @@ namespace Game.Core
         public TextMeshPro durability;
         public SpriteRenderer Visual;
         
+        
+        
         [SerializeField] private Transform rotater;
         
         [SerializeField]private SortingGroup sortingGroup;
@@ -28,6 +30,9 @@ namespace Game.Core
         [SerializeField] private SpriteRenderer Shadow;
         [SerializeField] private Material MaskedLabelFont;
         [SerializeField] private Material MaskedDurabilityFont;
+
+        [SerializeField] private SpriteRenderer DurabilityNumber;
+        [SerializeField] private SpriteRenderer ChargeNumber;
         
         private Material labelFont;
         private Material durabilityFont;
@@ -59,7 +64,15 @@ namespace Game.Core
         {
             if(Model.Durability<=0)
                 return;
-            durability.SetText(Model.Definition.Durability.ToString());
+            //durability.SetText(Model.Definition.Durability.ToString());
+            DurabilityNumber.sprite = Services.Numbers.GetNumber(Model.Definition.Durability);
+        }
+        public void UpdateCharge()
+        {
+            if(Model.Charge<=0)
+                return;
+            //durability.SetText(Model.Definition.Durability.ToString());
+            ChargeNumber.sprite = Services.Numbers.GetNumber(Model.Definition.Charge);
         }
 
         public void DiscardAnimation()

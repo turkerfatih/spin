@@ -11,6 +11,7 @@ namespace Game.Core
     {
         public Guid InstanceId { get; private set; }
         public int Durability;
+        public int Charge;
         public string DefinitionId;
 
         
@@ -26,6 +27,7 @@ namespace Game.Core
             Definition =  definition;
             DefinitionId =  definition.Id;
             Durability = definition.Durability;
+            Charge = definition.Charge;
         }
 
         public bool OnAfterSpin()

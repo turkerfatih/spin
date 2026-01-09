@@ -6,7 +6,7 @@ namespace Game.Core
     public class DropSlotRegister:MonoBehaviour, IDropSlotProvider
     {
         [SerializeField]
-        private DropSlot[] DropSlots;
+        private DropSlot[] Slots;
 
         private void Awake()
         {
@@ -16,12 +16,12 @@ namespace Game.Core
         public DropSlot GetDropSlot(int slot)
         {
             //just +1 for now since other slots are not open yet
-            return DropSlots[slot+1];
+            return Slots[slot+1];
         }
 
         public DropSlot[] GetDropSlots()
         {
-            return DropSlots;
+            return Slots;
         }
     }
 }

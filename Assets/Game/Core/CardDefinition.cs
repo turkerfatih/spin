@@ -14,6 +14,7 @@ namespace Game.Core
         public string CardName;
         public Sprite Icon;
         public int Durability = 1;
+        public int Charge = -1;
         
         [TextArea] public string Description;
         
