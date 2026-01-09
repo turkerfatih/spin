@@ -40,7 +40,7 @@ namespace Game
             Services.PlayDeck = playDeck;
             CreateDeck();
             Services.Round = RoundBuilder.GetFirstRound();
-            Services.HandSize = 5;
+            Services.HandSize = 3;
         }
 
         private void CreateDeck()

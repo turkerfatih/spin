@@ -1,5 +1,7 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Game.Event;
+using UnityEngine.Serialization;
 
 namespace Game
 {
@@ -9,26 +11,36 @@ namespace Game
         public double Collected;
         public double Target;
         public int ReelCount;
-        public int BeginSpinCount;
-        public int RemainingSpins;
+        public int BeginCreditCount;
+        public int RemainingCredits;
         public int Number;
 
         public RoundData()
         {
         }
 
-        public RoundData(int reelCount, double target, int beginSpinCount)
+        public RoundData(int reelCount, double target, int beginCreditCount)
         {
             this.Target=target;
-            this.BeginSpinCount=beginSpinCount;
+            this.BeginCreditCount=beginCreditCount;
             this.ReelCount=reelCount;
-            this.RemainingSpins = beginSpinCount;
+            this.RemainingCredits = beginCreditCount;
         }
 
         public void Spin()
         {
-            RemainingSpins--;
-            EventBus.OnSpinCountChanged?.Invoke(RemainingSpins);
+            RemainingCredits--;
+            EventBus.OnCreditsChanged?.Invoke(RemainingCredits);
+        }
+
+        public void Draw()
+        {
+            RemainingCredits--;
+            EventBus.OnCreditsChanged?.Invoke(RemainingCredits);
+            
+            //do candle animation
+            Services.Hand.RenewHand().Forget();
+          
         }
 
         public bool IsWin()
@@ -38,7 +50,7 @@ namespace Game
 
         public bool IsLose()
         {
-            return RemainingSpins <=0 &&  Services.Hand.NumberOfCardsInHand==0;
+            return RemainingCredits <=0 &&  Services.Hand.NumberOfCardsInHand==0;
         }
 
         public void Collect(double amount)

@@ -10,8 +10,8 @@ namespace Game
             {
                 Number = current.Number+1,
                 Target = current.Target*2,
-                RemainingSpins = 5,
-                BeginSpinCount = 5,
+                RemainingCredits = 5,
+                BeginCreditCount = 5,
                 Collected = 0
             };
             return round;
@@ -23,8 +23,8 @@ namespace Game
             {
                 Number = 1,
                 Target = 25,
-                RemainingSpins = 5,
-                BeginSpinCount = 5,
+                RemainingCredits = 5,
+                BeginCreditCount = 5,
                 Collected = 0
             };
             return round;

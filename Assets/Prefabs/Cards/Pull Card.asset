@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: dcde71de0c720f74eae42aa8d36448fc
   CardName: Pull
-  Icon: {fileID: 21300000, guid: 188b346fe00cbea4cb8f5c0248472c0d, type: 3}
+  Icon: {fileID: 21300000, guid: ca769d404b6f2624392ce62787c460ce, type: 3}
+  Durability: 1
+  Charge: -1
   Description: Pull a reel
   Effects:
   - {fileID: 11400000, guid: b2c01fc8638b9cd42aaea7d587d532c4, type: 2}

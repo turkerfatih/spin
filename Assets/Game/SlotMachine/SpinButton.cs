@@ -22,12 +22,12 @@ namespace Game
 
         private void OnEnable()
         {
-            EventBus.OnSpinCountChanged+= OnSpinCountChanged;
+            EventBus.OnCreditsChanged+= OnSpinCountChanged;
         }
 
         private void OnDisable()
         {
-            EventBus.OnSpinCountChanged-= OnSpinCountChanged;
+            EventBus.OnCreditsChanged-= OnSpinCountChanged;
         }
         private void OnSpinCountChanged(int count)
         {

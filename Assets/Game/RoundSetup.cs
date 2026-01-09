@@ -35,7 +35,7 @@ namespace Game
             handLayout.SetDragger(cardDragger);
             slotMachine.Setup();
             slotMachineView.Setup();
-            handManager.StartDraw();
+            //handManager.StartDraw();
         }
     }
 }

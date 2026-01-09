@@ -90,6 +90,20 @@ namespace Game
             await Spin(targetIndex, delay);
         }
 
+        public void GotoSymbol(Guid symbolId)
+        {
+            int targetIndex = symbols.FindIndex(s => s.Id == symbolId);
+            
+            if (targetIndex == -1)
+            {
+                Debug.LogWarning("Symbol ID not found on reel.");
+                return;
+            }
+            Debug.Log($" Reel {reelIndex} target index: {targetIndex}  ");
+            float targetY = SymbolView.Height * targetIndex;
+            VerticalList.localPosition = new Vector3(0, targetY, 0);
+        }
+
         private async UniTask Spin(int targetIndex, float delay = 0f)
         {
             

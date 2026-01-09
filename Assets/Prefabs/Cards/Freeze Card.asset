@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 631be1d001844104b94fec59992b1484
   CardName: Freeze
-  Icon: {fileID: 21300000, guid: f46460654b8cfc848adf7105a84a37a2, type: 3}
+  Icon: {fileID: 21300000, guid: 85dd1b257d74d9145b2131aa755e77d2, type: 3}
+  Durability: 1
+  Charge: -1
   Description: Freeze a reel
   Effects:
   - {fileID: 11400000, guid: ede33cbb15600604da7db34bf691a3dd, type: 2}

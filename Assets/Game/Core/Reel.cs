@@ -69,6 +69,14 @@ namespace Game.Core
             return View.SpinAnimation(item.Id,delay);
         }
 
+        public void SetupRandom()
+        {
+            CurrentSymbolIndex=Services.Random.Range(0, Symbols.Count);
+            var item = Symbols[CurrentSymbolIndex];
+            Debug.Log($"Round Setup for Reel {Index}: {item.Type.ToString()}");
+            View.GotoSymbol(item.Id);
+        }
+
         public async UniTask Pull(float delay)
         {
             await SpinWith(()=>PullTask(delay));

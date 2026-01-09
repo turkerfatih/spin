@@ -10,6 +10,8 @@ namespace Game.Core
 {
     public class HandManager:MonoBehaviour
     {
+        public bool IsDrawing { get; private set; }
+
         [SerializeField] private bool DrawAll;
         
         
@@ -66,6 +68,12 @@ namespace Game.Core
 
         public async UniTask PostSpinAction()
         {
+  
+        }
+
+        public async UniTask RenewHand()
+        {
+            IsDrawing = true;
             for (var i = hand.Count - 1; i >= 0; i--)
             {
                 var card = hand[i];
@@ -73,7 +81,9 @@ namespace Game.Core
             }
 
             await DrawNewHand();
+            IsDrawing = false;
         }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))

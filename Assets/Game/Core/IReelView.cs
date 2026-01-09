@@ -5,6 +5,7 @@ namespace Game.Core
 {
     public interface IReelView
     {
+        public void GotoSymbol(Guid symbolId);
         public UniTask SpinAnimation(Guid symbolId, float delay = 0f);
         public UniTask FreezeAnimation();
         

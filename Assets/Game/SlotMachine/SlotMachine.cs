@@ -43,6 +43,8 @@ namespace Game
             
         }
 
+
+
         public void PrintCurrentSymbols()
         {
             foreach (var reel in Reels)
@@ -93,12 +95,6 @@ namespace Game
             }
             await UniTask.WhenAll(animations);
         }
-
-
-        
-
-        
-
 
         public async UniTask AdvanceSlots()
         {

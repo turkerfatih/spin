@@ -23,9 +23,18 @@ namespace Game
                 reelView.transform.localPosition = new Vector3(left + i * ReelView.Width, 0, 0);
                 reelView.Setup(reel.Symbols,i);
                 reel.View = reelView;
-
             }
+            PreRoundReelSetup();
             
+        }
+        private void PreRoundReelSetup()
+        {
+            var machine = Services.Machine;
+            var count = machine.Count;
+            for (int i = 0; i < count; i++)
+            {
+                machine.Reels[i].SetupRandom();   
+            }
         }
         
     }
