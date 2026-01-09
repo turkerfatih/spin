@@ -14,6 +14,15 @@ namespace Game.Core
         private CardView current;
         [CanBeNull] public Card GetCard => current?.Model;
         public int Index => index;
+
+        private SpriteRenderer renderer;
+        private void Awake()
+        {
+            renderer=transform.GetChild(0).GetComponent<SpriteRenderer>();
+            renderer.enabled = false;
+            //renderer.color=new Color(0,0,0,0);
+        }
+
         public void SetIndex(int sel)
         {
             index = sel;
