@@ -114,5 +114,31 @@ namespace Game.Odometer
         {
             await DoFastJump(0, 2f);
         }
+        
+        [ContextMenu("Mechanical Jump")]
+        public async void MechanicalJump()
+        {
+            // Jump from 249 to 000 (or any target)
+            await DoMechanicalJump(0, 1.5f);
+        }
+
+        public async UniTask DoMechanicalJump(int target, float duration)
+        {
+            Sequence s = DOTween.Sequence();
+            int tempTarget = target;
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                int targetDigit = tempTarget % 10;
+                tempTarget /= 10;
+
+                // Every wheel rotates once to its new position simultaneously
+                // No wheel will spin more than 180 degrees to get there
+                s.Join(numbers[i].GetLimitedRotationTween(targetDigit, duration));
+            }
+
+            currentValue = targetValue;
+            await s.ToUniTask();
+        }
     }
 }

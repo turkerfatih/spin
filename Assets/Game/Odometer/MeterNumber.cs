@@ -26,6 +26,18 @@ namespace Game.Odometer
                 .SetEase(Ease.InOutSine); // Smooth start and stop for all wheels
         }
         
+        public Tween GetLimitedRotationTween(int targetDigit, float duration)
+        {
+            CurrentDigit = targetDigit;
+            float targetAngle = targetDigit * degreesPerDigit;
+
+            // RotateMode.Fast ensures it never spins more than 180 degrees.
+            // If you want it to always spin "downwards", use RotateMode.LocalAxisAdd 
+            // and calculate the offset, but 'Fast' is the most standard mechanical feel.
+            return transform.DOLocalRotate(new Vector3(targetAngle, 0, 0), duration, RotateMode.Fast)
+                .SetEase(Ease.InOutQuart);
+        }
+        
         // This is called every frame during a fast spin
         public void UpdateRotationContinuous(float value)
         {
