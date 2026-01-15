@@ -11,32 +11,32 @@ namespace Game
         public int Collected;
         public int Debt;
         public int ReelCount;
-        public int BeginCreditCount;
-        public int RemainingCredits;
+        public int BeginCoinCount;
+        public int RemainingCoins;
         public int No;
 
         public RoundData()
         {
         }
 
-        public RoundData(int reelCount, int debt, int beginCreditCount)
+        public RoundData(int reelCount, int debt, int beginCoinCount)
         {
             this.Debt=debt;
-            this.BeginCreditCount=beginCreditCount;
+            this.BeginCoinCount=beginCoinCount;
             this.ReelCount=reelCount;
-            this.RemainingCredits = beginCreditCount;
+            this.RemainingCoins = beginCoinCount;
         }
 
         public void Spin()
         {
-            RemainingCredits--;
-            EventBus.OnCreditsChanged?.Invoke(RemainingCredits);
+            RemainingCoins--;
+            EventBus.OnCreditsChanged?.Invoke(RemainingCoins);
         }
 
         public void Draw()
         {
-            RemainingCredits--;
-            EventBus.OnCreditsChanged?.Invoke(RemainingCredits);
+            RemainingCoins--;
+            EventBus.OnCreditsChanged?.Invoke(RemainingCoins);
             
             //do candle animation
             Services.Hand.RenewHand().Forget();
@@ -50,7 +50,7 @@ namespace Game
 
         public bool IsLose()
         {
-            return RemainingCredits <=0 &&  Services.Hand.NumberOfCardsInHand==0;
+            return RemainingCoins <=0 &&  Services.Hand.NumberOfCardsInHand==0;
         }
 
         public void Collect(int amount)

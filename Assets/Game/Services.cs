@@ -35,5 +35,6 @@ namespace Game
         public static IDropSlotProvider DropSlot;
         public static NumbersHolder Numbers;
         public static DebtMeter DebtMeter;
+        public static RoundStackController RoundStack;
     }
 }

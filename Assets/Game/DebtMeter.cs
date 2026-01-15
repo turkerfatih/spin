@@ -14,7 +14,7 @@ namespace Game
             Services.DebtMeter = this;
         }
 
-        public async UniTask AnimateDebt()
+        public async UniTask AnimateDebtSetup()
         {
             await meterController.Setup(Services.Round.Debt);
         }

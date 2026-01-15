@@ -108,6 +108,12 @@ namespace Game.Odometer
             
             //UpdateMovingArray(currentValue,targetValue);
             var change = currentValue - targetValue;
+            if (change <= 0)//win condition
+            {
+                change = currentValue;
+                target = 0;
+            }
+
             Debug.Log($"{currentValue} - {change}={currentValue-change}");
             SubtractAndUpdateMoving(currentValue, change);
             UpdateMovingForAnimation();

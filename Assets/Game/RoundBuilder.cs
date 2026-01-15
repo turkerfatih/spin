@@ -10,8 +10,8 @@ namespace Game
             {
                 No = current.No+1,
                 Debt = current.Debt*2,
-                RemainingCredits = 5,
-                BeginCreditCount = 5,
+                RemainingCoins = 5,
+                BeginCoinCount = 5,
                 Collected = 0
             };
             return round;
@@ -23,8 +23,8 @@ namespace Game
             {
                 No = 1,
                 Debt = 25,
-                RemainingCredits = 5,
-                BeginCreditCount = 5,
+                RemainingCoins = 7,
+                BeginCoinCount = 7,
                 Collected = 0
             };
             return round;

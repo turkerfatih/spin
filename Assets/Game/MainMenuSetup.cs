@@ -8,7 +8,7 @@ namespace Game
     {
         [SerializeField] private Shared SharedPrefab;
         [SerializeField] private MainMenu MainMenuPrefab;
-
+        
 
         private void Start()
         {
