@@ -17,7 +17,8 @@ namespace Game.Odometer
         [Header("Settings")]
         [SerializeField] private float animationDuration = 0.4f; // Total time for all wheels to finish
         [SerializeField] private int delayBetweenTicksMs = 100;
-        
+
+        private bool[] moving = { false, false, false };
 
         void Start()
         {
@@ -119,11 +120,17 @@ namespace Game.Odometer
         public async void MechanicalJump()
         {
             // Jump from 249 to 000 (or any target)
-            await DoMechanicalJump(0, 1.5f);
+            await DoMechanicalJump(targetValue, 1.5f);
         }
 
         public async UniTask DoMechanicalJump(int target, float duration)
         {
+            
+            //UpdateMovingArray(currentValue,targetValue);
+            var change = currentValue - targetValue;
+            Debug.Log($"{currentValue} - {change}={currentValue-change}");
+            SubtractAndUpdateMoving(currentValue, change);
+            Debug.Log($"{moving[2]} {moving[1]} {moving[0]}");
             Sequence s = DOTween.Sequence();
             int tempTarget = target;
 
@@ -134,11 +141,51 @@ namespace Game.Odometer
 
                 // Every wheel rotates once to its new position simultaneously
                 // No wheel will spin more than 180 degrees to get there
-                s.Join(numbers[i].GetLimitedRotationTween(targetDigit, duration));
+                s.Join(numbers[i].GetRotationTween(targetDigit, duration,moving[i]));
             }
 
             currentValue = targetValue;
             await s.ToUniTask();
+        }
+        public  int SubtractAndUpdateMoving(
+            int originalNumber,
+            int subtractValue)
+        {
+            int result = 0;
+            int place = 1;
+            int index = 0;
+
+            while (originalNumber > 0 || subtractValue > 0)
+            {
+                int originalDigit = originalNumber % 10;
+                int subtractDigit = subtractValue % 10;
+
+                int resultDigit = originalDigit - subtractDigit;
+
+                // Handle borrow
+                if (resultDigit < 0)
+                {
+                    resultDigit += 10;
+                    subtractValue += 10; // propagate borrow
+                }
+
+                // Overwrite moving state (ignore initial values)
+                if (index < moving.Length)
+                    moving[index] = (resultDigit != originalDigit);
+
+                result += resultDigit * place;
+
+                place *= 10;
+                originalNumber /= 10;
+                subtractValue /= 10;
+                index++;
+            }
+
+            // Clear remaining digits if moving is longer
+            for (; index < moving.Length; index++)
+                moving[index] = false;
+
+            return result;
         }
     }
 }

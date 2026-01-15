@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8874627f04aa4d8c9f4866b4793d44a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Odometer.MeterNumber
-  Duration: 0.25
 --- !u!1 &8705978357626820511
 GameObject:
   m_ObjectHideFlags: 0

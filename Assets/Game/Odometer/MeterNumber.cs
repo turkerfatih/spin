@@ -8,6 +8,7 @@ namespace Game.Odometer
     {
         public int CurrentDigit { get; private set; } = -1;
         private const float degreesPerDigit = 36f;
+        private float currentRotationX;
         
         // Helper to set the initial position without animation
         public void SetDigitInstant(int digit)
@@ -16,27 +17,19 @@ namespace Game.Odometer
             transform.localRotation = Quaternion.Euler(digit * degreesPerDigit, 0, 0);
         }
         
-        public Tween GetRotationTween(int digit, float duration)
+        public Tween GetRotationTween(int digit, float duration,bool alwaysMove=true)
         {
+           // int steps = (10-(digit - CurrentDigit + 10) % 10);
+           int steps = (CurrentDigit - digit + 10) % 10;
+            if (alwaysMove && steps == 0) steps=10;
+            var change = -(steps * degreesPerDigit);
+            currentRotationX += change;
+     
             CurrentDigit = digit;
-            var targetAngle = digit * degreesPerDigit;
-        
-            // We use RotateMode.Fast to ensure it takes the shortest path
-            return transform.DOLocalRotate(new Vector3(targetAngle, 0, 0), duration, RotateMode.Fast)
-                .SetEase(Ease.InOutSine); // Smooth start and stop for all wheels
+            return transform.DOLocalRotate(new Vector3(change, 0, 0), duration, RotateMode.LocalAxisAdd)
+                .SetEase(Ease.InOutQuart); // Smooth start and stop for all wheels
         }
         
-        public Tween GetLimitedRotationTween(int targetDigit, float duration)
-        {
-            CurrentDigit = targetDigit;
-            float targetAngle = targetDigit * degreesPerDigit;
-
-            // RotateMode.Fast ensures it never spins more than 180 degrees.
-            // If you want it to always spin "downwards", use RotateMode.LocalAxisAdd 
-            // and calculate the offset, but 'Fast' is the most standard mechanical feel.
-            return transform.DOLocalRotate(new Vector3(targetAngle, 0, 0), duration, RotateMode.Fast)
-                .SetEase(Ease.InOutQuart);
-        }
         
         // This is called every frame during a fast spin
         public void UpdateRotationContinuous(float value)
