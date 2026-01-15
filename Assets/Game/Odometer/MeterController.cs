@@ -58,13 +58,10 @@ namespace Game.Odometer
             }
         }
 
-
-
-
         private async UniTask RotateAllSegmentsSimultaneously(int value)
         {
             int temp = value;
-            Sequence multiWheelSequence = DOTween.Sequence();
+            Sequence parallelSequence = DOTween.Sequence();
 
             for (int i = 0; i < numbers.Length; i++)
             {
@@ -75,12 +72,47 @@ namespace Game.Odometer
                 if (numbers[i].CurrentDigit != targetDigit)
                 {
                     // Join makes them run at the same time as the previous tween in the sequence
-                    multiWheelSequence.Join(numbers[i].GetRotationTween(targetDigit, animationDuration));
+                    parallelSequence.Join(numbers[i].GetRotationTween(targetDigit, animationDuration));
                 }
             }
 
             // Wait for the entire group of wheels to finish their move
-            await multiWheelSequence.ToUniTask();
+            await parallelSequence.ToUniTask();
+        }
+        
+        private void UpdateAllNumbers(float totalValue)
+        {
+            float temp = totalValue;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                // Get the fractional part so the wheel "rolls" between numbers
+                float digitValue = temp % 10;
+                numbers[i].UpdateRotationContinuous(digitValue);
+                temp /= 10;
+            }
+        }
+        
+        public async UniTask DoFastJump(int targetValue, float duration)
+        {
+            // We create a temporary float to allow for smooth fractional rotation
+            float internalValue = currentValue;
+
+            await DOTween.To(() => internalValue, x => {
+                    internalValue = x;
+                    currentValue = Mathf.RoundToInt(x);
+                }, (float)targetValue, duration)
+                .SetEase(Ease.InOutQuart)
+                .OnUpdate(() => UpdateAllNumbers(internalValue))
+                .ToUniTask();
+            
+            // Final snap to ensure precision
+            UpdateAllNumbers(targetValue);
+        }
+        
+        [ContextMenu("Fast Countdown")]
+        public async void FastCountdown()
+        {
+            await DoFastJump(0, 2f);
         }
     }
 }

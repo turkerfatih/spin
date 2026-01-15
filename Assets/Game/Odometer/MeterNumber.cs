@@ -25,5 +25,15 @@ namespace Game.Odometer
             return transform.DOLocalRotate(new Vector3(targetAngle, 0, 0), duration, RotateMode.Fast)
                 .SetEase(Ease.InOutSine); // Smooth start and stop for all wheels
         }
+        
+        // This is called every frame during a fast spin
+        public void UpdateRotationContinuous(float value)
+        {
+            // If your numbers are 0, 1, 2... in order:
+            float targetAngle = value * degreesPerDigit;
+        
+            // We use localRotation directly for maximum performance during fast updates
+            transform.localRotation = Quaternion.Euler(targetAngle, 0, 0);
+        }
     }
 }
