@@ -77,7 +77,8 @@ namespace Game
                 {
                     Debug.Log(" - Symbol:"+symbol.Type);
                 }
-                EventBus.OnScoreGiven?.Invoke(payout.Amount);
+                //EventBus.OnScoreGiven?.Invoke(payout.Amount);
+                await Services.DebtMeter.Reduce(payout.Amount);
                 Services.Round.Collect(payout.Amount);
             }
             

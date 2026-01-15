@@ -8,20 +8,20 @@ namespace Game
     [Serializable]
     public class RoundData
     {
-        public double Collected;
-        public double Target;
+        public int Collected;
+        public int Debt;
         public int ReelCount;
         public int BeginCreditCount;
         public int RemainingCredits;
-        public int Number;
+        public int No;
 
         public RoundData()
         {
         }
 
-        public RoundData(int reelCount, double target, int beginCreditCount)
+        public RoundData(int reelCount, int debt, int beginCreditCount)
         {
-            this.Target=target;
+            this.Debt=debt;
             this.BeginCreditCount=beginCreditCount;
             this.ReelCount=reelCount;
             this.RemainingCredits = beginCreditCount;
@@ -45,7 +45,7 @@ namespace Game
 
         public bool IsWin()
         {
-            return Target <= Collected;
+            return Debt <= Collected;
         }
 
         public bool IsLose()
@@ -53,7 +53,7 @@ namespace Game
             return RemainingCredits <=0 &&  Services.Hand.NumberOfCardsInHand==0;
         }
 
-        public void Collect(double amount)
+        public void Collect(int amount)
         {
             Collected+=amount;
         }

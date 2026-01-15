@@ -8,8 +8,8 @@ namespace Game
         {
             var round = new RoundData
             {
-                Number = current.Number+1,
-                Target = current.Target*2,
+                No = current.No+1,
+                Debt = current.Debt*2,
                 RemainingCredits = 5,
                 BeginCreditCount = 5,
                 Collected = 0
@@ -21,8 +21,8 @@ namespace Game
         {
             var round = new RoundData
             {
-                Number = 1,
-                Target = 25,
+                No = 1,
+                Debt = 25,
                 RemainingCredits = 5,
                 BeginCreditCount = 5,
                 Collected = 0

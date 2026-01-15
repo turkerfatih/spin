@@ -25,6 +25,20 @@ namespace Game.Odometer
             InitializeDisplay(currentValue);
         }
 
+        public UniTask Setup(int startValue)
+        {
+            currentValue = 0;
+            InitializeDisplay(currentValue);
+            targetValue=startValue;
+            return DoMechanicalJump(targetValue, 1.5f); 
+        }
+
+        public UniTask Reduce(int amount)
+        {
+            targetValue= currentValue - amount;
+            return DoMechanicalJump(targetValue, 1.5f);
+        }
+
         private void OnValidate()
         {
             if(Application.isPlaying)

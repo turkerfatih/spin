@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Game.Core;
 using Game.Event;
 using UnityEngine;
@@ -35,7 +36,14 @@ namespace Game
             handLayout.SetDragger(cardDragger);
             slotMachine.Setup();
             slotMachineView.Setup();
-            //handManager.StartDraw();
+            RoundStartAnimation().Forget();
         }
+
+        private async UniTask RoundStartAnimation()
+        {
+            await Services.DebtMeter.AnimateDebt();
+        }
+        
+        
     }
 }

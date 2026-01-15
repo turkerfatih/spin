@@ -34,5 +34,6 @@ namespace Game
         public static WinLoseCheckAction WinLoseCheck;
         public static IDropSlotProvider DropSlot;
         public static NumbersHolder Numbers;
+        public static DebtMeter DebtMeter;
     }
 }
