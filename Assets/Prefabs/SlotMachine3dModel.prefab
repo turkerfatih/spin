@@ -717,13 +717,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42fde814152441e580678d566b0d47b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Odometer.MeterController
-  Segments:
+  numbers:
   - {fileID: 3433043576365601964}
   - {fileID: 1693405021414891823}
   - {fileID: 8585573991099908480}
   currentValue: 249
-  StaggerDelayMs: 100
-  SpeedMs: 200
+  targetValue: 238
+  animationDuration: 0.4
+  delayBetweenTicksMs: 100
 --- !u!1 &6234298052071884181
 GameObject:
   m_ObjectHideFlags: 0

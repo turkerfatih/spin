@@ -7,20 +7,19 @@ namespace Game.Odometer
     public class MeterNumber:MonoBehaviour
     {
         public int CurrentDigit { get; private set; } = -1;
-        private const float DegreesPerDigit = 36f;
-        [SerializeField] private float Duration = 0.25f;
+        private const float degreesPerDigit = 36f;
         
         // Helper to set the initial position without animation
         public void SetDigitInstant(int digit)
         {
             CurrentDigit = digit;
-            transform.localRotation = Quaternion.Euler(digit * DegreesPerDigit, 0, 0);
+            transform.localRotation = Quaternion.Euler(digit * degreesPerDigit, 0, 0);
         }
         
         public Tween GetRotationTween(int digit, float duration)
         {
             CurrentDigit = digit;
-            float targetAngle = digit * DegreesPerDigit;
+            var targetAngle = digit * degreesPerDigit;
         
             // We use RotateMode.Fast to ensure it takes the shortest path
             return transform.DOLocalRotate(new Vector3(targetAngle, 0, 0), duration, RotateMode.Fast)

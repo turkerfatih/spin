@@ -3,37 +3,39 @@ using UnityEngine;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 namespace Game.Odometer
 {
     public class MeterController:MonoBehaviour
     {
-        public MeterNumber[] Segments; // 0: Units, 1: Tens, 2: Hundreds
-        public int CurrentValue = 249;
+        [SerializeField] private MeterNumber[] numbers; // 0: Units, 1: Tens, 2: Hundreds
+        [SerializeField] private int currentValue = 249;
+        [SerializeField] private int targetValue = 238;
+        
     
         [Header("Settings")]
-        public float AnimationDuration = 0.4f; // Total time for all wheels to finish
-        public int DelayBetweenTicksMs = 100;
+        [SerializeField] private float animationDuration = 0.4f; // Total time for all wheels to finish
+        [SerializeField] private int delayBetweenTicksMs = 100;
         
-        public int TargetValue = 220;
 
         void Start()
         {
-            InitializeDisplay(CurrentValue);
+            InitializeDisplay(currentValue);
         }
 
         private void OnValidate()
         {
             if(Application.isPlaying)
-                InitializeDisplay(CurrentValue);
+                InitializeDisplay(currentValue);
         }
 
         private void InitializeDisplay(int value)
         {
             int temp = value;
-            for (int i = 0; i < Segments.Length; i++)
+            for (int i = 0; i < numbers.Length; i++)
             {
-                Segments[i].SetDigitInstant(temp % 10);
+                numbers[i].SetDigitInstant(temp % 10);
                 temp /= 10;
             }
         }
@@ -41,18 +43,18 @@ namespace Game.Odometer
         [ContextMenu("Start Countdown")]
         public async void TriggerCountdown()
         {
-            await CountdownToValueAsync(TargetValue);
+            await CountdownToValueAsync(targetValue);
         }
 
-        public async UniTask CountdownToValueAsync(int targetValue)
+        public async UniTask CountdownToValueAsync(int value)
         {
-            while (CurrentValue > targetValue)
+            while (currentValue > value)
             {
-                CurrentValue--;
-                await RotateAllSegmentsSimultaneously(CurrentValue);
+                currentValue--;
+                await RotateAllSegmentsSimultaneously(currentValue);
             
-                if (DelayBetweenTicksMs > 0)
-                    await UniTask.Delay(DelayBetweenTicksMs);
+                if (delayBetweenTicksMs > 0)
+                    await UniTask.Delay(delayBetweenTicksMs);
             }
         }
 
@@ -64,16 +66,16 @@ namespace Game.Odometer
             int temp = value;
             Sequence multiWheelSequence = DOTween.Sequence();
 
-            for (int i = 0; i < Segments.Length; i++)
+            for (int i = 0; i < numbers.Length; i++)
             {
                 int targetDigit = temp % 10;
                 temp /= 10;
 
                 // Only add to sequence if the digit actually changes
-                if (Segments[i].CurrentDigit != targetDigit)
+                if (numbers[i].CurrentDigit != targetDigit)
                 {
                     // Join makes them run at the same time as the previous tween in the sequence
-                    multiWheelSequence.Join(Segments[i].GetRotationTween(targetDigit, AnimationDuration));
+                    multiWheelSequence.Join(numbers[i].GetRotationTween(targetDigit, animationDuration));
                 }
             }
 
