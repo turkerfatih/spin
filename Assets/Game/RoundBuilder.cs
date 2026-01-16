@@ -22,7 +22,7 @@ namespace Game
             var round = new RoundData
             {
                 No = 1,
-                Debt = 25,
+                Debt = 10,
                 RemainingCoins = 7,
                 BeginCoinCount = 7,
                 Collected = 0

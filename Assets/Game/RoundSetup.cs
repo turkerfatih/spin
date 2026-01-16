@@ -41,8 +41,8 @@ namespace Game
 
         private async UniTask RoundStartAnimation()
         {
-            await Services.DebtMeter.AnimateDebtSetup();
             await Services.RoundStack.AnimateSetup(Services.Round.BeginCoinCount);
+            await Services.DebtMeter.AnimateDebtSetup();
         }
         
         

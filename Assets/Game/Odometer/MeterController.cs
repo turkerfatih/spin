@@ -22,7 +22,7 @@ namespace Game.Odometer
 
         void Start()
         {
-            InitializeDisplay(currentValue);
+            //InitializeDisplay(currentValue);
         }
 
         public UniTask Setup(int startValue)
@@ -30,7 +30,7 @@ namespace Game.Odometer
             currentValue = 0;
             InitializeDisplay(currentValue);
             targetValue=startValue;
-            return DoMechanicalJump(targetValue, 1.5f); 
+            return DoUpMechanicalJump(targetValue, 1.5f); 
         }
 
         public UniTask Reduce(int amount)
@@ -41,8 +41,8 @@ namespace Game.Odometer
 
         private void OnValidate()
         {
-            if(Application.isPlaying)
-                InitializeDisplay(currentValue);
+            //if(Application.isPlaying)
+              //  InitializeDisplay(currentValue);
         }
 
         private void InitializeDisplay(int value)
@@ -99,26 +99,40 @@ namespace Game.Odometer
         [ContextMenu("Mechanical Jump")]
         public async void MechanicalJump()
         {
-            // Jump from 249 to 000 (or any target)
             await DoMechanicalJump(targetValue, 1.5f);
         }
 
         public async UniTask DoMechanicalJump(int target, float duration)
         {
-            
-            //UpdateMovingArray(currentValue,targetValue);
-            var change = currentValue - targetValue;
-            if (change <= 0)//win condition
+            var change = 0;
+            if (target <= 0)//win condition
             {
                 change = currentValue;
                 target = 0;
+                targetValue = 0;
             }
-
-            Debug.Log($"{currentValue} - {change}={currentValue-change}");
+            
             SubtractAndUpdateMoving(currentValue, change);
-            UpdateMovingForAnimation();
-            Debug.Log($"{moving[2]} {moving[1]} {moving[0]}");
+            UpdateUpMovingForAnimation();
             Sequence s = DOTween.Sequence();
+            AnimateMechanicalJump(target, duration, s);
+   
+            await s.ToUniTask();
+        }
+
+        public async UniTask DoUpMechanicalJump(int target, float duration)
+        {
+            for (int i = 0; i < moving.Length; i++)
+            {
+                moving[i] = true;
+            }
+            Sequence s = DOTween.Sequence();
+            AnimateMechanicalJump(target, duration, s);
+            await s.ToUniTask();
+        }
+
+        private void AnimateMechanicalJump(int target, float duration, Sequence s)
+        {
             int tempTarget = target;
 
             for (int i = 0; i < numbers.Length; i++)
@@ -130,11 +144,10 @@ namespace Game.Odometer
                 s.Join(t);
             }
 
-            currentValue = targetValue;
-            await s.ToUniTask();
+            currentValue = target;
         }
 
-        private void UpdateMovingForAnimation()
+        private void UpdateUpMovingForAnimation()
         {
             for (int i = moving.Length-1; i > 0; i--)
             {
@@ -153,6 +166,16 @@ namespace Game.Odometer
             int originalNumber,
             int subtractValue)
         {
+            int finalResult = originalNumber - subtractValue;
+
+            // Shortcut: If negative, mark everything as moving and return
+            if (finalResult < 0)
+            {
+                for (int i = 0; i < moving.Length; i++)
+                    moving[i] = true;
+            
+                return 0;
+            }
             int result = 0;
             int place = 1;
             int index = 0;
