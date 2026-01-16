@@ -103,3 +103,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc2766d3fdec48e7893abf44deabb691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Coin
+  frequency: 20
+  damping: 0.75

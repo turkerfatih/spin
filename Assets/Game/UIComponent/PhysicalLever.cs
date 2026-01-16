@@ -79,8 +79,8 @@ namespace Game.UIComponent
         private void OnLeverPulled()
         {
             if(!Services.Machine.CanSpin())
-                return;
-            Services.Actions.Add(new SpinAction());
+                return; 
+            Services.RoundStack.Spin().Forget();
         }
         public void UpdateDragAngle(float targetAngle)
         {

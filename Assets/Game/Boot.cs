@@ -9,6 +9,7 @@ namespace Game
     {
         private void Start()
         {
+            Application.targetFrameRate = 60;
             LayerHelper.Setup();
             SortLayerHelper.Setup();
             SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);

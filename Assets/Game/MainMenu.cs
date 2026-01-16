@@ -13,7 +13,7 @@ namespace Game
 
         private void Awake()
         {
-            EventBus.OnLightChanged?.Invoke(0.1f);
+            EventBus.OnLightValueChanged?.Invoke(0.1f);
         }
     }
 }

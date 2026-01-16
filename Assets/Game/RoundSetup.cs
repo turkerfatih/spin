@@ -18,7 +18,8 @@ namespace Game
 
         private void Awake()
         {
-            EventBus.OnLightChanged?.Invoke(1f);
+            EventBus.OnLightValueChanged?.Invoke(1f);
+            EventBus.OnLightRotationChanged?.Invoke(Vector3.zero);
         }
 
         private void Start()

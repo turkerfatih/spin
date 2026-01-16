@@ -15,17 +15,24 @@ namespace Game.Core.UI
 
         private void OnEnable()
         {
-            EventBus.OnLightChanged+= OnLightChanged;
+            EventBus.OnLightValueChanged+= OnLightChanged;
+            EventBus.OnLightRotationChanged += OnLightRotationChanged;
         }
 
         private void OnDisable()
         {
-            EventBus.OnLightChanged-= OnLightChanged;
+            EventBus.OnLightValueChanged-= OnLightChanged;
+            EventBus.OnLightRotationChanged -= OnLightRotationChanged;
         }
 
         private void OnLightChanged(float intensity)
         {
             light.intensity = intensity;
+        }
+
+        private void OnLightRotationChanged(Vector3 rot)
+        {
+            light.transform.localRotation = Quaternion.Euler(rot);
         }
     }
 }
