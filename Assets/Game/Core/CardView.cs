@@ -67,6 +67,14 @@ namespace Game.Core
             //durability.SetText(Model.Definition.Durability.ToString());
             DurabilityNumber.sprite = Services.Numbers.GetNumber(Model.Definition.Durability);
         }
+
+        public void ReduceDurability()
+        {
+            if(Model.Durability<=0)
+                return;
+            DurabilityNumber.sprite = Services.Numbers.GetNumber(Model.Durability);
+        }
+
         public void UpdateCharge()
         {
             if(Model.Charge<=0)

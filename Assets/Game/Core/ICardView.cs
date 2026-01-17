@@ -10,6 +10,7 @@ namespace Game.Core
         
         public void DiscardAnimation();
         public void DrawAnimation();
+        public void ReduceDurability();
 
     }
 }

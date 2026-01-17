@@ -33,7 +33,7 @@ namespace Game.Core
         public bool OnAfterSpin()
         {
             Durability--;
-            View?.UpdateDurability();
+            View?.ReduceDurability();
             return Durability <= 0;
         }
 
