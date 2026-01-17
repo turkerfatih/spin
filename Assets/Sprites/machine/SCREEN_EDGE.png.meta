@@ -1,0 +1,962 @@
+fileFormatVersion: 2
+guid: 25031b8e98134d44792c05f9325754e5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5299584765726555095
+    second: SCREEN_EDGE_0
+  - first:
+      213: -3257728518397655225
+    second: SCREEN_EDGE_1
+  - first:
+      213: 7516026730575341225
+    second: SCREEN_EDGE_2
+  - first:
+      213: 8805532005777685040
+    second: SCREEN_EDGE_3
+  - first:
+      213: -3687906880075539205
+    second: SCREEN_EDGE_4
+  - first:
+      213: -8881884197630556438
+    second: SCREEN_EDGE_5
+  - first:
+      213: -4649748690668981437
+    second: SCREEN_EDGE_6
+  - first:
+      213: 250169647893439303
+    second: SCREEN_EDGE_7
+  - first:
+      213: 3117991421896246064
+    second: SCREEN_EDGE_8
+  - first:
+      213: 1850348861621760290
+    second: SCREEN_EDGE_9
+  - first:
+      213: -2052245905973924998
+    second: SCREEN_EDGE_10
+  - first:
+      213: -3556870633598428301
+    second: SCREEN_EDGE_11
+  - first:
+      213: 7576535308886759096
+    second: SCREEN_EDGE_12
+  - first:
+      213: -4036149768475039040
+    second: SCREEN_EDGE_13
+  - first:
+      213: 70025132400314428
+    second: SCREEN_EDGE_14
+  - first:
+      213: 2955414417980856881
+    second: SCREEN_EDGE_15
+  - first:
+      213: 2822208900116350494
+    second: SCREEN_EDGE_16
+  - first:
+      213: 3037666811175571095
+    second: SCREEN_EDGE_17
+  - first:
+      213: -5969968354752194905
+    second: SCREEN_EDGE_18
+  - first:
+      213: -824618758952094799
+    second: SCREEN_EDGE_19
+  - first:
+      213: -4420232971400116391
+    second: SCREEN_EDGE_20
+  - first:
+      213: -2729839508845040027
+    second: SCREEN_EDGE_21
+  - first:
+      213: -1093851821635387993
+    second: SCREEN_EDGE_22
+  - first:
+      213: 1620015800911268350
+    second: SCREEN_EDGE_23
+  - first:
+      213: -3428199664668389923
+    second: SCREEN_EDGE_24
+  - first:
+      213: 5447569027957516051
+    second: SCREEN_EDGE_25
+  - first:
+      213: -1510944686710032142
+    second: SCREEN_EDGE_26
+  - first:
+      213: 1361773136970148398
+    second: SCREEN_EDGE_27
+  - first:
+      213: -96869886564693560
+    second: SCREEN_EDGE_28
+  - first:
+      213: -4419763512064791786
+    second: SCREEN_EDGE_29
+  - first:
+      213: -7732861189244405456
+    second: SCREEN_EDGE_30
+  - first:
+      213: -5937354773211889113
+    second: SCREEN_EDGE_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SCREEN_EDGE_0
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 1654
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dbf33a1448eb8940800000000000000
+      internalID: 5299584765726555095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_1
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 1657
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7478f363c293ac2d0800000000000000
+      internalID: -3257728518397655225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_2
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 1660
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a6a8466d7a4e4860800000000000000
+      internalID: 7516026730575341225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_3
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 1657
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03a36be94b8833a70800000000000000
+      internalID: 8805532005777685040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_4
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 1659
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfcd0606b3ce1dcc0800000000000000
+      internalID: -3687906880075539205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_5
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 1657
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae6431861653db480800000000000000
+      internalID: -8881884197630556438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_6
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 1655
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34376d58336c87fb0800000000000000
+      internalID: -4649748690668981437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_7
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 1657
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 743e54428f7c87300800000000000000
+      internalID: 250169647893439303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_8
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 1660
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03347daada4554b20800000000000000
+      internalID: 3117991421896246064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_9
+      rect:
+        serializedVersion: 2
+        x: 1629
+        y: 1657
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 221738f6c72cda910800000000000000
+      internalID: 1850348861621760290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_10
+      rect:
+        serializedVersion: 2
+        x: 1807
+        y: 1659
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7baca6c835f483e0800000000000000
+      internalID: -2052245905973924998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_11
+      rect:
+        serializedVersion: 2
+        x: 1981
+        y: 1657
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37bd85cf00573aec0800000000000000
+      internalID: -3556870633598428301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_12
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 488
+        width: 2232
+        height: 1170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b65662a8b2452960800000000000000
+      internalID: 7576535308886759096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_13
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 1650
+        width: 46
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ca25c58b27bcf7c0800000000000000
+      internalID: -4036149768475039040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_14
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1653
+        width: 31
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c380216ac77c8f000800000000000000
+      internalID: 70025132400314428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_15
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 1635
+        width: 29
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13a11d331cdb30920800000000000000
+      internalID: 2955414417980856881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_16
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 1632
+        width: 272
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e16816dba008a2720800000000000000
+      internalID: 2822208900116350494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_17
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1397
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79e0d1aded5f72a20800000000000000
+      internalID: 3037666811175571095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1223
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a61cae5969662da0800000000000000
+      internalID: -5969968354752194905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_19
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1045
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b379859b9d5e84f0800000000000000
+      internalID: -824618758952094799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 886
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9570a3b288d28a2c0800000000000000
+      internalID: -4420232971400116391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_21
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 880
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56ee6751e69ad1ad0800000000000000
+      internalID: -2729839508845040027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_22
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 705
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ad328e409bd1d0f0800000000000000
+      internalID: -1093851821635387993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 531
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef906d7a9c37b7610800000000000000
+      internalID: 1620015800911268350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_24
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 353
+        width: 42
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dddc35081969c60d0800000000000000
+      internalID: -3428199664668389923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_25
+      rect:
+        serializedVersion: 2
+        x: 2056
+        y: 338
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 317e3d02b27a99b40800000000000000
+      internalID: 5447569027957516051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 294
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f8726110db080be0800000000000000
+      internalID: -1510944686710032142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_27
+      rect:
+        serializedVersion: 2
+        x: 2181
+        y: 279
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2a66cdf37df5e210800000000000000
+      internalID: 1361773136970148398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_28
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 122
+        width: 132
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c901e5f959d7aef0800000000000000
+      internalID: -96869886564693560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_29
+      rect:
+        serializedVersion: 2
+        x: 2056
+        y: 107
+        width: 132
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61b2520b088d9a2c0800000000000000
+      internalID: -4419763512064791786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_30
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 14
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 039bea508bb5fa490800000000000000
+      internalID: -7732861189244405456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SCREEN_EDGE_31
+      rect:
+        serializedVersion: 2
+        x: 2057
+        y: 0
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7224c3d8a474a9da0800000000000000
+      internalID: -5937354773211889113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SCREEN_EDGE_0: 5299584765726555095
+      SCREEN_EDGE_1: -3257728518397655225
+      SCREEN_EDGE_10: -2052245905973924998
+      SCREEN_EDGE_11: -3556870633598428301
+      SCREEN_EDGE_12: 7576535308886759096
+      SCREEN_EDGE_13: -4036149768475039040
+      SCREEN_EDGE_14: 70025132400314428
+      SCREEN_EDGE_15: 2955414417980856881
+      SCREEN_EDGE_16: 2822208900116350494
+      SCREEN_EDGE_17: 3037666811175571095
+      SCREEN_EDGE_18: -5969968354752194905
+      SCREEN_EDGE_19: -824618758952094799
+      SCREEN_EDGE_2: 7516026730575341225
+      SCREEN_EDGE_20: -4420232971400116391
+      SCREEN_EDGE_21: -2729839508845040027
+      SCREEN_EDGE_22: -1093851821635387993
+      SCREEN_EDGE_23: 1620015800911268350
+      SCREEN_EDGE_24: -3428199664668389923
+      SCREEN_EDGE_25: 5447569027957516051
+      SCREEN_EDGE_26: -1510944686710032142
+      SCREEN_EDGE_27: 1361773136970148398
+      SCREEN_EDGE_28: -96869886564693560
+      SCREEN_EDGE_29: -4419763512064791786
+      SCREEN_EDGE_3: 8805532005777685040
+      SCREEN_EDGE_30: -7732861189244405456
+      SCREEN_EDGE_31: -5937354773211889113
+      SCREEN_EDGE_4: -3687906880075539205
+      SCREEN_EDGE_5: -8881884197630556438
+      SCREEN_EDGE_6: -4649748690668981437
+      SCREEN_EDGE_7: 250169647893439303
+      SCREEN_EDGE_8: 3117991421896246064
+      SCREEN_EDGE_9: 1850348861621760290
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

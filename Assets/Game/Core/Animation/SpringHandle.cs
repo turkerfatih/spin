@@ -30,6 +30,7 @@ namespace Game.Core.Animation
             return UniTask.WaitUntil(() => !_isUpdating, 
                 cancellationToken: _owner.GetCancellationTokenOnDestroy());
         }
+  
 
         private async UniTask RunLoop()
         {

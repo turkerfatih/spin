@@ -36,5 +36,6 @@ namespace Game
         public static NumbersHolder Numbers;
         public static DebtMeter DebtMeter;
         public static RoundStackController RoundStack;
+        public static DarabaController Darabas;
     }
 }

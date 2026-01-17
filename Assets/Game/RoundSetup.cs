@@ -44,6 +44,7 @@ namespace Game
         {
             await Services.RoundStack.AnimateSetup(Services.Round.BeginCoinCount);
             await Services.DebtMeter.AnimateDebtSetup();
+            await Services.Darabas.AnimateOpen();
         }
         
         
