@@ -15,7 +15,8 @@ MonoBehaviour:
   Id: c9a3b23454bac324ba41e6d5874758a2
   CardName: Push
   Icon: {fileID: 21300000, guid: e4a22b8d49efb8346960e3a9d9b3a24d, type: 3}
-  Durability: 1
+  Durability: 2
+  Charge: -1
   Description: 
   Effects:
   - {fileID: 11400000, guid: 300068be5c6766149b638212e075eb46, type: 2}

@@ -15,7 +15,7 @@ MonoBehaviour:
   Id: dcde71de0c720f74eae42aa8d36448fc
   CardName: Pull
   Icon: {fileID: 21300000, guid: ca769d404b6f2624392ce62787c460ce, type: 3}
-  Durability: 1
+  Durability: 2
   Charge: -1
   Description: Pull a reel
   Effects:
