@@ -65,6 +65,15 @@ namespace Game
             Services.Actions.Add(new SpinAction());
         }
 
+        public async UniTask Draw()
+        {
+            if(coins.Count==0)
+                return;
+            await AnimateCoinRemoval();
+            Services.Round.OnDraw();
+            await Services.Hand.RenewHand();
+        }
+
         public async UniTask AnimateCoinRemoval()
         {
             var coin = coins.Dequeue();

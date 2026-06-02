@@ -27,6 +27,7 @@ namespace Game.Core
         
         [SerializeField] private SpriteRenderer Background;
         [SerializeField] private SpriteRenderer DurabilityBackground;
+        [SerializeField] private SpriteRenderer ChargeBackground;
         [SerializeField] private SpriteRenderer Shadow;
         [SerializeField] private Material MaskedLabelFont;
         [SerializeField] private Material MaskedDurabilityFont;
@@ -50,8 +51,9 @@ namespace Game.Core
         {
             Model = card;
             label.text = card.Definition.CardName;
-            UpdateDurability();
             Visual.sprite = card.Definition.Icon;
+            UpdateDurabilityView();
+            UpdateChargeView();
         }
 
         public void UnBind()
@@ -60,12 +62,30 @@ namespace Game.Core
             Destroy(gameObject);
         }
 
-        public void UpdateDurability()
+        public void UpdateChargeView()
         {
-            if(Model.Durability<=0)
+            if (Model.Charge <= 0)
+            {
+                ChargeBackground.enabled = false;
+                ChargeNumber.enabled = false;
                 return;
-            //durability.SetText(Model.Definition.Durability.ToString());
-            DurabilityNumber.sprite = Services.Numbers.GetNumber(Model.Definition.Durability);
+            }
+            ChargeBackground.enabled = true;
+            ChargeNumber.sprite = Services.Numbers.GetNumber(Model.Charge);
+        }
+
+        public void UpdateDurabilityView()
+        {
+            if (Model.Durability <= 0)
+            {
+                DurabilityBackground.enabled = false;
+                DurabilityNumber.enabled = false;
+                return;
+            } //durability.SetText(Model.Definition.Durability.ToString());
+
+            DurabilityBackground.enabled = true;
+            DurabilityNumber.enabled = true;
+            DurabilityNumber.sprite = Services.Numbers.GetNumber(Model.Durability);
         }
 
         public void ReduceDurability()

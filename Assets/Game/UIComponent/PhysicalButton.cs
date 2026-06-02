@@ -111,7 +111,7 @@ namespace Game.UIComponent
         }
         private void OnSuccessfulClick()
         {
-            Services.Round.Draw();
+            Services.RoundStack.Draw().Forget();
         }
 
     }

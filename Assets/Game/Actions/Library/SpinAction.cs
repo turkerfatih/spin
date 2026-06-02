@@ -14,7 +14,7 @@ namespace Game.Actions
         private bool isReSpin;
         public SpinAction()
         {
-            Services.Round.Spin();
+            Services.Round.OnSpin();
             isReSpin = false;
             single = -1;
         }
@@ -41,9 +41,9 @@ namespace Game.Actions
             }
             await UniTask.WhenAll(tasks);
             await machine.ResolvePayout();
-            await machine.AdvanceSlots();
             if (!isReSpin)
             {
+                await machine.AdvanceSlots();
                 await Services.Hand.PostSpinAction();
             }
 

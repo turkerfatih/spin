@@ -6,7 +6,7 @@ namespace Game.Core
     {
         public void Bind(Card card);
         
-        public void UpdateDurability();
+        public void UpdateDurabilityView();
         
         public void DiscardAnimation();
         public void DrawAnimation();

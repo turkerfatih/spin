@@ -508,7 +508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8036612269631710498
 Transform:
   m_ObjectHideFlags: 0
@@ -578,6 +578,7 @@ MonoBehaviour:
   sortingGroup: {fileID: 1965738428792182014}
   Background: {fileID: 972470633179046356}
   DurabilityBackground: {fileID: 3412936738324689169}
+  ChargeBackground: {fileID: 9030584954254108364}
   Shadow: {fileID: 5451336337744693344}
   MaskedLabelFont: {fileID: 2100000, guid: 47980863f7353a64ebd530ebb96b586d, type: 2}
   MaskedDurabilityFont: {fileID: 2100000, guid: 47980863f7353a64ebd530ebb96b586d, type: 2}

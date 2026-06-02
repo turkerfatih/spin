@@ -27,20 +27,16 @@ namespace Game
             this.RemainingCoins = beginCoinCount;
         }
 
-        public void Spin()
+        public void OnSpin()
         {
             RemainingCoins--;
             EventBus.OnCreditsChanged?.Invoke(RemainingCoins);
         }
 
-        public void Draw()
+        public void OnDraw()
         {
             RemainingCoins--;
             EventBus.OnCreditsChanged?.Invoke(RemainingCoins);
-            
-            //do candle animation
-            Services.Hand.RenewHand().Forget();
-          
         }
 
         public bool IsWin()

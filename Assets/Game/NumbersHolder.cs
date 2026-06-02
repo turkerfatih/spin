@@ -15,7 +15,7 @@ namespace Game
 
         public Sprite GetNumber(int number)
         {
-            var index=Mathf.Clamp(number,0,NumberSprites.Length-1);
+            var index=Mathf.Clamp(number-1,0,NumberSprites.Length-1);
             return NumberSprites[index];
         }
     }

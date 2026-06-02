@@ -22,7 +22,7 @@ namespace Game.Actions
                 await Services.Machine.Reels[reelIndex].Push(0);
             }
             await machine.ResolvePayout();
-            await machine.AdvanceSlots();
+            //await machine.AdvanceSlots();
             await Services.WinLoseCheck.ExecuteAsync();
             machine.IsSpinning = false;
         }
